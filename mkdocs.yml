@@ -22,3 +22,5 @@ markdown_extensions:
     permalink: true
 nav:
   - index.md
+  - Installation:
+    - install/quickstart.md
