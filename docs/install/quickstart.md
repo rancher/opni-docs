@@ -27,7 +27,7 @@ export KUBECONFIG=/etc/rancher/rke2/rke2.yaml PATH=$PATH:/var/lib/rancher/rke2/b
 
 ### Install Opnictl with the quickstart flag
 ```
-./opnictl install --quickstart --kubeconfig /etc/rancher/rke2/rke2.yaml
+./opnictl install --quickstart
 ```
 
 ### Port forward Kibana so you can view endpoint
@@ -43,6 +43,8 @@ Username and Password are both admin
 
 ### Inject anomalies
 ```
-sh fault_injection.sh
+Anomalies can be injected by going to the /examples folder.
+Currently there are bash scripts for pod disruption budgets (drain.sh), image pull errors (replace-images.sh) and pod scheduling errors (job.sh)
+For more information on these anomalies, please refer to fault-injection.md within the examples folder.
 ```
 
