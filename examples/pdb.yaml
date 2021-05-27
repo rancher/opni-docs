@@ -1,0 +1,12 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: test-pdb
+  labels:
+    opni-test: "true"
+spec:
+  minAvailable: 100%
+  selector:
+    matchExpressions:
+    - key: nonexistent
+      operator: DoesNotExist

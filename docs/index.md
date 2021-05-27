@@ -1,27 +1,9 @@
 ---
-title: Quick Start
+title: Opni
 ---
 
-This guide will help you quickly install Opni using Opnictl on an RKE2 cluster.
+This guide will help you install Opni using Opnictl.
 
-### Prerequisites
-
-Setup a virtual machine with 2 CPUs and 16 GB memory.
-
-### Server Node Installation
---------------
-```
-sh run_rke2_setup.sh
-```
-This will install the `rke2-server` service and the `rke2` binary onto your machine.
-
-### Install Opnictl with the quickstart flag
-```
-opnictl install --quickstart 
-```
-
-### Inject anomalies and view Kibana dashboard
-```
-sh fault_injection.sh
-```
+### About
+Opni is a collection of AIOPs tools - it currently features log anomaly detection for Kubernetes.
 
