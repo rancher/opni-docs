@@ -12,7 +12,7 @@ At least three additional nodes each with at least 16 GB RAM and 40 GB of disk s
 
 ## Installing
 Use a 1-command install: `opnictl` - A small tool to install the opni stack on Kubernetes cluster
-If no Kubeconfig is specified, Opnictl will look for the path specified within the KUBECONFIG environmental variable.
+If no Kubeconfig is specified, Opnictl will look for the file within ~/.kube/config
 ```
 ./opnictl install
 ```
