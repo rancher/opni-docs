@@ -2,7 +2,7 @@
 title: Quick Start Demo
 ---
 
-This guide will help you quickly install Opni using Opnictl on an RKE1 cluster while also displaying Opni's anomaly detection capabilities.
+This guide will help you quickly install Opni using Opnictl on an RKE2 cluster while also displaying Opni's anomaly detection capabilities.
 
 ### Prerequisites
 
@@ -47,4 +47,3 @@ Anomalies can be injected by going to the /examples folder.
 Currently there are bash scripts for pod disruption budgets (drain.sh), image pull errors (replace-images.sh) and pod scheduling errors (job.sh)
 For more information on these anomalies, please refer to fault-injection.md within the examples folder.
 ```
-

@@ -24,3 +24,4 @@ nav:
   - index.md
   - Installation:
     - install/quickstart.md
+    - install/main.md
