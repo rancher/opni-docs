@@ -1,5 +1,5 @@
 ---
-title: Quick Start Demo
+title: Demo Mode
 ---
 
 This guide will help you quickly install Opni using Opnictl on an RKE2 cluster while also displaying Opni's anomaly detection capabilities.

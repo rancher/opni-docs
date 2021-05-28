@@ -7,8 +7,8 @@ theme:
     primary: purple
   font:
     text: 'Work Sans'
-  logo: 'https://github.com/rancher/project-assets/blob/master/logos/opni/icon-opni.png'
-  favicon: 'assets/favicon-32x32.png'
+  logo: 'assets/logo-horizontal-opni.png'
+  favicon: 'assets/icon-opni.png'
 #google_analytics:
 plugins:
   - search
