@@ -2,7 +2,7 @@
 title: Demo Mode
 ---
 
-This guide will help you quickly install Opni using Opnictl on an RKE2 cluster while also displaying Opni's anomaly detection capabilities.
+This guide will help you quickly install Opni using Opnictl on an K3S cluster while also displaying Opni's anomaly detection capabilities.
 
 ### Prerequisites
 
@@ -16,9 +16,9 @@ sudo su
 ### Server Node Installation
 --------------
 ```
-sh run_rke2_setup.sh
+curl -sfL https://get.k3s.io | sh -
 ```
-This will install the `rke2-server` service and the `rke2` binary onto your machine.
+This will install K3S onto your machine.
 
 ### Path Exporting
 ```
