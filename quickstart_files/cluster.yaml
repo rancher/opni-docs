@@ -1,0 +1,7 @@
+nodes:
+    - address: 3.16.166.1
+      user: ubuntu
+      role:
+        - controlplane
+        - etcd
+        - worker
