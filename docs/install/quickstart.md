@@ -52,27 +52,27 @@ cp kube_config_cluster.yaml ~/.kube/config
 ### Install Opnictl with the quickstart flag
 Linux
 ```
-curl -sfL https://github.com/rancher/opni-docs/blob/main/quickstart_files/install_opni_linux.sh | sh -
+curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni_linux.sh | sh -
 ```
 macOs
 ```
-curl -sfL https://github.com/rancher/opni-docs/blob/main/quickstart_files/install_opni_darwin.sh | sh -
+curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni_darwin.sh | sh -
 ```
 
 
 ### Port forward Kibana so you can view endpoint
 ```
-kubectl port-forward svc/opendistro-es-kibana-svc --address 0.0.0.0 -n opni-system 5601:443
+kubectl port-forward svc/opendistro-es-kibana-svc -n opni-system 5601:443
 ```
 
 ### Go to Kibana endpoint and view dashboard
 ```
-Go to [cluster_node_ip]:5601
+Go to localhost:5601
 Username and Password are both admin
 ```
 
 ### Inject anomalies
 ```
 Inject this anomaly which will create 50 jobs that fail to be scheduled.
-curl -sfL https://github.com/rancher/opni-docs/blob/main/examples/job.sh | sh -
+curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/examples/job.sh | sh -
 ```
