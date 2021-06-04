@@ -4,8 +4,7 @@ title: Demo Mode
 
 This guide will help you quickly install Opni using Opnictl on an RKE1 cluster while also displaying Opni's anomaly detection capabilities.
 
-### Requirements: Cloud
-**Currently supporting AWS but down the road we will provide support for GKE, AKS, and Digital Ocean.**
+### Requirements: Cloud (Currently supporting AWS but will provide support for GKE, AKS and Digital Ocean)
 - Terraform >=0.13.0
 - IAM Credentials for AWS
 - Kubectl 
