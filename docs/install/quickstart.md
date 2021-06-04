@@ -67,8 +67,8 @@ kubectl port-forward svc/opendistro-es-kibana-svc -n opni-system 5601:443
 - Go to localhost:5601
 - Username and Password are both admin
 
-### Inject anomalies
+### Anomaly Injection
+Injecting this anomaly which will spawn 50 jobs that fail to be scheduled.
 ```
-Inject this anomaly which will create 50 jobs that fail to be scheduled.
 curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/examples/job.sh | sh -
 ```
