@@ -5,11 +5,12 @@ title: Demo Mode
 This guide will help you quickly install Opni using Opnictl on an RKE1 cluster while also displaying Opni's anomaly detection capabilities.
 
 ### Requirements: Cloud
+Currently supporting AWS but down the road we will provide support for GKE, AKS, and Digital Ocean.
 - Terraform >=0.13.0
 - IAM Credentials for AWS
 - Kubectl 
 
-### EC2 Instance requirements
+### Virtual Machine Instance requirements
 - Ubuntu 20.04
 - 4 CPUs
 - 16GB of RAM
@@ -19,9 +20,7 @@ This guide will help you quickly install Opni using Opnictl on an RKE1 cluster w
 ```
 git clone https://github.com/dbason/opni-quickstart-tf
 ```
-```
 Copy or rename terraform.tfvars.example to terraform.tfvars and fill in aws_access_key, aws_secret_key and aws_region
-```
 ```
 terraform init
 ```
@@ -53,6 +52,10 @@ curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_fi
 macOs
 ```
 curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni_darwin.sh | sh -
+```
+Windows
+```
+curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni_windows.sh | sh -
 ```
 
 
