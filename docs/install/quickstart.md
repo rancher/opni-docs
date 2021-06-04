@@ -2,28 +2,60 @@
 title: Demo Mode
 ---
 
-This guide will help you quickly install Opni using Opnictl on an K3S cluster while also displaying Opni's anomaly detection capabilities.
+This guide will help you quickly install Opni using Opnictl on an RKE1 cluster while also displaying Opni's anomaly detection capabilities.
 
-### Prerequisites
+### Requirements: Cloud
+- Terraform >=0.13.0
+- IAM Credentials for AWS
+- Kubectl 
 
-Setup a virtual machine with at least 2 CPUs, 16 GB memory and 32 GB disk space.
+### EC2 Instance requirements
+- Ubuntu 20.04
+- 4 CPUs
+- 16GB of RAM
+- 32GB of disk space
 
-### Run as Root within Virtual Machine
+### Clone this Github repository to create an RKE cluster
 ```
-sudo su
+git clone https://github.com/dbason/opni-quickstart-tf
+```
+```
+Copy or rename terraform.tfvars.example to terraform.tfvars and fill in aws_access_key, aws_secret_key and aws_region
+```
+```
+terraform init
+```
+```
+terraform apply
 ```
 
-### Server Node Installation
---------------
+This will output a cluster_node_ip and the Kubeconfig file which is called kube_config_cluster.yaml. Make sure to note down the cluster_node_ip.
+
+### Install Kubectl
 ```
-curl -sfL https://get.k3s.io | sh -
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
-This will install K3S onto your machine.
+
 
 ### Path Exporting
 ```
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml PATH=$PATH:/var/lib/rancher/rke2/bin
+export KUBECONFIG=kube_config_cluster.yml
 ```
+
+### Connect to the RKE cluster
+```
+cp kube_config_cluster.yaml ~/.kube/config
+```
+
+### Install Opni using Opnictl binary
+Linux
+```
+curl -sfl https://github.com/rancher/opni-docs/blob/main/quickstart_files/opnictl?raw=true --output opnictl
+```
+
+
 
 ### Install Opnictl with the quickstart flag
 ```
@@ -37,13 +69,12 @@ kubectl port-forward svc/opendistro-es-kibana-svc --address 0.0.0.0 -n opni-syst
 
 ### Go to Kibana endpoint and view dashboard
 ```
-Go to [Public IPV4 Address]:5601
+Go to [cluster_node_ip]:5601
 Username and Password are both admin
 ```
 
 ### Inject anomalies
 ```
-Anomalies can be injected by going to the /examples folder.
-Currently there are bash scripts for pod disruption budgets (drain.sh), image pull errors (replace-images.sh) and pod scheduling errors (job.sh)
-For more information on these anomalies, please refer to fault-injection.md within the examples folder.
+Inject this anomaly which will create 50 jobs that fail to be scheduled.
+curl -sfl ...
 ```
