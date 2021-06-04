@@ -74,5 +74,5 @@ Username and Password are both admin
 ### Inject anomalies
 ```
 Inject this anomaly which will create 50 jobs that fail to be scheduled.
-curl -sfl ...
+curl -sfL https://github.com/rancher/opni-docs/blob/main/examples/job.sh | sh -
 ```
