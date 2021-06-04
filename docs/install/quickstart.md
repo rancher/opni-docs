@@ -49,18 +49,16 @@ export KUBECONFIG=kube_config_cluster.yml
 cp kube_config_cluster.yaml ~/.kube/config
 ```
 
-### Install Opni using Opnictl binary
+### Install Opnictl with the quickstart flag
 Linux
 ```
-curl -sfl https://github.com/rancher/opni-docs/blob/main/quickstart_files/opnictl?raw=true --output opnictl
+curl -sfL https://github.com/rancher/opni-docs/blob/main/quickstart_files/install_opni_linux.sh | sh -
+```
+macOs
+```
+curl -sfL https://github.com/rancher/opni-docs/blob/main/quickstart_files/install_opni_darwin.sh | sh -
 ```
 
-
-
-### Install Opnictl with the quickstart flag
-```
-./opnictl install --quickstart
-```
 
 ### Port forward Kibana so you can view endpoint
 ```
