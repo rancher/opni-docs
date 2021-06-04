@@ -39,7 +39,9 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ### Connect to the RKE cluster
 ```
 cp kube_config_cluster.yaml ~/.kube/config
+```
 OR
+```
 export KUBECONFIG=kube_config_cluster.yaml
 ```
 
