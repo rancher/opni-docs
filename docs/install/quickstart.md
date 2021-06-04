@@ -38,15 +38,10 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-
-### Path Exporting
-```
-export KUBECONFIG=kube_config_cluster.yml
-```
-
 ### Connect to the RKE cluster
 ```
 cp kube_config_cluster.yaml ~/.kube/config
+export KUBECONFIG=kube_config_cluster.yaml
 ```
 
 ### Install Opnictl with the quickstart flag
