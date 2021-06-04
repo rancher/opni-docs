@@ -7,7 +7,7 @@ theme:
     primary: purple
   font:
     text: 'Work Sans'
-  logo: 'assets/logo-horizontal-opni.png'
+  logo: 'assets/icon-opni.png'
   favicon: 'assets/icon-opni.png'
 #google_analytics:
 plugins:
