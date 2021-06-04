@@ -65,10 +65,8 @@ kubectl port-forward svc/opendistro-es-kibana-svc -n opni-system 5601:443
 ```
 
 ### Go to Kibana endpoint and view dashboard
-```
-Go to localhost:5601
-Username and Password are both admin
-```
+- Go to localhost:5601
+- Username and Password are both admin
 
 ### Inject anomalies
 ```
