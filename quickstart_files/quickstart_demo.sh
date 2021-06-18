@@ -107,6 +107,10 @@ do_install_opni() {
     sleep 10
     info "Installing Opni Quickstart"
     KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl create demo --quickstart --timeout 10m
+    info "Waiting for controlplane logs to stabilize"
+    sleep 30
+    info "Generating controlplane anomalies"
+    inject_anomaly
 }
 
 do_install_opni
