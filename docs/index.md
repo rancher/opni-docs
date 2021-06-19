@@ -13,7 +13,10 @@ Get started by setting up Opnictl in your own environment! You may need to run a
 curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/demo/quickstart_files/install_opni.sh | sh -
 #Installs RKE2 and then will setup Opni in the demo mode and inject anomaly into cluster.
 ```
-
+Setup the kubeconfig and kubectl to access the RKE2 cluster:
+```
+export KUBECONFIG=/etc/rancher/rke2/rke2.yaml PATH=$PATH:/var/lib/rancher/rke2/bin
+```
 Port forward Kibana in order to access the User Interface
 ```
 kubectl port-forward svc/opendistro-es-kibana-svc --address 0.0.0.0 -n opni-system 5601:443
