@@ -10,22 +10,19 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
 
 Get started by setting up Opnictl in your own environment! You may need to run as root if using a virtual machine.
 ```
-curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/demo/quickstart_files/install_opni.sh | sh -
-#Installs RKE2 and then will setup Opni in the demo mode and inject anomaly into cluster.
-```
-Setup the kubeconfig and kubectl to access the RKE2 cluster:
-```
-export KUBECONFIG=/etc/rancher/rke2/rke2.yaml PATH=$PATH:/var/lib/rancher/rke2/bin
-```
-Port forward Kibana in order to access the User Interface
-```
-kubectl port-forward svc/opendistro-es-kibana-svc --address 0.0.0.0 -n opni-system 5601:443
+curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni.sh | sh -
 ```
 
-Go to 
+Copy the NodePort address from the script output in order to access the User Interface
+
+
+Open the following address in a browser
 ```
-[IPV4_ADDRESS]:5601
+[IPV4_ADDRESS]:[NODE_PORT]
 ``` 
-Make sure to be in the Global Tenant mode if you are not already. Click on Dashboard, Opni Logs Dashboard and then observe the anomalies that are being marked by Opni.
+The default username and password is admin/admin
+Make sure to be in the Global Tenant mode if you are not already. Click on Dashboard, Opni Logs Dashboard.
+
+To view the anomaly detection press 'Enter' in the console window running the script to inject an anomaly.
 
 
