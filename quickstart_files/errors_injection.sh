@@ -1,7 +1,7 @@
 #!/bin/sh
-
+export KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/"
 inject_unschedulable_pods_anomaly() {
-    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
+    cat <<EOF | kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -30,7 +30,7 @@ EOF
 }
 
 inject_nonexistent_image_pods_anomaly() {
-    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
+    cat <<EOF | kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -53,7 +53,7 @@ EOF
 }
 
 inject_nonzero_exit_code_pods_anomaly() {
-    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
+    cat <<EOF | kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -75,7 +75,7 @@ EOF
 }
 
 undo_anomalies() {
-  KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl delete jobs -l is-opni-demo=true
+  kubectl delete jobs -l is-opni-demo=true
 }
 
 get_user_anomaly_input() {
