@@ -102,7 +102,7 @@ get_user_anomaly_input() {
       undo_anomalies
     elif [ "$anomaly" = 'q' ]; then
       break
-  	fi
+    fi
   done
 }
 get_user_anomaly_input
