@@ -81,13 +81,13 @@ undo_anomalies() {
 get_user_anomaly_input() {
   while true
   do
-  	echo " Possible Anomalies to inject"
-  	echo "1) Create 10 unschedulable pods."
-  	echo "2) Create 10 pods with nonexistent images."
-  	echo "3) Create 10 pods that will exit with non-zero exit codes."
-    echo "u) Undo anomalies injected into cluster."
-    echo "q) Exit this script."
-  	read -p "Type the number of the anomaly you would like to inject: " anomaly
+  	echo "Possible anomalies to inject"
+  	echo "1: Create 10 unschedulable pods."
+  	echo "2: Create 10 pods with nonexistent images."
+  	echo "3: Create 10 pods that will exit with non-zero exit codes."
+    echo "u: Undo anomalies injected into cluster."
+    echo "q: Exit this script."
+  	read -p "Select the action you would like to perform: " anomaly
   	if [ "$anomaly" = '1' ]; then
   		echo "Injecting the fault to create 10 unschedulable pods."
   		inject_unschedulable_pods_anomaly
