@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 inject_unschedulable_pods_anomaly() {
-    cat <<EOF | /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f -
+    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -28,7 +28,7 @@ EOF
 }
 
 inject_nonexistent_image_pods_anomaly() {
-    cat <<EOF | /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f -
+    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -49,7 +49,7 @@ EOF
 }
 
 inject_nonzero_exit_code_pods_anomaly() {
-    cat <<EOF | /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f -
+    cat <<EOF | KUBECONFIG="${KUBECONFIG:-/etc/rancher/rke2/rke2.yaml}" PATH="${PATH:+${PATH}:}/var/lib/rancher/rke2/bin/" kubectl apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
@@ -69,21 +69,27 @@ EOF
 }
 
 get_user_anomaly_input() {
-	echo " Possible Anomalies to inject"
-	echo "1) Create 10 unschedulable pods."
-	echo "2) Create 10 pods with nonexistent images."
-	echo "3) Create 10 pods that will exit with non-zero exit codes"
-	read -p "Type the number of the anomaly you would like to inject: " anomaly
-	if [ $anomaly = '1' ]; then
-		echo "Injecting the fault to create 10 unschedulable pods."
-		inject_unschedulable_pods_anomaly
-	elif [ $anomaly = '2' ]; then
-		echo "Injecting the fault to create 10 pods with nonexistent images."
-		inject_nonexistent_image_pods_anomaly
-	elif [ $anomaly = '3' ]; then
-		echo "Injecting the fault to create 10 pods that will exit with non-zero exit codes."
-		inject_nonzero_exit_code_pods_anomaly
-	fi
+  while true
+  do
+  	echo " Possible Anomalies to inject"
+  	echo "1) Create 10 unschedulable pods."
+  	echo "2) Create 10 pods with nonexistent images."
+  	echo "3) Create 10 pods that will exit with non-zero exit codes"
+    echo "q) Exit this script"
+  	read -p "Type the number of the anomaly you would like to inject: " anomaly
+  	if [ "$anomaly" = '1' ]; then
+  		echo "Injecting the fault to create 10 unschedulable pods."
+  		inject_unschedulable_pods_anomaly
+  	elif [ "$anomaly" = '2' ]; then
+  		echo "Injecting the fault to create 10 pods with nonexistent images."
+  		inject_nonexistent_image_pods_anomaly
+  	elif [ "$anomaly" = '3' ]; then
+  		echo "Injecting the fault to create 10 pods that will exit with non-zero exit codes."
+  		inject_nonzero_exit_code_pods_anomaly
+    elif [ "$anomaly" = 'q' ]; then
+      break
+  	fi
+  done
 }
 get_user_anomaly_input
 exit 0
