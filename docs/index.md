@@ -25,4 +25,9 @@ Make sure to be in the Global Tenant mode if you are not already. Click on Dashb
 
 To view the anomaly detection press 'Enter' in the console window running the script to inject an anomaly.
 
+You can also choose to inject different anomalies such as creating pods which are unschedulable, have nonexistent images and exiting with non-zero exit codes.
+```
+sh <(curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/errors_injection.sh)
+```
+
 
