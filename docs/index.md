@@ -25,7 +25,18 @@ Make sure to be in the Global Tenant mode if you are not already. Click on Dashb
 
 To view the anomaly detection press 'Enter' in the console window running the script to inject an anomaly.
 
-You can also choose to inject different anomalies such as creating pods which are unschedulable, have nonexistent images and exiting with non-zero exit codes.
+
+You can also choose to inject different anomalies such as creating pods which are unschedulable, have nonexistent images and exiting with non-zero exit codes. 
+
+Note: If you are not using the quickstart script, make sure to set the KUBECONFIG environment variable like
+```
+export KUBECONFIG=[PATH_TO_KUBECONFIG_FILE]
+```
+and your Kubectl path like
+```
+export PATH=[PATH_TO_KUBECTL_BINARY]
+```
+Then, you can inject anomalies into your cluster with this command:
 ```
 sh <(curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/errors_injection.sh)
 ```
