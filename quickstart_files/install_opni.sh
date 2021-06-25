@@ -70,42 +70,39 @@ do_install_rke2() {
 }
 
 inject_anomaly() {
+    info "Injecting anomaly"
     cat <<EOF | /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f -
     apiVersion: batch/v1
     kind: Job
     metadata:
-      name: test-job
+      name: test-job-nonzero-exit-code
+      labels:
+        is-opni-demo: "true"
     spec:
-      completions: 50
-      parallelism: 50
+      completions: 10
+      parallelism: 10
       template:
         spec:
           containers:
             - name: test
               image: busybox
               command:
-              - /bin/ls
-          affinity:
-            nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                nodeSelectorTerms:
-                - matchExpressions:
-                  - key: nonexistent
-                    operator: Exists
+              - /bin/false
           restartPolicy: Never
 EOF
 }
 
-get_user_anomaly_input() {
-  info "Waiting to inject anomaly; press enter to inject anomaly or type quit to exit"
-  read k
-  if [ "$k" = "quit" ]
-  then
-    info "Exiting quickstart script"
-  else
-    info "Injecting Anomaly"
-    inject_anomaly
-  fi
+wait_for_logging() {
+  while $true
+  do
+    config=$(/var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get pods -n opni-demo --field-selector=status.phase=Succeeded | grep fluentd-configcheck | wc -l)
+    if [ $config -gt 0 ]
+    then
+      break
+    fi
+    info "Waiting for Rancher Logging"
+    sleep 10
+  done
 }
 
 do_install_opni() {
@@ -114,18 +111,22 @@ do_install_opni() {
     fi
     do_install_rke2
     sleep 5
-    download "/usr/local/bin/opnictl" "https://github.com/rancher/opni/releases/download/v0.1.1/opnictl_linux-amd64"
+    download "/usr/local/bin/opnictl" "https://github.com/rancher/opni/releases/download/v0.1.2-rc2/opnictl_linux-amd64"
     chmod +x /usr/local/bin/opnictl
     info "Installing Opni Manager"
     KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl install
     sleep 10
     info "Installing Opni Quickstart"
-    KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl create demo --quickstart --timeout 10m
+    KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl create demo --deploy-gpu-services=false --deploy-helm-controller=true --deploy-nvidia-plugin=false --deploy-rancher-logging=true --timeout 10m
     NODEPORT=$(/var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml -n opni-demo get -o jsonpath="{.spec.ports[0].nodePort}" services opendistro-es-kibana-svc)
     echo "The opni kibana dashboard is listening on port ${NODEPORT}"
     echo "Navigate to http://<external_ip>:${NODEPORT} and login with the default admin user to view the dashboards"
 }
 
 do_install_opni
-get_user_anomaly_input
+wait_for_logging
+info "Waiting for logging to stabilize"
+sleep 30
+inject_anomaly
+
 exit 0
