@@ -27,7 +27,7 @@ To view the anomaly detection press 'Enter' in the console window running the sc
 
 
 Using the provided script, you can inject sample anomalies into your cluster. The script can create pods which are unschedulable, have nonexistent images, or exit with non-zero exit codes.
-Note: If you are not using the quickstart script, make sure to set the KUBECONFIG environment variable like
+Note: If you are not using the quickstart script, you must set the KUBECONFIG environment variable like
 ```
 export KUBECONFIG=[PATH_TO_KUBECONFIG_FILE]
 ```
