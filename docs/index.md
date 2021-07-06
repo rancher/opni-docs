@@ -40,4 +40,9 @@ Then, you can inject anomalies into your cluster with this command:
 sh <(curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/errors_injection.sh)
 ```
 
-
+### Clean up
+To remove the resources created by the Opni quickstart run the following command
+```
+opnictl delete demo opni-demo
+```
+This will remove the resources associated with the Opni demo cluster.  The Opni manager will remain in the opni-system namespace; this can be manually removed if required.
