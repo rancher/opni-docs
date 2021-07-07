@@ -1,24 +1,43 @@
 site_name: Rancher Opni
+site_url: https://github.com/rancher/opni-docs
 repo_url: https://github.com/rancher/opni
 strict: false
 theme:
+  features:
+    - navigation.instant
   name: material
   palette:
-    primary: purple
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: purple
+      accent: purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: purple
+      accent: purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   font:
-    text: 'Work Sans'
-  logo: 'assets/icon-opni.png'
-  favicon: 'assets/icon-opni.png'
-#google_analytics:
+    text: "Work Sans"
+  logo: "assets/logo-horizontal-opni-no-bg.png"
+  favicon: "assets/favicon.png"
 plugins:
   - search
   - markdownextradata: {}
 markdown_extensions:
-- codehilite
-- admonition
-- pymdownx.tabbed
-- pymdownx.superfences
-- toc:
-    permalink: true
+  - codehilite
+  - admonition
+  - pymdownx.tabbed
+  - pymdownx.superfences
+  - toc:
+      permalink: true
 nav:
   - index.md
+  - Setup Guides:
+      - gpu.md
+extra_css:
+  - stylesheets/extra.css
