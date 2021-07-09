@@ -1,7 +1,7 @@
 ---
 title: Opni - AIOps for Kubernetes
 ---
-
+ 
 Opni = AIOps for Kubernetes + logging + monitoring. 
 
 It currently features log anomaly detection - simply ship your logs to Opni and its AI models will automatically learn and identify anomalous behavior in your control plane, etcd, and applications logs. Metrics and event anomaly detection to come soon!

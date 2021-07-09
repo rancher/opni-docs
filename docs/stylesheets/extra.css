@@ -1,0 +1,17 @@
+.md-header__button.md-logo img {
+  object-fit: contain;
+  width: auto;
+  height: 4em;
+}
+
+a.md-header__button.md-logo {
+  padding: 0;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 215;
+}
+
+.md-nav__item .md-nav__link--active {
+  color: var(--md-primary-fg-color--light);
+}
