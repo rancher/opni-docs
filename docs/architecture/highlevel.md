@@ -6,8 +6,8 @@ At a high level Opni is made up of a number of microservices communicating via N
 
 ![Architecture Diagram](../img/opni-high-level-arch.png){ loading=lazy }
 
-###Log ingest
+### Log ingest
 Opni includes a http receiver for logs shipped from fluentd.
 
-###GPU service
+### GPU service
 To enable learning of workload logs Opni requires an nVidia GPU.  The Opni system includes an optional GPU service that uses the GPU for training.

@@ -31,6 +31,7 @@ plugins:
 markdown_extensions:
   - codehilite
   - attr_list
+  - def_list
   - admonition
   - pymdownx.tabbed
   - pymdownx.superfences
@@ -43,6 +44,10 @@ nav:
       - setup/log-shipping.md
   - Architecture:
       - architecture/highlevel.md
+  - Configuration:
+      - configuration/logadapter.md
+      - configuration/opnicluster.md
+      - configuration/pretrainedmodel.md
 extra_css:
   - stylesheets/extra.css
 extra:

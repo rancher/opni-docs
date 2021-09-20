@@ -6,7 +6,7 @@ The Opni payload receiver service provides a http endpoint for receiving JSON fo
 ###Log Adapter
 The Opni operator understands the banzaicloud logging custom resources, but under the `logging.opni.io` API group instead of `banzaicloud.opni.io`.  This allows the Opni operator to manage log shipping configuration, without conflicting with a separate Banzaicloud operator install.
 
-For convenience Opni has a LogAdapter custom resource for configuring log shipping on various Kubernetes distributions.  This creates a Logging resource, and also configures a fluentbit DaemonSet to pick up Kubernetes system logs from either file based logging or journald.  More details on the LogAdapter can be found on the configuration page.
+For convenience Opni has a LogAdapter custom resource for configuring log shipping on various Kubernetes distributions.  This creates a Logging resource, and also configures a fluentbit DaemonSet to pick up Kubernetes system logs from either file based logging or journald.  More details on the LogAdapter can be found on the [LogAdapter configuration page](../../configuration/logadapter/).
 
 If using a LogAdapter the `spec.deployLogCollector` field can be set to `true` on the OpniCluster resource.  This will create a ClusterOutput and ClusterFlow to ship the logs to the install Opni payload receiver service.
 
