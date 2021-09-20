@@ -30,6 +30,7 @@ plugins:
   - markdownextradata: {}
 markdown_extensions:
   - codehilite
+  - attr_list
   - admonition
   - pymdownx.tabbed
   - pymdownx.superfences
@@ -38,7 +39,9 @@ markdown_extensions:
 nav:
   - index.md
   - Setup Guides:
-      - gpu.md
+      - setup/gpu.md
+  - Architecture:
+      - architecture/highlevel.md
 extra_css:
   - stylesheets/extra.css
 extra:
