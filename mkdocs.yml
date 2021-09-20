@@ -40,6 +40,7 @@ nav:
   - index.md
   - Setup Guides:
       - setup/gpu.md
+      - setup/log-shipping.md
   - Architecture:
       - architecture/highlevel.md
 extra_css:
