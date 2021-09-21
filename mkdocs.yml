@@ -45,9 +45,12 @@ nav:
   - Architecture:
       - architecture/highlevel.md
   - Configuration:
+      - configuration/elasticsearch.md
       - configuration/logadapter.md
+      - configuration/nats.md
       - configuration/opnicluster.md
       - configuration/pretrainedmodel.md
+      - configuration/s3.md
 extra_css:
   - stylesheets/extra.css
 extra:

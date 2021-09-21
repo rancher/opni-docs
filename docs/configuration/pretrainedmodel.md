@@ -47,4 +47,4 @@ spec:
 | Field | Required | Type | Description |
 |:------|:---------|:-----|:------------| 
 | image | Yes | *string* | The CRI image to use |
-| imagePullSecrets | No | [LocalObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#localobjectreference-v1-core) | List of secrets in the same namespace to use for pulling the image |
+| imagePullSecrets | No | [LocalObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#localobjectreference-v1-core) *array* | List of secrets in the same namespace to use for pulling the image |
