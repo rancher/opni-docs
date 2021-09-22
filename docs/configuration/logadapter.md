@@ -1,7 +1,7 @@
 ---
 title: LogAdapter
 ---
-The LogAdapter custom resource simplifies the configuration of log shipping for a range of Kubernetes distributions.  It builds on the [Banzaicloud logging operator](https://banzaicloud.com/docs/one-eye/logging-operator/) to do this.
+The LogAdapter custom resource simplifies the configuration of log shipping for a range of Kubernetes distributions.  It builds on the [Banzai Cloud logging operator](https://banzaicloud.com/docs/one-eye/logging-operator/) to do this.
 
 It currently supports the following distributions
 

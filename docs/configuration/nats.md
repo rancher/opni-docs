@@ -2,7 +2,7 @@
 title: NATS
 ---
 
-Opni requires a NATS cluster for the services to communicate.  The deployment of a NATS cluster is configured by a subsection of the [OpniCluster](../opnicluster) resource.
+Opni requires a NATS cluster to enable communication between services. The deployment of a NATS cluster is configured by a subsection of the [OpniCluster](../opnicluster) resource.
 
 *example.yaml*
 ```yaml
