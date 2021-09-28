@@ -14,7 +14,10 @@ This script will set up a RKE2 cluster and install Opni into it.  It will also g
 To view the Kibana UI you will need to port forward it:
 ```bash
 export PATH=$PATH:/var/lib/rancher/rke2/bin
-kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml -n opni-cluster svc/opni-es-kibana 5601:5601
+kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml \
+    -n opni-cluster \
+    --address 0.0.0.0 \
+    svc/opni-es-kibana 5601:5601
 ```
 
 
