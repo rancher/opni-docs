@@ -8,36 +8,16 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
 
 [![](https://opni-public.s3.us-east-2.amazonaws.com/opni_youtube_gh.png)](https://youtu.be/DQVBwMaO_o0)
 
+!!! danger "Impending removal"
+    The opnidemo resource has been deprecated in the v0.2.0 release and will be removed in the next release.
+
+!!! attention "opnictl"
+    We have deprecated the opnictl CLI and are currently reviewing it.  The recommended method for deploying Opni is to use the yaml files in the [repo](https://github.com/rancher/opni/tree/reorg-samples/deploy/manifests)
+
+### Setup Opni
 Get started by setting up Opnictl in your own environment! You may need to run as root if using a virtual machine.
 ```
 curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/install_opni.sh | sh -
 ```
 
-Copy the NodePort address from the script output in order to access the User Interface
-
-
-Open the following address in a browser
-```
-[IPV4_ADDRESS]:[NODE_PORT]
-``` 
-The default username and password is admin/admin
-You must be in the Global Tenant mode if you are not already. Click on Dashboard, Opni Logs Dashboard.
-
-To view the anomaly detection press 'Enter' in the console window running the script to inject an anomaly.
-
-
-Using the provided script, you can inject sample anomalies into your cluster. The script can create pods which are unschedulable, have nonexistent images, or exit with non-zero exit codes.
-Note: If you are not using the quickstart script, you must set the KUBECONFIG environment variable like
-```
-export KUBECONFIG=[PATH_TO_KUBECONFIG_FILE]
-```
-and your Kubectl path like
-```
-export PATH=$PATH:[PATH_TO_KUBECTL_BINARY]
-```
-Then, you can inject anomalies into your cluster with this command:
-```
-sh <(curl -sfL https://raw.githubusercontent.com/rancher/opni-docs/main/quickstart_files/errors_injection.sh)
-```
-
-
+For more details view the [Quickstart guide](./deployment/quickstart)
