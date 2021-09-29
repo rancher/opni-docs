@@ -5,12 +5,12 @@ The LogAdapter custom resource simplifies the configuration of log shipping for 
 
 It currently supports the following distributions
 
-- RKE
-- RKE2
-- K3s
-- AKS
-- EKS
-- GKE
+- rke
+- rke2
+- k3s
+- aks
+- eks
+- gke
 
 *example.yaml*
 ```yaml
@@ -19,7 +19,7 @@ kind: LogAdapter
 metadata:
   name: example-adapter
 spec:
-  provider: RKE
+  provider: rke
   opniCluster:
     name: example-cluster
     namespace: opni

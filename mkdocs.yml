@@ -48,6 +48,7 @@ nav:
       - architecture/highlevel.md
   - Configuration:
       - configuration/elasticsearch.md
+      - configuration/gpuadapter.md
       - configuration/logadapter.md
       - configuration/nats.md
       - configuration/opnicluster.md
