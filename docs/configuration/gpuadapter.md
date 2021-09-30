@@ -2,9 +2,14 @@
 title: GPU Policy Adapter
 ---
 !!! warning
-    The GPU Adapter is currently experimental and is behind a feature gate.  To turn this on you need to run the Opni Manager with the following argument `--feature-gates="GPUOperator=true"`
+    The GPU Adapter is currently experimental and is behind a feature gate.  To turn this on you need to run the Opni Manager with the following argument `--feature-gates=GPUOperator=true`
 
-The Opni Manager can assist with configuring NVIDIA GPU drivers and runtimes.  To do this it uses an embedded [NVIDIA GPU Operator](https://github.com/NVIDIA/gpu-operator) with a wrapper.  It currently supports the following Kubernetes distributions
+The Opni Manager can assist with configuring NVIDIA GPU drivers and runtimes.  To do this it uses an embedded [NVIDIA GPU Operator](https://github.com/NVIDIA/gpu-operator) with a wrapper.  The GPU operator requires Node Feature Discovery running as a prerequisite.  If this is not already deployed it can be run with the following command:
+```bash
+kubectl apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/examples/nfd_aio.yaml
+```
+
+It currently supports the following Kubernetes distributions:
 
 - rke
 - auto (auto detection)
@@ -22,7 +27,7 @@ apiVersion: opni.io/v1beta1
 kind: GpuPolicyAdapter
 metadata:
   name: example-adapter
-spec:
+spec: {}
 ```
 
 ### Custom Resource Specs
