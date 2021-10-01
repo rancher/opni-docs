@@ -12,6 +12,7 @@ kubectl apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/exam
 It currently supports the following Kubernetes distributions:
 
 - rke
+- k3s (v1.22.2+k3s1 or later)
 - auto (auto detection)
 
 And the following container runtimes:
