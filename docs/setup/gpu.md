@@ -43,14 +43,14 @@ manual configuration.
   - Amazon EKS
   - Google GKE
   - Azure AKS
-- Cert-Manager installed
+- Cert-Manager installed 
+- NFD installed (see deploy/examples/nfd_aio.yaml in the Opni repo)
 
 ### Feature Gate
 
 The GPU Operator feature gate is disabled by default. To enable it, ensure the
 Opni Manager is running with the additional argument 
-`--feature-gates="GPUOperator=true,NFDOperator=true"` or the equivalent
-`--feature-gates=AllAlpha=true`.
+`--feature-gates=GPUOperator=true`
 
 ----------------
 ### Install Custom Resources
