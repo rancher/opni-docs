@@ -16,8 +16,7 @@ To view the Kibana UI you will need to port forward it:
 export PATH=$PATH:/var/lib/rancher/rke2/bin
 kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml \
     -n opni-cluster \
-    --address 0.0.0.0 \
-    svc/opni-es-kibana 5601:5601
+    port-forward --address 0.0.0.0 svc/opni-es-kibana 5601:5601
 ```
 
 
@@ -25,7 +24,13 @@ Open the following address in a browser
 ```
 [IPV4_ADDRESS]:5601
 ``` 
-The default username and password is admin/admin
+The username is admin and the password is stored in the opni-es-password secret in the opni-cluster namespace:
+```bash
+export PATH=$PATH:/var/lib/rancher/rke2/bin
+kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml \
+    -n opni-cluster \
+    get secret opni-es-password --template={{.data.password}} | base64 -d
+```
 You must be in the Global Tenant mode if you are not already. Click on Dashboard, Opni Logs Dashboard.
 
 
