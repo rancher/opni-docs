@@ -92,18 +92,6 @@ inject_anomaly() {
 EOF
 }
 
-wait_for_logging() {
-  while $true
-  do
-    config=$(/var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml get pods -n opni-demo --field-selector=status.phase=Succeeded | grep fluentd-configcheck | wc -l)
-    if [ $config -gt 0 ]
-    then
-      break
-    fi
-    info "Waiting for Rancher Logging"
-    sleep 10
-  done
-}
 
 do_install_opni() {
     if [ -z "${INSTALL_RKE2_ARTIFACT_PATH}" ]; then
@@ -111,22 +99,27 @@ do_install_opni() {
     fi
     do_install_rke2
     sleep 5
-    download "/usr/local/bin/opnictl" "https://github.com/rancher/opni/releases/download/v0.1.2-rc2/opnictl_linux-amd64"
-    chmod +x /usr/local/bin/opnictl
-    info "Installing Opni Manager"
-    KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl install
-    sleep 10
-    info "Installing Opni Quickstart"
-    KUBECONFIG=/etc/rancher/rke2/rke2.yaml opnictl create demo --deploy-gpu-services=false --deploy-helm-controller=true --deploy-nvidia-plugin=false --deploy-rancher-logging=true --timeout 10m
-    NODEPORT=$(/var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml -n opni-demo get -o jsonpath="{.spec.ports[0].nodePort}" services opendistro-es-kibana-svc)
-    echo "The opni kibana dashboard is listening on port ${NODEPORT}"
-    echo "Navigate to http://<external_ip>:${NODEPORT} and login with the default admin user to view the dashboards"
+    info "Installing Cert Manager"
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://github.com/jetstack/cert-manager/releases/download/v1.5.3/cert-manager.yaml > /dev/null 2>&1
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=300s --for=condition=available deploy/cert-manager -n cert-manager 
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=300s --for=condition=available deploy/cert-manager-cainjector -n cert-manager
+    info "Installing Opni"
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/00_crds.yaml > /dev/null 2>&1
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/01_rbac.yaml > /dev/null 2>&1
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/10_operator.yaml > /dev/null 2>&1
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=300s --for=condition=available deploy/opni-controller-manager -n opni-system
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/examples/logAdapters/logAdapter_rke2.yaml > /dev/null 2>&1
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/20_cluster.yaml > /dev/null 2>&1
+    sleep 20
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=600s --for=condition=available deploy/opni-es-kibana -n opni-cluster
 }
 
 do_install_opni
 wait_for_logging
 info "Waiting for logging to stabilize"
-sleep 30
+sleep 20
 inject_anomaly
+
+info "To view the Kibana UI set up a port-forward: kubectl port-forward -n opni-cluster svc/opni-es-kibana 5601:5601"
 
 exit 0

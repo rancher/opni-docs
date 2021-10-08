@@ -30,6 +30,8 @@ plugins:
   - markdownextradata: {}
 markdown_extensions:
   - codehilite
+  - attr_list
+  - def_list
   - admonition
   - pymdownx.tabbed
   - pymdownx.superfences
@@ -37,8 +39,21 @@ markdown_extensions:
       permalink: true
 nav:
   - index.md
+  - Deployment:
+      - deployment/quickstart.md
   - Setup Guides:
-      - gpu.md
+      - setup/gpu.md
+      - setup/log-shipping.md
+  - Architecture:
+      - architecture/highlevel.md
+  - Configuration:
+      - configuration/elasticsearch.md
+      - configuration/gpuadapter.md
+      - configuration/logadapter.md
+      - configuration/nats.md
+      - configuration/opnicluster.md
+      - configuration/pretrainedmodel.md
+      - configuration/s3.md
 extra_css:
   - stylesheets/extra.css
 extra:
