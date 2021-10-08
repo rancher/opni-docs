@@ -12,7 +12,7 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
     The opnidemo resource has been deprecated in the v0.2.0 release and will be removed in the next release.
 
 !!! attention "opnictl"
-    We have deprecated the opnictl CLI and are currently reviewing it.  The recommended method for deploying Opni is to use the yaml files in the [repo](https://github.com/rancher/opni/tree/reorg-samples/deploy/manifests)
+    We have deprecated the opnictl CLI and are currently reviewing it.  The recommended method for deploying Opni is to use the yaml files in the [repo](https://github.com/rancher/opni/tree/main/deploy/manifests)
 
 ### Setup Opni
 Get started by setting up Opnictl in your own environment! You may need to run as root if using a virtual machine.
