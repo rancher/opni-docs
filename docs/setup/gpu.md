@@ -124,7 +124,8 @@ pod should start.
 
 ## Provider-specific Notes and Troubleshooting
 
-- K3S
+### K3S
+
   - If you are using K3S, you must use v1.22.2+k3s1 or later. This version
     introduces automatic detection of Nvidia container runtimes on nodes, and
     a large number of bugfixes related to pod lifecycle were added in
@@ -132,7 +133,9 @@ pod should start.
     you may experience issues where pods become stuck in the 'Terminating'
     state. If this happens, force-deleting the stuck pods should help resolve
     the issue.
-- RKE
+
+### RKE
+
   - RKE uses Docker as its container engine. If you are using RKE, you should
     be aware of how the Nvidia runtime interacts with Docker. When the GPU
     operator is installed for the first time, it will create a `RuntimeClass`
@@ -175,6 +178,7 @@ pod should start.
 #### VGPU
 
 If you are using VGPUs, you should be aware of the following:
+
 - Nvidia gridd _does not_ run on the virtualization host. Instead, it runs in
   guest VMs - when using the GPU Operator, gridd runs inside the nvidia driver
   daemonset pod.
@@ -185,6 +189,7 @@ If you are using VGPUs, you should be aware of the following:
   - `NVIDIA-Linux-x86_64-470.63.01-grid.run` - Installed on the **guest** (automatic with GPU operator)
   
   Ensure the correct drivers are used for the host and guest. 
+  
 - CUDA drivers do not need to be installed on the virtualization host (and are not
   included by default with the VGPU driver)
 - VGPU mediated device UUIDs are not persistent across reboots. This can cause
@@ -224,11 +229,12 @@ If you are using VGPUs, you should be aware of the following:
   will _only_ be available if the `NVIDIA_VISIBLE_DEVICES` and 
   `NVIDIA_DRIVER_CAPABILITIES` environment variables are set correctly. They 
   should be set as follows:
-  - `NVIDIA_VISIBLE_DEVICES=all`
-  - `NVIDIA_DRIVER_CAPABILITIES=compute,utility`
-  
-  They can be set either in the pod spec, or in the docker image itself
-  by using `ENV` in the Dockerfile.
+    - `NVIDIA_VISIBLE_DEVICES=all`
+    - `NVIDIA_DRIVER_CAPABILITIES=compute,utility`
+
+    They can be set either in the pod spec, or in the docker image itself
+    by using `ENV` in the Dockerfile.
+
 - If you are not using the GPU operator, but you are using the nvidia device
   plugin daemonset by itself, be aware that you must patch the daemonset to 
   include `runtimeClassName: nvidia` in its pod template. The GPU operator will
