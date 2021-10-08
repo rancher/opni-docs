@@ -37,12 +37,13 @@ manual configuration.
 
 ### Kubernetes Cluster Requirements:
 - Vanilla upstream Kubernetes, or one of the following distributions:
-  - RKE
-  - K3S >= v1.22.2+k3s1
-  - RKE2
-  - Amazon EKS
-  - Google GKE
-  - Azure AKS
+    - RKE
+    - K3S >= v1.22.2+k3s1
+    - RKE2
+    - Amazon EKS
+    - Google GKE
+    - Azure AKS
+
 - Cert-Manager installed 
 - NFD installed (see deploy/examples/nfd_aio.yaml in the Opni repo)
 
@@ -53,9 +54,9 @@ Opni Manager is running with the additional argument
 `--feature-gates=GPUOperator=true`
 
 ----------------
-### Install Custom Resources
+## Install Custom Resources
 
-#### NodeFeatureDiscovery 
+### NodeFeatureDiscovery 
 
 Create a NodeFeatureDiscovery resource to enable the GPU Operator to discover
 GPU hardware on the node. This resource should not need any additional customization.
@@ -81,7 +82,7 @@ spec:
           - vendor
 ```
 
-#### GPUPolicyAdapter
+### GPUPolicyAdapter
 
 Creating a GPUPolicyAdapter resource will trigger the GPU Operator to start 
 configuring the cluster. 
@@ -175,7 +176,7 @@ pod should start.
     If you encounter this error, check the `handler` field in the `RuntimeClass`
     and ensure it is set to `docker`. 
 
-#### VGPU
+## VGPU
 
 If you are using VGPUs, you should be aware of the following:
 
@@ -212,7 +213,7 @@ If you are using VGPUs, you should be aware of the following:
   the `nvidia` driver. The guest VGPU will also be bound to the `nvidia` driver
   once the guest drivers are installed.
 
-#### Other Notes
+## Other Notes
 
 - The `nvidia.com/gpu` resource request behaves counterintuitively. It serves as 
   a node scheduling hint for pods, and to keep track of which/how many pods are 
