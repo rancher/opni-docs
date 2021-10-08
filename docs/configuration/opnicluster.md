@@ -57,6 +57,9 @@ spec:
 | preprocessing | No | [PreprocessingServiceSpec](#preprocessingservicespec) | Configuration for the Opni Preprocessing service |
 | payloadReceiver | No | [PayloadReceiverServiceSpec](#payloadreceiverservicespec) | Configuration for the Opni HTTP Payload Receiver service |
 | gpuController | No | [GPUControllerServiceSpec](#gpucontrollerservicespec) | Configuration for the optional GPU service |
+| metrics | No | [MetricsServiceSpec](#metricsservicespec) | Configuration for the metrics anomaly detection service |
+| insights | No | [InsightsServiceSpec](#insightsservicespec) | Configuration for the insights api service |
+| ui | No | [UIServiceSpec](#uiservicespec) | Configuration for the custom Opni UI service |
 
 #### DrainServiceSpec
 
@@ -104,6 +107,49 @@ spec:
 | tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
 
 #### GPUControllerServiceSpec
+
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------| 
+| image | No | *string* | Explicit override for the image to use for the service |
+| imagePullPolicy | No | *string* | Image pull policy. One of Always, Never, IfNotPresent. Defaults to `IfNotPresent` |
+| imagePullSecrets | No | [LocalObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#localobjectreference-v1-core) *array* | List of secrets in the same namespace to use for pulling the image |
+| enabled | No | *bool* | Enable the service.  Defaults to true |
+| nodeSelector | No | map | A node selector that will be applied to the Drain service.  This overrides the globalNodeSelector field |
+| tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
+
+#### MetricsServiceSpec
+
+!!! note
+    The metrics anomaly service is currently experimental
+
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------| 
+| image | No | *string* | Explicit override for the image to use for the service |
+| imagePullPolicy | No | *string* | Image pull policy. One of Always, Never, IfNotPresent. Defaults to `IfNotPresent` |
+| imagePullSecrets | No | [LocalObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#localobjectreference-v1-core) *array* | List of secrets in the same namespace to use for pulling the image |
+| enabled | No | *bool* | Enable the service.  Defaults to true |
+| nodeSelector | No | map | A node selector that will be applied to the Drain service.  This overrides the globalNodeSelector field |
+| tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
+| prometheusEndpoint | Yes | *string* | Endpoint of Prometheus cluster for the cluster.  This is required if the metrics service is enabled, and must be a valid URL |
+
+#### InsightsServiceSpec
+
+!!! note
+    The insights service is currently experimental.  It provides an API that the custom UI uses.
+
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------| 
+| image | No | *string* | Explicit override for the image to use for the service |
+| imagePullPolicy | No | *string* | Image pull policy. One of Always, Never, IfNotPresent. Defaults to `IfNotPresent` |
+| imagePullSecrets | No | [LocalObjectReference](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#localobjectreference-v1-core) *array* | List of secrets in the same namespace to use for pulling the image |
+| enabled | No | *bool* | Enable the service.  Defaults to true |
+| nodeSelector | No | map | A node selector that will be applied to the Drain service.  This overrides the globalNodeSelector field |
+| tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
+
+#### UIServiceSpec
+
+!!! note
+    The UI is currently experimental.  It is not currently exposed outside the cluster, however changes to the Kubernetes Service will not be reconciled, so it can be updated to be a LoadBalancer or NodePort.
 
 | Field | Required | Type | Description |
 |:------|:---------|:-----|:------------| 
