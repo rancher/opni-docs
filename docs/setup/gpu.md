@@ -11,7 +11,10 @@ is not enabled, Opni can still analyze your Control Plane logs using our
 pretrained models.
 
 The recommended way to configure GPU acceleration in your cluster is by using
-the Nvidia GPU Operator. If desired, you may install the GPU operator manually
+the [Nvidia GPU Operator](https://github.com/NVIDIA/gpu-operator). If your cluster
+is managed by Rancher, you can follow [this guide](https://rancher.com/blog/2020/get-up-and-running-with-nvidia-gpus).
+ 
+If desired, you may install the GPU operator manually
 via the official Helm chart. Additionally, Opni has an experimental integrated
 GPU Operator which can be enabled with a feature gate. If your environment 
 permits, using the integrated GPU Operator will require the least amount of 
