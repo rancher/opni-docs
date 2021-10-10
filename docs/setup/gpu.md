@@ -13,6 +13,30 @@ pretrained models.
 The recommended way to configure GPU acceleration in your cluster is by using
 the [Nvidia GPU Operator](https://github.com/NVIDIA/gpu-operator). If your cluster
 is managed by Rancher, you can follow [this guide](https://rancher.com/blog/2020/get-up-and-running-with-nvidia-gpus).
+
+Once you have deployed the NVIDIA GPU operator, wait until all of the associated pods 
+are running within the gpu-operator and gpu-operator-resources namespace. Make sure 
+your GPU node has at least 64 GB of disk space.
+
+Next, go to the [Opni manifests](https://github.com/rancher/opni/tree/main/deploy/manifests) and make sure 
+to first modify 20_cluster.yaml to have the gpuController enabled to true. 
+
+Now, apply the yaml files in the following order
+
+1. 00_crds.yaml 
+2. 01_rbac.yaml 
+3. 10_operator.yaml 
+4. 20_cluster.yaml 
+
+You are almost done! Now, the only thing you need to do is setup the [log adapter](https://github.com/rancher/opni/tree/main/deploy/examples/logAdapters). 
+Depending on your environment, run the appropriate yaml file.
+For example if you are using an RKE cluster, run the following command to apply the log adapter for RKE:
+```
+kubectl apply -f logAdapter_rke.yaml
+```
+
+You should now be all set and have Opni running with a GPU on your cluster!
+
  
 If desired, you may install the GPU operator manually
 via the official Helm chart. Additionally, Opni has an experimental integrated
