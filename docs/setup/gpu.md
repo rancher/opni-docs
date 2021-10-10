@@ -27,8 +27,10 @@ Now, apply the yaml files in the following order
 3. 10_operator.yaml 
 4. 20_cluster.yaml 
 
-The only thing you need to do is setup the [log adapter](https://github.com/rancher/opni/tree/main/deploy/examples/logAdapters). 
-Depending on your environment, run the appropriate yaml file.
+After you have done this, the only thing remaining is to setup logging. You can either setup Rancher logging on your cluster or use the
+ [log adapter](https://github.com/rancher/opni/tree/main/deploy/examples/logAdapters). 
+
+If you do use the log adapter, depending on your environment, run the appropriate yaml file.
 For example if you are using an RKE cluster, run the following command to apply the log adapter for RKE:
 ```
 kubectl apply -f logAdapter_rke.yaml
