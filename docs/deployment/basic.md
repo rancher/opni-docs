@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Basic Installation
 ---
 
 #### 1) Install Cert Manager

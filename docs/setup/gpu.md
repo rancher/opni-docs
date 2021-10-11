@@ -10,15 +10,11 @@ follow the instructions below to configure your cluster. If GPU acceleration
 is not enabled, Opni can still analyze your Control Plane logs using our 
 pretrained models.
 
-The recommended way to configure GPU acceleration in your cluster is by using
-the [Nvidia GPU Operator](https://github.com/NVIDIA/gpu-operator). If your cluster
-is managed by Rancher, you can follow [this guide](https://rancher.com/blog/2020/get-up-and-running-with-nvidia-gpus).
- 
-If desired, you may install the GPU operator manually
-via the official Helm chart. Additionally, Opni has an experimental integrated
-GPU Operator which can be enabled with a feature gate. If your environment 
-permits, using the integrated GPU Operator will require the least amount of 
-manual configuration.
+Opni bundles its own modified version of the Nvidia GPU Operator which is the
+recommended way to enable GPU acceleration. It may be possible to install the
+upstream GPU Operator via helm chart, but this is not recommended, as it will 
+likely not work with Opni. Follow the instructions below to enable GPU 
+acceleration using Opni's built-in GPU Operator.
 
 -------------
 
@@ -47,14 +43,9 @@ manual configuration.
     - Google GKE
     - Azure AKS
 
+- Opni Operator installed
 - Cert-Manager installed 
 - NFD installed (see deploy/examples/nfd_aio.yaml in the Opni repo)
-
-### Feature Gate
-
-The GPU Operator feature gate is disabled by default. To enable it, ensure the
-Opni Manager is running with the additional argument 
-`--feature-gates=GPUOperator=true`
 
 ----------------
 ## Install Custom Resources
