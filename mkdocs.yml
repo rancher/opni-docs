@@ -41,6 +41,7 @@ nav:
   - index.md
   - Deployment:
       - deployment/quickstart.md
+      - deployment/installation.md
   - Setup Guides:
       - setup/gpu.md
       - setup/log-shipping.md
