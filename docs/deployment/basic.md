@@ -34,8 +34,8 @@ Create the Opni cluster:
 kubectl apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/20_cluster.yaml
 ```
 
-To deploy the GPU Controller service edit the resource and set `spec.services.gpuController` to be `true`.  Make sure the cluster has been [setup](../setup/gpu.md) for GPU support.
+To deploy the GPU Controller service edit the resource and set `spec.services.gpuController` to be `true`.  Make sure the cluster has been [setup](../../setup/gpu) for GPU support.
 
-If Rancher Logging is not installed then log shipping will need to be [setup](../setup/log-shipping.md)
+If Rancher Logging is not installed then log shipping will need to be [setup](../../setup/log-shipping)
 
-More details about the OpniCluster custom resource can be found in the [configuration page](../configuration/opnicluster.md).
+More details about the OpniCluster custom resource can be found in the [configuration page](../../configuration/opnicluster).
