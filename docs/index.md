@@ -15,6 +15,6 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
 
 For a basic installation with no persistent storage and no GPU, see [Basic Installation](deployment/basic.md)
 
-For a fully customizable installation, see [Advanced Installation](deployment/advanced.md)
+For a fully customizable installation (some manual configuration required), see [Advanced Installation](deployment/advanced.md)
 
 For the legacy quickstart documentation, see [Quickstart](deployment/quickstart.md)
