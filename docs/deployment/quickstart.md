@@ -1,5 +1,5 @@
 ---
-title: Quickstart (legacy)
+title: Quickstart
 ---
 
 On a fresh VM run the quickstart script:

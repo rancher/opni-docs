@@ -9,12 +9,13 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
 [![](https://opni-public.s3.us-east-2.amazonaws.com/opni_youtube_gh.png)](https://youtu.be/DQVBwMaO_o0)
 
 !!! attention "opnictl"
-    We have deprecated the opnictl CLI and are currently reviewing it. It should no longer be used starting in v0.2. For legacy quickstart documentation, see [here](deployment/quickstart.md)
+    We have deprecated the opnictl CLI and are currently reviewing it. It should no longer be used starting in v0.2.
 
 ## Installing Opni
 
-For a basic installation with no persistent storage and no GPU, see [Basic Installation](deployment/basic.md)
+For a complete quickstart including cluster setup, see [Quickstart](deployment/quickstart.md)
 
-For a fully customizable installation (some manual configuration required), see [Advanced Installation](deployment/advanced.md)
+For a basic installation on an existing cluster with no persistent storage and no GPU, see [Basic Installation](deployment/basic.md)
 
-For the legacy quickstart documentation, see [Quickstart](deployment/quickstart.md)
+For a fully customizable installation on an existing cluster (some manual configuration required), see [Advanced Installation](deployment/advanced.md)
+
