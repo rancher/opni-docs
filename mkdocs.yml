@@ -40,8 +40,9 @@ markdown_extensions:
 nav:
   - index.md
   - Deployment:
+      - deployment/basic.md
+      - deployment/advanced.md
       - deployment/quickstart.md
-      - deployment/installation.md
   - Setup Guides:
       - setup/gpu.md
       - setup/log-shipping.md
