@@ -50,32 +50,6 @@ acceleration using Opni's built-in GPU Operator.
 ----------------
 ## Install Custom Resources
 
-### NodeFeatureDiscovery 
-
-Create a NodeFeatureDiscovery resource to enable the GPU Operator to discover
-GPU hardware on the node. This resource should not need any additional customization.
-
-```yaml
-apiVersion: nfd.opni.io/v1
-kind: NodeFeatureDiscovery
-metadata:
-  name: opni-nfd-server
-  namespace: opni
-spec:
-  operand:
-    namespace: opni
-    image: "k8s.gcr.io/nfd/node-feature-discovery:v0.7.0"
-    servicePort: 12000
-  extraLabelNs:
-    - nvidia.com
-  workerConfig:
-    configData: |
-      sources:
-        pci:
-          deviceLabelFields:
-          - vendor
-```
-
 ### GPUPolicyAdapter
 
 Creating a GPUPolicyAdapter resource will trigger the GPU Operator to start 
