@@ -46,6 +46,7 @@ nav:
   - Setup Guides:
       - setup/gpu.md
       - setup/log-shipping.md
+      - setup/setup-grafana-dashboard.md
   - Architecture:
       - architecture/highlevel.md
   - Configuration:
