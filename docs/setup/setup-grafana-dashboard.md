@@ -7,7 +7,6 @@ The Opni system supports an experimental version of metric anomaly detection ser
 The Opni Metric Service requires Prometheus and Grafana to run. Rancher users can simply [enable Rancher monitoring](https://rancher.com/docs/rancher/v2.5/en/monitoring-alerting/guides/enable-monitoring/) to install Prometheus and Grafana.
 
 #### Setup Dashboard
-
 1. Navigate to Grafana and log in. For a Rancher Monitoring user, the default username/password is `admin/prom-operator`. Otherwise, it is likely to be `admin/admin`.
 2. [Add Elasticsearch as a Data Source](https://grafana.com/docs/grafana/latest/datasources/add-a-data-source/#add-a-data-source), and fill in these fields with following values:
 ```
