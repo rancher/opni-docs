@@ -22,7 +22,7 @@ $ kubectl create -k config/default
 ```
 ### Wait for the operator to be ready
 ```
-$ kubectl wait --timeout=300s --for=condition=available deploy/opni-controller-manager -n opni-system`
+$ kubectl wait --timeout=300s --for=condition=available deploy/opni-controller-manager -n opni-system
 ```
 ### Configure and install Opni components
 
