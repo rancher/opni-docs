@@ -1,6 +1,7 @@
 site_name: Rancher Opni
 site_url: https://github.com/rancher/opni-docs
 repo_url: https://github.com/rancher/opni
+edit_uri: ""
 strict: false
 theme:
   features:
