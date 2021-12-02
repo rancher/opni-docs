@@ -115,7 +115,6 @@ do_install_opni() {
 }
 
 do_install_opni
-wait_for_logging
 info "Waiting for logging to stabilize"
 sleep 20
 inject_anomaly
