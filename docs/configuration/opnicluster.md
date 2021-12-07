@@ -130,7 +130,8 @@ spec:
 | enabled | No | *bool* | Enable the service.  Defaults to true |
 | nodeSelector | No | map | A node selector that will be applied to the Drain service.  This overrides the globalNodeSelector field |
 | tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
-| prometheusEndpoint | Yes | *string* | Endpoint of Prometheus cluster for the cluster.  This is required if the metrics service is enabled, and must be a valid URL |
+| prometheus | No | [PrometheusReference](#prometheusreference) | Reference to a prometheus-operator Prometheus resource.  If this is provided ServiceMonitor and PrometheusRule resources will be created |
+| prometheusEndpoint | No | *string* | Endpoint of Prometheus cluster for the cluster.  This is required if the prometheus reference is not provided, or the referenced Prometheus object doens't include an externalURL|
 
 #### InsightsServiceSpec
 
@@ -159,3 +160,10 @@ spec:
 | enabled | No | *bool* | Enable the service.  Defaults to true |
 | nodeSelector | No | map | A node selector that will be applied to the Drain service.  This overrides the globalNodeSelector field |
 | tolerations | No | [Toleration](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.22/#toleration-v1-core) *array* | Tolerations for the service.  These will be added to the tolerations in globalTolerations (if any) |
+
+#### PrometheusReference
+
+| Field | Required | Type | Description |
+|:------|:---------|:-----|:------------| 
+| name | Yes | *string* | The name of the Prometheus resource |
+| namespace | Yes | *string* | The namespace the Prometheus resource is in |

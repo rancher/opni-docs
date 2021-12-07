@@ -48,6 +48,7 @@ nav:
       - setup/gpu.md
       - setup/log-shipping.md
       - setup/setup-grafana-dashboard.md
+      - setup/metrics.md
   - Architecture:
       - architecture/highlevel.md
   - Configuration:
