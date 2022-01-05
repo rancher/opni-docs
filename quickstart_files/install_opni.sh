@@ -111,7 +111,7 @@ do_install_opni() {
     /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/examples/logAdapters/logAdapter_rke2.yaml > /dev/null 2>&1
     /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml apply -f https://raw.githubusercontent.com/rancher/opni/main/deploy/manifests/20_cluster.yaml > /dev/null 2>&1
     sleep 20
-    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=600s --for=condition=available deploy/opni-es-kibana -n opni-cluster
+    /var/lib/rancher/rke2/bin/kubectl --kubeconfig /etc/rancher/rke2/rke2.yaml wait --timeout=600s --for=condition=available deploy/opni-es-kibana -n opni
 }
 
 do_install_opni
