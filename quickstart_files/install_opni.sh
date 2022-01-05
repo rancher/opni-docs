@@ -119,6 +119,6 @@ info "Waiting for logging to stabilize"
 sleep 20
 inject_anomaly
 
-info "To view the Kibana UI set up a port-forward: kubectl port-forward -n opni-cluster svc/opni-es-kibana 5601:5601"
+info "To view the Kibana UI set up a port-forward: kubectl port-forward -n opni svc/opni-es-kibana 5601:5601"
 
 exit 0
