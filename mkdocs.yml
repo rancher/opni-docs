@@ -28,7 +28,6 @@ theme:
   favicon: "assets/favicon.png"
 plugins:
   - search
-  - markdownextradata: {}
 markdown_extensions:
   - codehilite
   - attr_list
@@ -62,6 +61,8 @@ nav:
 extra_css:
   - stylesheets/extra.css
 extra:
+  version:
+    provider: mike
   analytics:
     provider: google
     property: UA-56382716-14
