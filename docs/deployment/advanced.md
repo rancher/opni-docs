@@ -44,3 +44,5 @@ experience brief connectivity issues during this time.
 
 See [Cluster GPU Configuration](../setup/gpu.md) for more details
 regarding GPU operator configuration.
+
+To try out the experimental Opni Metric Anomaly Detection service, check [Setup Grafana Dashboard](../setup/setup-grafana-dashboard.md) for next steps.
