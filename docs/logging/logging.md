@@ -2,6 +2,8 @@
 title: Opni Logging Setup
 ---
 
+![Opni Logging](../img/loggingarch.png){ loading=lazy }
+
 Following this guide will allow you to create a POC Opni logging cluster
 
 ### Install cert manager in all clusters
@@ -10,6 +12,7 @@ All clusters need cert manager as a prerequisite.  This can be installed by foll
 ### Install Opni
 Opni needs to be installed into all clusters - the centralized cluster, and the downstream clusters that will be shipping their logs.
 This can be achieved by applying the following manifests from the [Opni repo](https://github.com/rancher/opni/tree/main/deploy/manifests)
+
  - 00_crds.yaml
  - 01_rbac.yaml
  - 10_operator.yaml
