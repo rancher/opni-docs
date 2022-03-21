@@ -100,7 +100,7 @@ If you are using a Load Balancer you can change the service type to LoadBalancer
 ### Opensearch Cluster Binding
 Next you will need to create an Opensearch Cluster Binding.  This triggers Opni to install the index policies and generic roles it needs into the Opensearch cluster.  This can be achieved by applying the following manifest:
 ```yaml
-apiVersion: opni.io/v2beta1
+apiVersion: opni.io/v1beta2
 kind: MulticlusterRoleBinding
 metadata:
   name: opni-logging

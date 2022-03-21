@@ -7,7 +7,7 @@ Opensearch Users can be managed within Opensearch itself. When a logging cluster
 ### User creation
 To create a user in Opensearch create a MulticlusterUser resource:
 ```yaml
-apiVersion: opni.io/v2beta1
+apiVersion: opni.io/v1beta2
 kind: MulticlusterUser
 metadata:
   name: test
@@ -24,7 +24,7 @@ This will create a user with the `kibanauser` backend role in the Opensearch clu
 ### Granting Access to a cluster's logs
 To allow the user to access the logs for a cluster you will need to create a LoggingClusterBinding object:
 ```yaml
-apiVersion: opni.io/v2beta1
+apiVersion: opni.io/v1beta2
 kind: LoggingClusterBinding
 metadata:
   name: demobinding
