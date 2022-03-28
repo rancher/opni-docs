@@ -32,7 +32,7 @@ spec:
 | Field | Required | Type | Description |
 |:------|:---------|:-----|:------------| 
 | provider | Yes | *string* | One of the supported distributions |
-| opniCluster | Yes | [OpniClusterNameSpec](#opniclusternamespec) | A reference to an installed OpniCluster |
+| opniCluster | No | [OpniClusterNameSpec](#opniclusternamespec) | A reference to an installed OpniCluster.  If this is not present Opni will assume logs are being shipped to a central Opni system |
 | containerLogDir | No | *string* | Path to the container logs on the host.  Defaults to `/var/lib/docker/containers` |
 | seLinuxEnabled | No | *bool* | Enable SELinux support.  Defaults to false |
 | rootFluentConfig | No | [FluentConfigSpec](#fluentconfigspec) | Fluentd and Fluentbit config for the base conatiner log shipping.  If this is absent it it creates default Banzaicloud configs, with a liveness probe for fluentd, and uses the Rancher logging images |
