@@ -63,7 +63,7 @@ nav:
       - logging/logging.md
       - logging/user-management.md
   - API Versions:
-      - apiversions/v1beta2
+      - apiversions/v1beta2.md
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
