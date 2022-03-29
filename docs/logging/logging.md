@@ -20,7 +20,7 @@ This can be achieved by applying the following manifests from the [Opni repo](ht
 ### Install Opensearch
 Opni makes use of, and contributes to, the official Opensearch operator.  This is currently hosted at [https://github.com/Opster/opensearch-k8s-operator](https://github.com/Opster/opensearch-k8s-operator).
 
-The cluster must be called Opni and installed into the `opni-cluster-system` namespace.  The following yaml can be used to create the cluster
+The cluster must be called Opni and installed into the `opni-cluster-system` namespace. Create this namespace on your cluster if it does not already exist.  The following yaml can be used to create the cluster
 ```yaml
 apiVersion: opensearch.opster.io/v1
 kind: OpenSearchCluster
@@ -92,10 +92,10 @@ spec:
   selector:
     opster.io/opensearch-cluster: opni
     opster.io/opensearch-nodepool: nodes
-  type: ClusterIP
+  type: NodePort
 ```
 
-If you are using a Load Balancer you can change the service type to LoadBalancer, otherwise you will also need an ingress for the service.
+If you are using a Load Balancer you can change the service type to LoadBalancer and if you do choose to use a ClusterIP you will also need an ingress for the service.
 
 ### Opensearch Cluster Binding
 Next you will need to create an Opensearch Cluster Binding.  This triggers Opni to install the index policies and generic roles it needs into the Opensearch cluster.  This can be achieved by applying the following manifest:
@@ -117,7 +117,7 @@ spec:
 
 Install the [Opni Gateway](https://github.com/rancher/opni-monitoring) into the central cluster. This can be completed using the [helmfile](https://github.com/rancher/opni-monitoring/blob/main/deploy/helmfile.yaml)
 
-The helm file will create a LoadBalancer service for the gateway endpoints.  If you don't have a load balancer you will need an ingress (or kubectl port-forward) for the endpoints.
+The helm file will create a LoadBalancer service for the gateway endpoints. If you are using a NodePort, you can edit the opni-monitoring service once it has been created and change the type from Load Balancer to Node Port. If you are not using NodePort or a load balancer, you will need an ingress (or kubectl port-forward) for the endpoints.
 
 ### Generate a token for bootstrapping the cluster
 This can be done in the Opni Gateway UI
@@ -137,7 +137,7 @@ The command to bootstrap a cluster is slightly different than what is in the UI.
 opnictl bootstrap logging NAME [--insecure-skip-tls-verify] --gateway-url https://OPNI-GATEWAY-URL --token=TOKEN
 ```
 
- - NAME is the friendly name of the cluster.
+ - NAME is the friendly name of the cluster. Different clusters should use a different name.
  - OPNI-GATEWAY-URL should be the address of the Opni Gateway API you have exposed.
  - TOKEN is the token from the UI.
 
