@@ -32,7 +32,7 @@ spec:
   general:
     httpPort: 9200
     vendor: opensearch
-    version: latest
+    version: 1.2.3
     serviceName: os-svc
     setVMMaxMapCount: true
   confMgmt:
@@ -40,12 +40,18 @@ spec:
     monitoring: false
   dashboards:
     enable: true
+    version: 1.2.0
+    replicas: 1
   nodePools:
   - component: master
     replicas: 3
     diskSize: 32
-    cpu: 2
-    memory: 2
+    resources:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        memory: 1Gi
     roles:
     - master
     persistence:
@@ -53,8 +59,13 @@ spec:
   - component: nodes
     replicas: 2
     diskSize: 32
-    cpu: 4
-    memory: 4
+    resources:
+      requests:
+        cpu: 500m
+        memory: 2Gi
+      limits:
+        memory: 2Gi
+    jvm: "-Xmx1G -Xms1G"
     roles:
     - data
     persistence:

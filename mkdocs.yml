@@ -58,9 +58,12 @@ nav:
       - configuration/opnicluster.md
       - configuration/pretrainedmodel.md
       - configuration/s3.md
-  - Opni Logging (experimental):
+      - configuration/dataprepper.md
+  - Opni Logging:
       - logging/logging.md
       - logging/user-management.md
+  - API Versions:
+      - apiversions/v1beta2.md
 extra_css:
   - stylesheets/extra.css
 extra:
