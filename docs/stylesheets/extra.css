@@ -15,3 +15,15 @@ a.md-header__button.md-logo {
 .md-nav__item .md-nav__link--active {
   color: var(--md-primary-fg-color--light);
 }
+
+div.sidebar-link {
+  padding: 0.6rem;
+  font-size: .55rem;
+}
+
+.sidebar-link a > svg {
+  width: 11px;
+  height: 11px;
+  opacity: 0.5;
+  margin-left: 3px;
+}
