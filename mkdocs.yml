@@ -62,6 +62,8 @@ nav:
   - Opni Logging:
       - logging/logging.md
       - logging/user-management.md
+  - Opni Log Anomaly:
+      - log-anomaly/log-anomaly.md
   - API Versions:
       - apiversions/v1beta2.md
 extra_css:
