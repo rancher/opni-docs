@@ -18,18 +18,19 @@ metadata:
   name: opni-log-anomaly
   namespace: opni-cluster-system
 spec:
-  version: v0.3.1
+  version: v0.4.0
   deployLogCollector: false
   services:
     gpuController:
       enabled: false
     inference:
       enabled: true
+      imagePullPolicy: Always
       pretrainedModels:
       - name: control-plane
     metrics:
       enabled: false
-  elastic:
+  opensearch:
     externalOpensearch:
       name: opni
       namespace: opni-cluster-system
@@ -37,5 +38,18 @@ spec:
     internal: {}
   nats:
     authMethod: nkey
-
+---
+apiVersion: opni.io/v1beta2
+kind: PretrainedModel
+metadata:
+  name: control-plane
+  namespace: opni-cluster-system
+spec:
+  source:
+    http:
+      url: "https://opni-public.s3.us-east-2.amazonaws.com/pretrain-models/control-plane-model-v0.4.0.zip"
+  hyperparameters:
+    modelThreshold: "0.6"
+    minLogTokens: 1
+    isControlPlane: "true"
 ```

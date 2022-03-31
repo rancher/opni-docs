@@ -122,6 +122,7 @@ spec:
     namespace: opni-cluster-system
   opensearchExternalURL: https://opensearchurl # This should be replaced with the URL that the Opensearch data node service is exposed on
 ```
+If you are using NodePort, you can take the IP address of one of your nodes and then append the port number of the expose-nodes service to get your Opensearch external URL.
 
 ### Install Opni Gateway
 *More detail required here*
@@ -145,11 +146,12 @@ The token can be retrieved under the Create Cluster command in the UI
 The command to bootstrap a cluster is slightly different than what is in the UI.  It will use `opnictl` to bootstratp the cluster
 
 ```sh
-opnictl bootstrap logging NAME [--insecure-skip-tls-verify] --gateway-url https://OPNI-GATEWAY-URL --token=TOKEN
+opnictl bootstrap logging NAME [--insecure-skip-tls-verify] --gateway-url https://OPNI-GATEWAY-URL --token=TOKEN --pin=PIN
 ```
 
  - NAME is the friendly name of the cluster. Different clusters should use a different name.
  - OPNI-GATEWAY-URL should be the address of the Opni Gateway API you have exposed.
  - TOKEN is the token from the UI.
+ - PIN is the pin from the UI.
 
 Once this command successfully completes the downstream cluster should begin shipping logs to the exposted Opensearch URL from the binding.
