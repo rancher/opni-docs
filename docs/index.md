@@ -8,6 +8,9 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
 
 [![](https://opni-public.s3.us-east-2.amazonaws.com/opni_youtube_gh.png)](https://youtu.be/DQVBwMaO_o0)
 
+!!! info "Opni Monitoring"
+    Opni Monitoring is a new multi-cluster monitoring tool that integrates with Opni AI and Logging systems. Check out the [documentation](https://rancher.github.io/opni-monitoring) for more details on how to get started.
+
 !!! attention "opnictl"
     We have deprecated the opnictl CLI and are currently reviewing it. It should no longer be used starting in v0.2.
 
