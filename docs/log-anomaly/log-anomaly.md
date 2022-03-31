@@ -8,7 +8,7 @@ Following this guide will allow you to setup Opni Log Anomaly Detection on your 
 
 To setup Opni Log Anomaly, first follow the [instructions here](../logging/logging.md) to setup a central Opni cluster and at least one downstream cluster boostrapped to ship logs over to the central Opni cluster.
 
-###
+### Setup Opni Log Anomaly
 To set up log anomaly detection, apply this yaml file.
 
 ```
