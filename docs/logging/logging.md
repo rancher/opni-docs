@@ -136,14 +136,8 @@ This can be done in the Opni Gateway UI
 
 ![Token UI Screenshot](../img/tokencreate.png){ loading=lazy }
 
-The token can be retrieved under the Create Cluster command in the UI
-
-![Clusters UI Screenshot](../img/clusters.png){ loading=lazy }
-
-![Create Clusters UI Screenshot](../img/clusterscreate.png){ loading=lazy }
-
 ### Bootstrap downstream cluster
-The command to bootstrap a cluster is slightly different than what is in the UI.  It will use `opnictl` to bootstratp the cluster
+The command to bootstrap a logging cluster can be copied from the Clusters section in the UI.  Make sure to select the logging capability.
 
 ```sh
 opnictl bootstrap logging NAME [--insecure-skip-tls-verify] --gateway-url https://OPNI-GATEWAY-URL --token=TOKEN --pin=PIN
