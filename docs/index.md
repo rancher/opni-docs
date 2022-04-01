@@ -16,6 +16,7 @@ It currently features log anomaly detection - simply ship your logs to Opni and 
     
      - GPU Learning is temporarily disabled in the v0.4.0 release as Opni moves to a multicluster architecture.  This will be returning in a future release
      - The v1beta1 API has been deprecated in this release.  Details about the changes made in v1beta2 can be found [here](apiversions/v1beta2.md)
+     - The UI and Insights services, which were experimental, have been removed.
 
 
 ## Installing Opni
