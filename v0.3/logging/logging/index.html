@@ -8,14 +8,14 @@
       
       
       
-        <link rel="canonical" href="https://github.com/rancher/opni-docs/v0.3/setup/gpu/">
+        <link rel="canonical" href="https://github.com/rancher/opni-docs/v0.3/logging/logging/">
       
       <link rel="icon" href="../../assets/favicon.png">
       <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.8">
     
     
       
-        <title>Cluster GPU Configuration - Rancher Opni</title>
+        <title>Opni Logging Setup - Rancher Opni</title>
       
     
     
@@ -77,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#automatic-gpu-operator-configuration" class="md-skip">
+        <a href="#install-cert-manager-in-all-clusters" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Cluster GPU Configuration
+              Opni Logging Setup
             
           </span>
         </div>
@@ -335,14 +335,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -363,136 +361,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Cluster GPU Configuration
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../setup/gpu/" class="md-nav__link">
         Cluster GPU Configuration
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#automatic-gpu-operator-configuration" class="md-nav__link">
-    Automatic GPU Operator Configuration
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-    <nav class="md-nav" aria-label="Prerequisites">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu-node-hardware-requirements" class="md-nav__link">
-    GPU Node Hardware Requirements:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes-cluster-requirements" class="md-nav__link">
-    Kubernetes Cluster Requirements:
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-custom-resources" class="md-nav__link">
-    Install Custom Resources
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Custom Resources">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpupolicyadapter" class="md-nav__link">
-    GPUPolicyAdapter
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provider-specific-notes-and-troubleshooting" class="md-nav__link">
-    Provider-specific Notes and Troubleshooting
-  </a>
-  
-    <nav class="md-nav" aria-label="Provider-specific Notes and Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#k3s" class="md-nav__link">
-    K3S
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rke" class="md-nav__link">
-    RKE
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vgpu" class="md-nav__link">
-    VGPU
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#other-notes" class="md-nav__link">
-    Other Notes
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -504,7 +377,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../log-shipping/" class="md-nav__link">
+      <a href="../../setup/log-shipping/" class="md-nav__link">
         Log Shipping
       </a>
     </li>
@@ -518,7 +391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../setup-grafana-dashboard/" class="md-nav__link">
+      <a href="../../setup/setup-grafana-dashboard/" class="md-nav__link">
         Setup Grafana Dashboard for Metric Service
       </a>
     </li>
@@ -532,7 +405,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../metrics/" class="md-nav__link">
+      <a href="../../setup/metrics/" class="md-nav__link">
         Metrics Anomaly Detection (beta)
       </a>
     </li>
@@ -746,12 +619,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
       
       
       
@@ -772,11 +647,90 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../logging/logging/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Opni Logging Setup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Opni Logging Setup
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#install-cert-manager-in-all-clusters" class="md-nav__link">
+    Install cert manager in all clusters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opni" class="md-nav__link">
+    Install Opni
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opensearch" class="md-nav__link">
+    Install Opensearch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opensearch-cluster-binding" class="md-nav__link">
+    Opensearch Cluster Binding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opni-gateway" class="md-nav__link">
+    Install Opni Gateway
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-a-token-for-bootstrapping-the-cluster" class="md-nav__link">
+    Generate a token for bootstrapping the cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-downstream-cluster" class="md-nav__link">
+    Bootstrap downstream cluster
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -788,7 +742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../logging/user-management/" class="md-nav__link">
+      <a href="../user-management/" class="md-nav__link">
         User Management
       </a>
     </li>
@@ -923,96 +877,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#automatic-gpu-operator-configuration" class="md-nav__link">
-    Automatic GPU Operator Configuration
+  <a href="#install-cert-manager-in-all-clusters" class="md-nav__link">
+    Install cert manager in all clusters
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
-  </a>
-  
-    <nav class="md-nav" aria-label="Prerequisites">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpu-node-hardware-requirements" class="md-nav__link">
-    GPU Node Hardware Requirements:
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kubernetes-cluster-requirements" class="md-nav__link">
-    Kubernetes Cluster Requirements:
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#install-custom-resources" class="md-nav__link">
-    Install Custom Resources
-  </a>
-  
-    <nav class="md-nav" aria-label="Install Custom Resources">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gpupolicyadapter" class="md-nav__link">
-    GPUPolicyAdapter
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provider-specific-notes-and-troubleshooting" class="md-nav__link">
-    Provider-specific Notes and Troubleshooting
-  </a>
-  
-    <nav class="md-nav" aria-label="Provider-specific Notes and Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#k3s" class="md-nav__link">
-    K3S
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rke" class="md-nav__link">
-    RKE
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#vgpu" class="md-nav__link">
-    VGPU
+  <a href="#install-opni" class="md-nav__link">
+    Install Opni
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#other-notes" class="md-nav__link">
-    Other Notes
+  <a href="#install-opensearch" class="md-nav__link">
+    Install Opensearch
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opensearch-cluster-binding" class="md-nav__link">
+    Opensearch Cluster Binding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-opni-gateway" class="md-nav__link">
+    Install Opni Gateway
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-a-token-for-bootstrapping-the-cluster" class="md-nav__link">
+    Generate a token for bootstrapping the cluster
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-downstream-cluster" class="md-nav__link">
+    Bootstrap downstream cluster
   </a>
   
 </li>
@@ -1031,223 +939,134 @@
                 
 
 
-  <h1>Cluster GPU Configuration</h1>
+  <h1>Opni Logging Setup</h1>
 
-<h2 id="automatic-gpu-operator-configuration">Automatic GPU Operator Configuration<a class="headerlink" href="#automatic-gpu-operator-configuration" title="Permanent link">&para;</a></h2>
-<p>Opni can utilize GPU acceleration to enable log anomaly detection for workload 
-and application logs. If you would like Opni to learn from your own workloads, 
-follow the instructions below to configure your cluster. If GPU acceleration
-is not enabled, Opni can still analyze your Control Plane logs using our 
-pretrained models.</p>
-<p>Opni bundles its own modified version of the Nvidia GPU Operator which is the
-recommended way to enable GPU acceleration. It may be possible to install the
-upstream GPU Operator via helm chart, but this is not recommended, as it will 
-likely not work with Opni. Follow the instructions below to enable GPU 
-acceleration using Opni's built-in GPU Operator.</p>
-<hr />
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<h3 id="gpu-node-hardware-requirements">GPU Node Hardware Requirements:<a class="headerlink" href="#gpu-node-hardware-requirements" title="Permanent link">&para;</a></h3>
+<p><img alt="Opni Logging" loading="lazy" src="../../img/loggingarch.png" /></p>
+<p>Following this guide will allow you to create a POC Opni logging cluster</p>
+<h3 id="install-cert-manager-in-all-clusters">Install cert manager in all clusters<a class="headerlink" href="#install-cert-manager-in-all-clusters" title="Permanent link">&para;</a></h3>
+<p>All clusters need cert manager as a prerequisite.  This can be installed by following the <a href="https://cert-manager.io/docs/installation/kubectl/">cert manager instructions</a></p>
+<h3 id="install-opni">Install Opni<a class="headerlink" href="#install-opni" title="Permanent link">&para;</a></h3>
+<p>Opni needs to be installed into all clusters - the centralized cluster, and the downstream clusters that will be shipping their logs.
+This can be achieved by applying the following manifests from the <a href="https://github.com/rancher/opni/tree/main/deploy/manifests">Opni repo</a></p>
 <ul>
-<li>1x NVIDIA GPU</li>
-<li>If not using VGPU, any Quadro or Tesla GPU will work. </li>
-<li>If using VGPU, one of the following GPUs is required:<ul>
-<li>Tesla M6, M10, M60</li>
-<li>Tesla P4, P6, P40, P100</li>
-<li>Tesla V100</li>
-<li>Quadro RTX 6000/8000</li>
-<li>Tesla T4</li>
-<li>NVIDIA A10, A16, A30, A40, A100, RTX A5000/A6000</li>
+<li>00_crds.yaml</li>
+<li>01_rbac.yaml</li>
+<li>10_operator.yaml</li>
 </ul>
-</li>
-<li>MIG is not supported when using automatic GPU Operator configuration at this time.</li>
-<li>Ubuntu 20.04. No other host OS is supported at this time.</li>
-<li>The GPU node should not have an Nvidia driver or container runtime installed.
-  The GPU Operator handles installing all the necessary drivers automatically.</li>
-</ul>
-<h3 id="kubernetes-cluster-requirements">Kubernetes Cluster Requirements:<a class="headerlink" href="#kubernetes-cluster-requirements" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>Vanilla upstream Kubernetes, or one of the following distributions:</p>
-<ul>
-<li>RKE</li>
-<li>K3S &gt;= v1.22.2+k3s1</li>
-<li>RKE2</li>
-<li>Amazon EKS</li>
-<li>Google GKE</li>
-<li>Azure AKS</li>
-</ul>
-</li>
-<li>
-<p>Opni Operator installed</p>
-</li>
-<li>Cert-Manager installed </li>
-<li>NFD installed (see deploy/examples/nfd_aio.yaml in the Opni repo)</li>
-</ul>
-<hr />
-<h2 id="install-custom-resources">Install Custom Resources<a class="headerlink" href="#install-custom-resources" title="Permanent link">&para;</a></h2>
-<h3 id="gpupolicyadapter">GPUPolicyAdapter<a class="headerlink" href="#gpupolicyadapter" title="Permanent link">&para;</a></h3>
-<p>Creating a GPUPolicyAdapter resource will trigger the GPU Operator to start 
-configuring the cluster. </p>
-<p>If not using VGPU, the GPUPolicyAdapter resource does not need any customization,
-and can be created with an empty spec, as follows:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni.io/v1beta1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GpuPolicyAdapter</span><span class="w"></span>
+<h3 id="install-opensearch">Install Opensearch<a class="headerlink" href="#install-opensearch" title="Permanent link">&para;</a></h3>
+<p>Opni makes use of, and contributes to, the official Opensearch operator.  This is currently hosted at <a href="https://github.com/Opster/opensearch-k8s-operator">https://github.com/Opster/opensearch-k8s-operator</a>.</p>
+<p>The cluster must be called Opni and installed into the <code>opni-cluster-system</code> namespace. Create this namespace on your cluster if it does not already exist.  The following yaml can be used to create the cluster
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opensearch.opster.io/v1</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OpenSearchCluster</span><span class="w"></span>
 <span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu</span><span class="w"></span>
-<span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
-</code></pre></div>
-<p>(note that the empty brackets after <code>spec:</code> are important)</p>
-<p>If using VGPU, please follow the official documentation to build the VGPU driver
-image, and create a GPUPolicyAdapter resource with the following spec, filling
-in the <code>driver</code> and <code>licenseConfigMap</code> fields:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni.io/v1beta1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GpuPolicyAdapter</span><span class="w"></span>
-<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vgpu</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni-cluster-system</span><span class="w"></span>
 <span class="nt">spec</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">images</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">driver</span><span class="p">:</span><span class="w"> </span><span class="c1"># Image name for the VGPU driver</span><span class="w"></span>
-<span class="w">  </span><span class="nt">vgpu</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">licenseConfigMap</span><span class="p">:</span><span class="w"> </span><span class="c1"># ConfigMap containing gridd.conf and the client config token</span><span class="w"></span>
-<span class="w">    </span><span class="nt">licenseServerKind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nls</span><span class="w"> </span>
+<span class="w">  </span><span class="c1"># Add fields here</span><span class="w"></span>
+<span class="w">  </span><span class="nt">general</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">httpPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9200</span><span class="w"></span>
+<span class="w">    </span><span class="nt">vendor</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opensearch</span><span class="w"></span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2.3</span><span class="w"></span>
+<span class="w">    </span><span class="nt">serviceName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">os-svc</span><span class="w"></span>
+<span class="w">    </span><span class="nt">setVMMaxMapCount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">  </span><span class="nt">confMgmt</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">autoScaler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">    </span><span class="nt">monitoring</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
+<span class="w">  </span><span class="nt">dashboards</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">enable</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
+<span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.2.0</span><span class="w"></span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">  </span><span class="nt">nodePools</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w"></span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span><span class="w"></span>
+<span class="w">    </span><span class="nt">diskSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span><span class="w"></span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span><span class="w"></span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span><span class="w"></span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span><span class="w"></span>
+<span class="w">    </span><span class="nt">roles</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">master</span><span class="w"></span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">component</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodes</span><span class="w"></span>
+<span class="w">    </span><span class="nt">replicas</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span><span class="w"></span>
+<span class="w">    </span><span class="nt">diskSize</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span><span class="w"></span>
+<span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">requests</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500m</span><span class="w"></span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span><span class="w"></span>
+<span class="w">      </span><span class="nt">limits</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2Gi</span><span class="w"></span>
+<span class="w">    </span><span class="nt">jvm</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-Xmx1G</span><span class="nv"> </span><span class="s">-Xms1G&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">roles</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data</span><span class="w"></span>
+<span class="w">    </span><span class="nt">persistence</span><span class="p">:</span><span class="w"></span>
+<span class="w">      </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
+</code></pre></div></p>
+<p>If you want to use persistent storage you can replace
+<div class="highlight"><pre><span></span><code><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{}</span><span class="w"></span>
 </code></pre></div>
-<p>Once the GPUPolicyAdapter resource is created, the GPU Operator will begin
-configuring the cluster. This takes a few minutes, and the container engine
-will be restarted during this process. Once all the pods in the <code>gpu-operator-resources</code>
-namespace complete, GPUs will be available for use and the Opni GPU Controller
-pod should start.</p>
-<h2 id="provider-specific-notes-and-troubleshooting">Provider-specific Notes and Troubleshooting<a class="headerlink" href="#provider-specific-notes-and-troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="k3s">K3S<a class="headerlink" href="#k3s" title="Permanent link">&para;</a></h3>
-<ul>
-<li>If you are using K3S, you must use v1.22.2+k3s1 or later. This version
-    introduces automatic detection of Nvidia container runtimes on nodes, and
-    a large number of bugfixes related to pod lifecycle were added in
-    upstream Kubernetes for this release. If you are using an earlier version,
-    you may experience issues where pods become stuck in the 'Terminating'
-    state. If this happens, force-deleting the stuck pods should help resolve
-    the issue.</li>
-</ul>
-<h3 id="rke">RKE<a class="headerlink" href="#rke" title="Permanent link">&para;</a></h3>
-<ul>
-<li>
-<p>RKE uses Docker as its container engine. If you are using RKE, you should
-    be aware of how the Nvidia runtime interacts with Docker. When the GPU
-    operator is installed for the first time, it will create a <code>RuntimeClass</code>
-    object which allows Kubernetes to use the <code>nvidia</code> runtime, which is 
-    configured in the docker engine itself. The RuntimeClass will look similar
-    to this when using RKE:</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">node.k8s.io/v1alpha1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">RuntimeClass</span><span class="w"></span>
-<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia</span><span class="w"></span>
-<span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker</span><span class="w"></span>
-</code></pre></div>
-<p>The RuntimeClass <code>name</code> is used in a pod spec to identify the runtime to use.
-It is specified using the <code>runtimeClassName</code> field:</p>
+with
+<div class="highlight"><pre><span></span><code><span class="nt">pvc</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nameofclass</span><span class="w"> </span><span class="c1"># Name of the storage class you wish to use</span><span class="w"></span>
+<span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span><span class="w"></span>
+</code></pre></div></p>
+<p>You will also need to expose the Opensearch cluster.  For indexing it is recommended to expose the data nodes.  This can be achieved with the following service
 <div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1</span><span class="w"></span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pod</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Service</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expose-nodes</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni-cluster-system</span><span class="w"></span>
+<span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">opster.io/opensearch-cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni</span><span class="w"></span>
+<span class="w">    </span><span class="nt">opster.io/opensearch-nodepool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodes</span><span class="w"></span>
 <span class="nt">spec</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># ...</span><span class="w"></span>
-<span class="w">  </span><span class="nt">runtimeClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nvidia</span><span class="w"></span>
-<span class="w">  </span><span class="c1"># ...</span><span class="w"></span>
+<span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span><span class="w"></span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9200</span><span class="w"></span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TCP</span><span class="w"></span>
+<span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9200</span><span class="w"></span>
+<span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">opster.io/opensearch-cluster</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni</span><span class="w"></span>
+<span class="w">    </span><span class="nt">opster.io/opensearch-nodepool</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nodes</span><span class="w"></span>
+<span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NodePort</span><span class="w"></span>
+</code></pre></div></p>
+<p>If you are using a Load Balancer you can change the service type to LoadBalancer and if you do choose to use a ClusterIP you will also need an ingress for the service.</p>
+<h3 id="opensearch-cluster-binding">Opensearch Cluster Binding<a class="headerlink" href="#opensearch-cluster-binding" title="Permanent link">&para;</a></h3>
+<p>Next you will need to create an Opensearch Cluster Binding.  This triggers Opni to install the index policies and generic roles it needs into the Opensearch cluster.  This can be achieved by applying the following manifest:
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni.io/v1beta2</span><span class="w"></span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MulticlusterRoleBinding</span><span class="w"></span>
+<span class="nt">metadata</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni-logging</span><span class="w"></span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni-cluster-system</span><span class="w"></span>
+<span class="nt">spec</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">opensearch</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni</span><span class="w"></span>
+<span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">opni-cluster-system</span><span class="w"></span>
+<span class="w">  </span><span class="nt">opensearchExternalURL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://opensearchurl</span><span class="w"> </span><span class="c1"># This should be replaced with the URL that the Opensearch data node service is exposed on</span><span class="w"></span>
 </code></pre></div>
-<p>When using containerd for example, the <code>handler</code> field in the <code>RuntimeClass</code>
-is used to select a specific container runtime by name. However, dockershim
-does not support selecting custom container runtimes, meaning the nvidia
-container runtime <em>must</em> be set as the default. The GPU Operator will still
-utilize a <code>RuntimeClass</code>, but its <code>handler</code> must be set to <code>docker</code> to
-work. Otherwise, you may see an error like this:</p>
-<blockquote>
-<p>Failed to create pod sandbox: rpc error: code = Unknown desc = RuntimeHandler "nvidia" not supported</p>
-</blockquote>
-<p>If you encounter this error, check the <code>handler</code> field in the <code>RuntimeClass</code>
-and ensure it is set to <code>docker</code>. </p>
-</li>
-</ul>
-<h2 id="vgpu">VGPU<a class="headerlink" href="#vgpu" title="Permanent link">&para;</a></h2>
-<p>If you are using VGPUs, you should be aware of the following:</p>
+If you are using NodePort, you can take the IP address of one of your nodes and then append the port number of the expose-nodes service to get your Opensearch external URL.</p>
+<h3 id="install-opni-gateway">Install Opni Gateway<a class="headerlink" href="#install-opni-gateway" title="Permanent link">&para;</a></h3>
+<p><em>More detail required here</em></p>
+<p>Install the <a href="https://github.com/rancher/opni-monitoring">Opni Gateway</a> into the central cluster. This can be completed using the <a href="https://github.com/rancher/opni-monitoring/blob/main/deploy/helmfile.yaml">helmfile</a></p>
+<p>The helm file will create a LoadBalancer service for the gateway endpoints. If you are using a NodePort, you can edit the opni-monitoring service once it has been created and change the type from Load Balancer to Node Port. If you are not using NodePort or a load balancer, you will need an ingress (or kubectl port-forward) for the endpoints.</p>
+<h3 id="generate-a-token-for-bootstrapping-the-cluster">Generate a token for bootstrapping the cluster<a class="headerlink" href="#generate-a-token-for-bootstrapping-the-cluster" title="Permanent link">&para;</a></h3>
+<p>This can be done in the Opni Gateway UI</p>
+<p><img alt="Token UI Screenshot" loading="lazy" src="../../img/tokencreate.png" /></p>
+<h3 id="bootstrap-downstream-cluster">Bootstrap downstream cluster<a class="headerlink" href="#bootstrap-downstream-cluster" title="Permanent link">&para;</a></h3>
+<p>The command to bootstrap a logging cluster can be copied from the Clusters section in the UI.  Make sure to select the logging capability.</p>
+<div class="highlight"><pre><span></span><code>opnictl bootstrap logging NAME <span class="o">[</span>--insecure-skip-tls-verify<span class="o">]</span> --gateway-url https://OPNI-GATEWAY-URL --token<span class="o">=</span>TOKEN --pin<span class="o">=</span>PIN
+</code></pre></div>
 <ul>
-<li>Nvidia gridd <em>does not</em> run on the virtualization host. Instead, it runs in
-  guest VMs - when using the GPU Operator, gridd runs inside the nvidia driver
-  daemonset pod.</li>
-<li>The VGPU driver must match the driver on the host. When downloading the 
-  driver package from the Nvidia License Portal, you will be presented with 
-  two driver runfiles, for example:</li>
-<li><code>NVIDIA-Linux-x86_64-470.63-vgpu-kvm.run</code> - Installed on the <strong>host</strong></li>
-<li><code>NVIDIA-Linux-x86_64-470.63.01-grid.run</code> - Installed on the <strong>guest</strong> (automatic with GPU operator)</li>
+<li>NAME is the friendly name of the cluster. Different clusters should use a different name.</li>
+<li>OPNI-GATEWAY-URL should be the address of the Opni Gateway API you have exposed.</li>
+<li>TOKEN is the token from the UI.</li>
+<li>PIN is the pin from the UI.</li>
 </ul>
-<p>Ensure the correct drivers are used for the host and guest. </p>
-<ul>
-<li>CUDA drivers do not need to be installed on the virtualization host (and are not
-  included by default with the VGPU driver)</li>
-<li>
-<p>VGPU mediated device UUIDs are not persistent across reboots. This can cause
-  libvirt to fail after a reboot if you are running a VM with VGPUs. To fix this:</p>
-</li>
-<li>
-<p>List instances on the host with <code>virsh list --all</code> (the instance will be shut off)</p>
-</li>
-<li>
-<p>Find the instance that has the VGPU. If you don't know which one it is,
-    use the <code>virsh edit</code> command to view the XML configuration of each instance
-    and search for <code>mdev</code>.</p>
-</li>
-<li>
-<p>Undefine the instance using <code>virsh undefine</code> and restart libvirtd.</p>
-</li>
-<li>
-<p>You might not be able to determine from the host whether a guest VGPU
-  is licensed. To check license status, you should open a shell to a pod
-  running with the nvidia container runtime and use <code>nvidia-smi</code> from there.</p>
-</li>
-<li>On the virtualization host, you may notice that your physical GPU is bound to
-  the <code>nvidia</code> driver, even though the <code>nvidia_vgpu_vfio</code> driver is available.
-  The official docs are ambiguous on this, but your GPU should be bound to
-  the <code>nvidia</code> driver. The guest VGPU will also be bound to the <code>nvidia</code> driver
-  once the guest drivers are installed.</li>
-</ul>
-<h2 id="other-notes">Other Notes<a class="headerlink" href="#other-notes" title="Permanent link">&para;</a></h2>
-<ul>
-<li>The <code>nvidia.com/gpu</code> resource request behaves counterintuitively. It serves as 
-  a node scheduling hint for pods, and to keep track of which/how many pods are 
-  using GPUs. <code>nvidia.com/gpu</code> a first-class node resource just like cpu and 
-  memory. If a pod makes a request for one, the node it is scheduled on must 
-  have that resource available. The existence of this resource request does 
-  not equate to a pod taking exclusive ownership of the device. In fact, a pod
-  can use a GPU without requesting an <code>nvidia.com/gpu</code> resource at all, as long
-  as it has the correct environment variables and <code>runtimeClassName</code> set. 
-  This is how the GPU Operator pods are configured - they do not request GPU
-  resources by design, rather they are scheduled onto GPU nodes by other means
-  and set up to use the nvidia container runtime. </li>
-<li>
-<p>Regardless of <code>nvidia.com/gpu</code> resource requests or container runtime, GPUs
-  will <em>only</em> be available if the <code>NVIDIA_VISIBLE_DEVICES</code> and 
-  <code>NVIDIA_DRIVER_CAPABILITIES</code> environment variables are set correctly. They 
-  should be set as follows:</p>
-<ul>
-<li><code>NVIDIA_VISIBLE_DEVICES=all</code></li>
-<li><code>NVIDIA_DRIVER_CAPABILITIES=compute,utility</code></li>
-</ul>
-<p>They can be set either in the pod spec, or in the docker image itself
-by using <code>ENV</code> in the Dockerfile.</p>
-</li>
-<li>
-<p>If you are not using the GPU operator, but you are using the nvidia device
-  plugin daemonset by itself, be aware that you must patch the daemonset to 
-  include <code>runtimeClassName: nvidia</code> in its pod template. The GPU operator will
-  do this automatically, but the daemonset does not have it set by default.</p>
-</li>
-<li>The GPU Operator installs the drivers in such a way that they are not 
-  directly visible or usable by the host. As such, tools like <code>nvidia-smi</code> will
-  not be available, so you will need to exec into a pod running with the nvidia
-  container runtime to interact with a GPU.</li>
-<li>A common way to pass a GPU through to a virtual machine is by using the
-  vfio-pci driver. There are several tutorials online that explain how to set 
-  up vfio-pci. It is important to note that some Nvidia GPUs expose additional
-  PCI devices (such as an audio or usb controller) in the same IOMMU group
-  as the GPU device itself. When binding the GPU device to the vfio-pci driver, 
-  ensure that any additional devices belonging to the GPU are bound as well.</li>
-</ul>
+<p>Once this command successfully completes the downstream cluster should begin shipping logs to the exposted Opensearch URL from the binding.</p>
 
               
             </article>
@@ -1261,7 +1080,7 @@ by using <code>ENV</code> in the Dockerfile.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../deployment/advanced/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Advanced Installation" rel="prev">
+        <a href="../../configuration/dataprepper/" class="md-footer__link md-footer__link--prev" aria-label="Previous: DataPrepper" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -1270,20 +1089,20 @@ by using <code>ENV</code> in the Dockerfile.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              Advanced Installation
+              DataPrepper
             </div>
           </div>
         </a>
       
       
         
-        <a href="../log-shipping/" class="md-footer__link md-footer__link--next" aria-label="Next: Log Shipping" rel="next">
+        <a href="../user-management/" class="md-footer__link md-footer__link--next" aria-label="Next: User Management" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Log Shipping
+              User Management
             </div>
           </div>
           <div class="md-footer__button md-icon">
