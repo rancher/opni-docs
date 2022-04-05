@@ -6,17 +6,7 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/rancher/opni-docs/v0.3/apiversions/v1beta2/</loc>
-         <lastmod>2022-04-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://github.com/rancher/opni-docs/v0.3/architecture/highlevel/</loc>
-         <lastmod>2022-04-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/rancher/opni-docs/v0.3/configuration/dataprepper/</loc>
          <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -67,21 +57,6 @@
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.3/deployment/quickstart/</loc>
-         <lastmod>2022-04-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/rancher/opni-docs/v0.3/log-anomaly/log-anomaly/</loc>
-         <lastmod>2022-04-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/rancher/opni-docs/v0.3/logging/logging/</loc>
-         <lastmod>2022-04-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://github.com/rancher/opni-docs/v0.3/logging/user-management/</loc>
          <lastmod>2022-04-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
