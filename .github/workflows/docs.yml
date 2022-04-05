@@ -5,7 +5,7 @@ on:
       - main
       - v*
 env:
-  LATEST_VERSION: v0.3
+  LATEST_VERSION: v0.4
   
 jobs:
   master-build:
