@@ -2,107 +2,107 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/apiversions/v1beta2/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/architecture/highlevel/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/dataprepper/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/elasticsearch/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/gpuadapter/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/logadapter/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/nats/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/opnicluster/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/pretrainedmodel/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/configuration/s3/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/deployment/advanced/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/deployment/basic/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/deployment/quickstart/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/log-anomaly/log-anomaly/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/logging/logging/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/logging/user-management/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/setup/gpu/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/setup/log-shipping/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/setup/metrics/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://github.com/rancher/opni-docs/v0.4/setup/setup-grafana-dashboard/</loc>
-         <lastmod>2022-04-05</lastmod>
+         <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
