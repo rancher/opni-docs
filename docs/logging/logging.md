@@ -46,7 +46,7 @@ spec:
   nodePools:
   - component: master
     replicas: 3
-    diskSize: 32
+    diskSize: 32Gi
     resources:
       requests:
         cpu: 500m
@@ -59,7 +59,7 @@ spec:
       emptyDir: {}
   - component: nodes
     replicas: 2
-    diskSize: 32
+    diskSize: 32Gi
     resources:
       requests:
         cpu: 500m
