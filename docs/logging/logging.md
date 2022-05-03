@@ -32,7 +32,7 @@ spec:
   general:
     httpPort: 9200
     vendor: opensearch
-    version: 1.2.3
+    version: 1.3.1
     serviceName: os-svc
     setVMMaxMapCount: true
   confMgmt:
@@ -40,8 +40,9 @@ spec:
     monitoring: false
   dashboards:
     enable: true
-    version: 1.2.0
+    version: 1.3.1
     replicas: 1
+    image: rancher/opensearch-dashboards:1.3.1
   nodePools:
   - component: master
     replicas: 3
@@ -125,8 +126,6 @@ spec:
 If you are using NodePort, you can take the IP address of one of your nodes and then append the port number of the expose-nodes service to get your Opensearch external URL.
 
 ### Install Opni Gateway
-*More detail required here*
-
 Install the [Opni Gateway](https://github.com/rancher/opni-monitoring) into the central cluster. This can be completed using the [helmfile](https://github.com/rancher/opni-monitoring/blob/main/deploy/helmfile.yaml)
 
 The helm file will create a LoadBalancer service for the gateway endpoints. If you are using a NodePort, you can edit the opni-monitoring service once it has been created and change the type from Load Balancer to Node Port. If you are not using NodePort or a load balancer, you will need an ingress (or kubectl port-forward) for the endpoints.
@@ -138,6 +137,9 @@ This can be done in the Opni Gateway UI
 
 ### Bootstrap downstream cluster
 The command to bootstrap a logging cluster can be copied from the Clusters section in the UI.  Make sure to select the logging capability.
+
+!!! attention
+    The gateway URL should exposed with ssl passthrough.  This is because the client uses cert pinning, and the pins are computed based on the serving certs.
 
 ```sh
 opnictl bootstrap logging NAME [--insecure-skip-tls-verify] --gateway-url https://OPNI-GATEWAY-URL --token=TOKEN --pin=PIN
