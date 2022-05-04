@@ -9,6 +9,19 @@ Following this guide will allow you to create a POC Opni logging cluster
 ### Install cert manager in all clusters
 All clusters need cert manager as a prerequisite.  This can be installed by following the [cert manager instructions](https://cert-manager.io/docs/installation/kubectl/)
 
+### Rancher Charts
+Opni provides helm charts that integrate with Rancher.  If you are using Rancher you can add these to the UI by adding a git repository to the Apps & Marketplace section.  The `Git Repo URL` to use is:
+```
+https://github.com/rancher/opni.git
+```
+
+The `Git Branch` to use is:
+```
+charts-repo
+```
+
+If you are not using Rancher please follow the instructions below.
+
 ### Install Opni
 Opni needs to be installed into all clusters - the centralized cluster, and the downstream clusters that will be shipping their logs.
 This can be achieved by applying the following manifests from the [Opni repo](https://github.com/rancher/opni/tree/main/deploy/manifests)
