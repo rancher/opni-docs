@@ -686,6 +686,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rancher-charts" class="md-nav__link">
+    Rancher Charts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-opni" class="md-nav__link">
     Install Opni
   </a>
@@ -884,6 +891,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#rancher-charts" class="md-nav__link">
+    Rancher Charts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#install-opni" class="md-nav__link">
     Install Opni
   </a>
@@ -945,6 +959,14 @@
 <p>Following this guide will allow you to create a POC Opni logging cluster</p>
 <h3 id="install-cert-manager-in-all-clusters">Install cert manager in all clusters<a class="headerlink" href="#install-cert-manager-in-all-clusters" title="Permanent link">&para;</a></h3>
 <p>All clusters need cert manager as a prerequisite.  This can be installed by following the <a href="https://cert-manager.io/docs/installation/kubectl/">cert manager instructions</a></p>
+<h3 id="rancher-charts">Rancher Charts<a class="headerlink" href="#rancher-charts" title="Permanent link">&para;</a></h3>
+<p>Opni provides helm charts that integrate with Rancher.  If you are using Rancher you can add these to the UI by adding a git repository to the Apps &amp; Marketplace section.  The <code>Git Repo URL</code> to use is:
+<div class="highlight"><pre><span></span><code>https://github.com/rancher/opni.git
+</code></pre></div></p>
+<p>The <code>Git Branch</code> to use is:
+<div class="highlight"><pre><span></span><code>charts-repo
+</code></pre></div></p>
+<p>If you are not using Rancher please follow the instructions below.</p>
 <h3 id="install-opni">Install Opni<a class="headerlink" href="#install-opni" title="Permanent link">&para;</a></h3>
 <p>Opni needs to be installed into all clusters - the centralized cluster, and the downstream clusters that will be shipping their logs.
 This can be achieved by applying the following manifests from the <a href="https://github.com/rancher/opni/tree/main/deploy/manifests">Opni repo</a></p>
