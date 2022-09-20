@@ -64,6 +64,10 @@ nav:
       - logging/user-management.md
   - Opni Log Anomaly:
       - log-anomaly/log-anomaly.md
+  - Opni Alerting:
+      - slo/slo.md
+      - slo/getting-started.md
+      - slo/slo-monitoring.md
   - API Versions:
       - apiversions/v1beta2.md
 extra_css:
