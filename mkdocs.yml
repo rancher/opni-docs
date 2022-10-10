@@ -71,6 +71,7 @@ extra_css:
 extra_javascript:
   - js/extra.js
 extra:
+# extra.version.mike for native versioning
   version:
     provider: mike
   analytics:

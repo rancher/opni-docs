@@ -2,7 +2,7 @@
 title: Opni Logging Setup
 ---
 
-![Opni Logging](/img/loggingarch.png){ loading=lazy }
+![Opni Logging](/img/loggingarch.png)
 
 Following this guide will allow you to create a POC Opni logging cluster
 
