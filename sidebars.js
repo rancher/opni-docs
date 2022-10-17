@@ -14,67 +14,61 @@
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
   tutorialSidebar: [
-    'index',
     {
-      type: 'category',
-      label: 'Deployment',
-      items: [
-        'deployment/quickstart',
-        'deployment/basic',
-        'deployment/advanced',
-      ]
+      type: 'doc',
+      label: 'Introduction',
+      id: 'index'
     },
     {
       type: 'category',
-      label: 'Setup Guides',
+      label: 'Installation',
+      collapsible: false,
       items: [
-        'setup/gpu',
-        'setup/log-shipping',
-        'setup/setup-grafana-dashboard',
-        'setup/metrics'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Architecture',
-      items: [
-        'architecture/highlevel'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Configuration',
-      items: [
-        'configuration/elasticsearch',
-        'configuration/gpuadapter',
-        'configuration/logadapter',
-        'configuration/nats',
-        'configuration/opnicluster',
-        'configuration/pretrainedmodel',
-        'configuration/s3',
-        'configuration/dataprepper'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Opni Logging',
-      items: [
-        'logging/logging',
-        'logging/user-management'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'Log Anomaly',
-      items: [
-        'log-anomaly/log-anomaly'
-      ]
-    },
-    {
-      type: 'category',
-      label: 'API Versions',
-      items: [
-        'apiversions/v1beta2'
+        {
+          type: 'category',
+          label: 'Install Opni',
+          link: {
+            type: 'doc',
+            id: 'installation/opni/index'
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'installation/opni/backends',
+              label: 'Enable Backends'
+            },
+            {
+              type: 'doc',
+              id: 'installation/opni/aiops',
+              label: 'Enable AIOps'
+            },
+            {
+              type: 'doc',
+              id: 'installation/opni/slo',
+              label: 'Enable SLOs'
+            }
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Install Opni Agent',
+          link: {
+            type: 'doc',
+            id: 'installation/opni_agent/index'
+          },
+          items: [
+            {
+              type: 'doc',
+              id: 'installation/opni_agent/capabilities',
+              label: 'Enable Capabilities'
+            }
+          ]
+        },
+        {
+          type: 'doc',
+          id: 'installation/uninstall',
+          label: 'Uninstall Opni'
+        },
       ]
     },
   ]
