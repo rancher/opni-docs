@@ -15,7 +15,7 @@ TODO Amartya
     <TabItem value="pre-trained" label="Pretrained Models">
     TODO Amartya
     </TabItem>
-    <TabItem value="workload" label="User workloads self-learning">
+    <TabItem value="workload" label="User workloads self-learning (coming soon)">
     TODO Yingbei
     </TabItem>
 </Tabs>
