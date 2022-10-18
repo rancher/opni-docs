@@ -20,7 +20,7 @@ SLOs can be broken down into two components :
 Opni's SLO functionality requires :
 
 - The [Opni Monitoring Backend](#TODO-LINK)
-- One or more agents with [Metrics capabilities](#TODO-LINK)
+- One or more agents with the [metrics capability](#TODO-LINK) enabled
 <!---
 TODO: - the [Opni Alerting Backend] to forward the alerts produced by SLOs
 --->
@@ -29,7 +29,10 @@ TODO: - the [Opni Alerting Backend] to forward the alerts produced by SLOs
 
 There are many ways to define and observe SLOs, in Opni we choose to represent them as :
 
-![SLO def](/img/slo_def.png)
+$$
+\frac{rate \ over \ time(good \ events)}{rate \ over \ time(total \ events)}
+$$
+
 
 which lets consumers of opni SLOs to specify the good events and total events they consider relevant
 to their applications.
@@ -91,12 +94,8 @@ This is an [SLI](#service-level-indicator-sli) paired with some target ratio bet
 
 **A unit of measure to reflect a service's health, performance or reliability.**
 
-For opni, an SLI is constructed on a specific service by taking the :
-
-```
-rate(good events)/rate(total events)
-```
-
+For opni, an SLI is constructed on a specific service by taking the
+$\frac{rate(good \ events)}{rate(total \ events)}$
 on the given service over the period of time it is defined on, for example 30 days.
 
 An SLI of 1 (100%) indicates that the system is perfectly reliable, performant or reliable, while an SLI
