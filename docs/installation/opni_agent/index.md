@@ -25,10 +25,10 @@ Once the repo has updated you should be able to find Opni in the list of charts.
 ![Opni Charts](/img/opnicharts.png)
 
  To install the Opni Agent fill in the three required fields:
- ![Opni Charts](/img/opniagentchart.png)
+ ![Opni Agent](/img/opniagentchart.png)
 
 These can be obtained from the Opni Management UI.  Under cluster select Add Cluster and in the following screen expand the Manual Install Information section
- ![Opni Charts](/img/addcluster.png)
+ ![Add cluster](/img/addcluster.png)
 
  These fields map directly to the fields in the chart install UI.
 
