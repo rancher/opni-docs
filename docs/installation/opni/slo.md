@@ -68,31 +68,35 @@ Navigate to your Opni Admin Dashboard:
 
 ![SLOManagement](/img/sloManagement.png)
 
-1 - Select a name for your new [SLO](#service-level-objective-slo)
+___
+![SLOManagement](/img/sloProcess.png)
 
-2 - Select the cluster you wish to observe
+**1** - Select a name for your new [SLO](#service-level-objective-slo)
 
-3 - Select a service discovered by the metrics backend
+**2** - Select the cluster you wish to observe
 
-4 - Select a metric exposed by the your system that you want to monitor with an SLO
+**3** - Select a service discovered by the metrics backend
 
-5 - The Metric filter allows you to tell Opni what the good events are for your SLO
+**4** - Select a metric exposed by the your system that you want to monitor with an SLO
+
+**5** - The Metric filter allows you to tell Opni what the good events are for your SLO
 
 - **Warning** : you must select at least one filter for your positive count, otherwise your [SLI](#service-level-indicator-sli) will be trivial (same events compared to same events)
-  ![SLOManagement](/img/sloProcess.png)
 
-6 - Select a metric that represents the total count of event in your system to monitor
+**6** - Select a metric that represents the total count of event in your system to monitor
 
 - **Warning** : the total count metric should always match your good count metric, unless you are confident in what you are doing (the [SLI](#service-level-indicator-sli) is no longer guaranteed to be within 0 - 1 as requried)
 - Selecting a different total metric should be done when analyzing quantiles, for example `metric_name_bucket_total / metric_name_count_total`
 
-7 - Define any filter on the total events, if any. The default is to consider all events as part of the total events.
+**7** - Define any filter on the total events, if any. The default is to consider all events as part of the total events.
 
-8 - The target for the [SLO](#service-level-objective-slo) to achive over the period.
+**8** - The target for the [SLO](#service-level-objective-slo) to achive over the period.
 
-9 - The period upon which the target should apply
+**9** - The period upon which the target should apply
 
-10 - How closely the SLO should track changes in the [burn rate](#burn-rate-ratio). A lower budgeting interval means deviations in burn rate will be alerted on more frequently.
+**10** - How closely the SLO should track changes in the [burn rate](#burn-rate-ratio). A lower budgeting interval means deviations in burn rate will be alerted on more frequently.
+
+___
 
 ### Monitor your SLOs
 
@@ -123,9 +127,9 @@ Ability to filter by cluster, service and slo name for viewing metrics on your S
 - Burn rate, error budget
 - Alerts status
 
-## Core Concepts
+___
 
-<hr/>
+## Core Concepts
 
 ### Service Level Objective (SLO)
 
