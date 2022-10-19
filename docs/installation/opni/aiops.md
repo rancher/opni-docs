@@ -19,7 +19,30 @@ TODO Amartya
 
 </TabItem>
 <TabItem value="workload" label="User workloads self-learning (coming soon)">
-TODO Yingbei
+Opni AIOps offers log anomaly detection on workload logs with the following features:
+
+* self-train models that learn from logs of workloads you selected.
+* Doesn't require high volume of data to get started
+* No AI/ML knowledge needed
+
+Note that it requires an GPU available in your Opni cluster.
+
+#### Prerequisites
+the Opni cluster needs at least `1 GPU` attached.
+
+#### Steps to enable
+TODO - add images
+1. enable workload log anomaly detection
+2. select workloads for the AI models to learn from
+3. Give it sometime for the AI model to get ready.
+4. check out Opni's opensearch dashboard for AI insights.
+
+#### Update workloads to modeling
+TODO - add images
+
+#### How to disable this
+Simply click `Disable` to remove everything.
+
 </TabItem>
 </Tabs>
 </TabItem>
