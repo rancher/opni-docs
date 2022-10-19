@@ -210,7 +210,7 @@ The following tools are required:
 
 ## Setup
 
-1. Click the button below to get started:
+Click the button below to get started:
 
   [![](https://get.pulumi.com/new/button.svg)](https://app.pulumi.com/new?template=https://github.com/rancher/opni)
 
