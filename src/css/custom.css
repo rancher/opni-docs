@@ -28,3 +28,19 @@
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+div.image-border {
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+[data-theme='dark'] div.image-border {
+  background-color: white;
+  border: 2px solid white;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 0.5rem;
+}

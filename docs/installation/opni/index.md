@@ -198,6 +198,181 @@ This demo auth mechanism allows Opni to be its own OpenID Provider. When signing
 
 </TabItem>
 <TabItem value="pulumi" label="Installation using Pulumi">
-TODO Joe
+
+You can use [Pulumi](https://www.pulumi.com/) to install a production-ready Opni cluster on AWS.
+
+## Prerequisites
+
+The following tools are required:
+
+  * [Pulumi CLI](https://www.pulumi.com/docs/get-started/install/)
+  * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html)
+
+## Setup
+
+1. Click the button below to get started:
+
+  [![](https://get.pulumi.com/new/button.svg)](https://app.pulumi.com/new?template=https://github.com/rancher/opni)
+
+Once you reach the "New Project" screen, give your project and stack a name:
+
+  <div class="image-border">
+    <img
+      src={require('/img/installation/pulumi-new-project.png').default} 
+      alt="New Project Settings" 
+    />
+  </div>
+
+  <br />
+  <br />
+
+  Configure EKS cluster settings, including node group size and instance type:
+
+  <div class="image-border">
+    <img
+      src={require('/img/installation/pulumi-new-config-cluster.png').default} 
+      alt="Cluster Settings" 
+    />
+  </div>
+
+  <br />
+  <br />
+
+  Lastly, set an existing Route53 Zone ID where DNS records will be created, and choose an AWS region:
+
+  <div class="image-border">
+    <img
+      src={require('/img/installation/pulumi-new-config-zone-region.png').default} 
+      alt="Zone and Region Settings" 
+    />
+  </div>
+
+  <br />
+  <br />
+
+  You can find your Route53 Zone ID in the AWS console, under "Hosted Zones":
+
+  <div>
+    <img
+      src={require('/img/installation/aws-hosted-zones.png').default} 
+      alt="AWS Hosted Zones"
+    />
+  </div>
+
+  <br />
+  <br />
+
+  On the next page, follow the provided instructions to launch your stack. Before running `pulumi up`, you can view or modify any settings using the `pulumi config` commands, or by editing `infra/Pulumi.<stack-name>.yaml`.
+
+  <div class="image-border">
+    <img
+      src={require('/img/installation/pulumi-deploy.png').default} 
+      alt="Deploy Stack" 
+    />
+  </div>
+
+  <br />
+  <br />
+
+  -----------------
+
+  ### Available config options:
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>aws:region</code></td>
+        <td>AWS region to deploy to</td>
+        <td><code>us-east-2</code></td>
+      </tr>
+      <tr>
+        <td><code>aws:skipCredentialsValidation</code></td>
+        <td>Skip AWS credentials validation</td>
+        <td><code>true</code></td>
+      </tr>
+      <tr>
+        <td><code>aws:skipRequestingAccountId</code></td>
+        <td>Skip requesting AWS account ID</td>
+        <td><code>true</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:chartVersion</code></td>
+        <td>Chart version to deploy</td>
+        <td>latest version available</td>
+      </tr>
+      <tr>
+        <td><code>opni:chartsRepo</code></td>
+        <td>Opni chart repository</td>
+        <td><code>https://raw.githubusercontent.com/rancher/opni/charts-repo/</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:imageTag</code></td>
+        <td>Opni image tag</td>
+        <td><code>latest</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:minimalImageTag</code></td>
+        <td>Minimal image tag (used for agents)</td>
+        <td><code>latest-minimal</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:namePrefix</code></td>
+        <td>Prefix for Opni resources</td>
+        <td><code>opni</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:zoneID</code></td>
+        <td>Route53 Zone ID to create DNS records in</td>
+        <td>(required)</td>
+      </tr>
+      <tr>
+        <td><code>opni:tags</code></td>
+        <td>Tags to apply to all resources</td>
+        <td><code>&#123;&#125;</code></td>
+      </tr>
+      <tr>
+        <td><code>opni:cluster</code></td>
+        <td colspan="2">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Default</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>nodeInstanceType</code></td>
+              <td>Instance type for EKS nodes</td>
+              <td><code>r6a.xlarge</code></td>
+            </tr>
+            <tr>
+              <td><code>nodeGroupMinSize</code></td>
+              <td>Minimum number of nodes in the EKS node group</td>
+              <td><code>3</code></td>
+            </tr>
+            <tr>
+              <td><code>nodeGroupMaxSize</code></td>
+              <td>Maximum number of nodes in the EKS node group</td>
+              <td><code>3</code></td>
+            </tr>
+            <tr>
+              <td><code>nodeGroupDesiredSize</code></td>
+              <td>Desired number of nodes in the EKS node group</td>
+              <td><code>3</code></td>
+            </tr>
+          </tbody>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </TabItem>
 </Tabs>
+ 
