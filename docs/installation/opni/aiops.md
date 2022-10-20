@@ -11,14 +11,14 @@ Read about each one to learn more and enable in your Opni cluster.
 <Tabs>
 <TabItem value="log-anomaly-detection" label="Log Anomaly Detection" default>
 
-### Prerequisities
-* Opni logging enabled
+## Prerequisities
+* The Opni cluster must have Opni logging enabled.
 
-### Enabling AI Services
+## Enabling AI Services
 
 Setting up log anomaly detection for Opni can be done during the installation of Opni either through the [Rancher UI](../opni/index.md#rancher) or installing through [Helm](../opni/index.md#helm). The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
 
-### Rancher UI
+## Rancher UI
 
  After the gateway has been setup, go to the AI Services tab and check the box to enable AI services. Once that has been done, then click the Install button.
 
@@ -32,16 +32,39 @@ ai:
   enabled: true
 ```
 
-Log Anomaly Detection is dependent on [Opni logging](../opni/backends.md#opni-logging) so even when you enable AI services on Opni, it will only be instantiated once you have setup Opni logging on your cluster. 
+Log Anomaly Detection is dependent on [Opni logging](../opni/backends.md#opni-logging) so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
 
 Once Opni logging has been enabled in the central cluster, log anomaly insights can now be obtained by going to Opensearch Dashboards and viewing the Opni plugin.
+
+![Opensearch Dashboards Opni Plugin](/img/opensearch_opni_plugin.png)
+
+## Consuming AI Insights from Opni
+
+### Overall Insights
+![Opensearch Dashboards Overall Breakdown](/img/opensearch_dashboards_overall.png)
+The Opni UI within Opensearch breaks down the status of all clusters into an **easy-to-consume** manner. 
+From the top two panels, the left chart show the overall number of normal and anomalous logs in the system and the right chart shows the breakdown of anomalous log messages from Kubernetes control plane components.
+
+### Kubernetes Control Plane and Etcd Log Insights
+
+![Opensearch Dashboards Control Plane Component](/img/opni_controlplane_breakdown.png)
+For control plane logs, the Opni UI allows the user to **zone in on specific Kubernetes components** and upon clicking on the number of anomalous or normal log messages, the user will be redirected to the actual log messages that were **inferred on by the pre-trained Deep Learning model for control plane logs**.
+
+### Rancher Log Insights
+
+![Opensearch Dashboards Rancher Logs](/img/opni_rancher_breakdown.png)
+Similar to the control plane logs, Rancher logs are also displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained Deep Learning model for Rancher logs**.
+
+**For more information on the pretrained models leveraged by Opni, click on the tab below.**
+
 <Tabs>
 <TabItem value="pre-trained" label="Pretrained Models">
-Opni log anomaly detection comes with three specialized pre-trained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to not require a GPU for usage, provide state-of-the-art accuracy and each have a size just under 80 MB.
+
+Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.**. All three models will help **accelerate mean time to resolution.**
 
 * **Kubernetes control plane and etcd logs**
     * Compatible with control plane and etcd logs from RKE1, RKE2 and K3s distributions.
-    * Identifies anomalies within specific control plane components to accelerate mean time to resolution.
+    * Identifies granular anomalies within specific Kubernetes components.
 
 * **Rancher logs** 
     * Compatible with any distribution of Kubernetes that is running any distribution of [Rancher](https://docs.ranchermanager.rancher.io/versions).
