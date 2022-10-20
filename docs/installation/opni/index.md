@@ -237,13 +237,13 @@ The following tools are required:
 
 ## Setup
 
-1. Click the button below to get started:
+Click the button below to get started:
 
   [![](https://get.pulumi.com/new/button.svg)](https://app.pulumi.com/new?template=https://github.com/rancher/opni)
 
 Once you reach the "New Project" screen, give your project and stack a name:
 
-  <div class="image-border">
+  <div className="image-border">
     <img
       src={require('/img/installation/pulumi-new-project.png').default} 
       alt="New Project Settings" 
@@ -255,7 +255,7 @@ Once you reach the "New Project" screen, give your project and stack a name:
 
   Configure EKS cluster settings, including node group size and instance type:
 
-  <div class="image-border">
+  <div className="image-border">
     <img
       src={require('/img/installation/pulumi-new-config-cluster.png').default} 
       alt="Cluster Settings" 
@@ -267,7 +267,7 @@ Once you reach the "New Project" screen, give your project and stack a name:
 
   Lastly, set an existing Route53 Zone ID where DNS records will be created, and choose an AWS region:
 
-  <div class="image-border">
+  <div className="image-border">
     <img
       src={require('/img/installation/pulumi-new-config-zone-region.png').default} 
       alt="Zone and Region Settings" 
@@ -291,7 +291,7 @@ Once you reach the "New Project" screen, give your project and stack a name:
 
   On the next page, follow the provided instructions to launch your stack. Before running `pulumi up`, you can view or modify any settings using the `pulumi config` commands, or by editing `infra/Pulumi.<stack-name>.yaml`.
 
-  <div class="image-border">
+  <div className="image-border">
     <img
       src={require('/img/installation/pulumi-deploy.png').default} 
       alt="Deploy Stack" 
@@ -366,7 +366,7 @@ Once you reach the "New Project" screen, give your project and stack a name:
       </tr>
       <tr>
         <td><code>opni:cluster</code></td>
-        <td colspan="2">
+        <td colSpan="2">
           <thead>
             <tr>
               <th>Name</th>
