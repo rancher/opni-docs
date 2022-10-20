@@ -15,16 +15,6 @@ SLOs can be broken down into two components :
 - [SLI](#service-level-indicator-sli) : the actual metrics that represent the application performance, reliability or health over some **period** of time
 - Target : an objective we want the metrics the SLI defines to abide by
 
-## Opni Prerequisites
-
-Opni's SLO functionality requires :
-
-- The [Opni Monitoring Backend](#TODO-LINK)
-- One or more agents with the [metrics capability](#TODO-LINK) enabled
-<!---
-TODO: - the [Opni Alerting Backend] to forward the alerts produced by SLOs
---->
-
 ## Observability of SLOs
 
 There are many ways to define and observe SLOs, in Opni we choose to represent them as :
@@ -60,6 +50,16 @@ of your [SLO](#service-level-objective-slo) :
 
 <!---
 TODO: actual "tutorial"
+--->
+
+### Prerequisites
+
+Opni's SLO functionality requires :
+
+- The [Opni Monitoring Backend](#TODO-LINK)
+- One or more agents with the [metrics capability](#TODO-LINK) enabled
+<!---
+TODO: - the [Opni Alerting Backend] to forward the alerts produced by SLOs
 --->
 
 ### Create Opni SLO
