@@ -40,7 +40,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'v0.5',
+              label: 'v0.6',
             }
           },
           remarkPlugins: [math],
@@ -107,9 +107,9 @@ const config = {
           className: 'navbar__github',
         },
         {
-          type: 'docsVersionDropdown',
+          type: 'docsVersion',
           position: 'left',
-          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
+//          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
           dropdownActiveClassDisabled: true,
         },
         {
