@@ -60,7 +60,7 @@ Similar to the control plane logs, Rancher logs are also displayed in an easy-to
 <Tabs>
 <TabItem value="pre-trained" label="Pretrained Models">
 
-Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.**. All three models will help **accelerate mean time to resolution.**
+Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.** Use these models to **accelerate mean time to resolution**.
 
 * **Kubernetes control plane and etcd logs**
     * Compatible with control plane and etcd logs from RKE1, RKE2 and K3s distributions.
