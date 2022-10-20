@@ -10,7 +10,7 @@ const katex = require('rehype-katex');
 const config = {
   title: 'Rancher Opni',
   tagline: '',
-  url: 'https://docs.opni.io',
+  url: 'https://opni.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -40,7 +40,7 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'v0.5',
+              label: 'v0.6.0',
             }
           },
           remarkPlugins: [math],
