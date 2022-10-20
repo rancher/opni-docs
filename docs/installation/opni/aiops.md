@@ -19,29 +19,29 @@ TODO Amartya
 
 </TabItem>
 <TabItem value="workload" label="User workloads self-learning (coming soon)">
-Opni AIOps offers log anomaly detection on workload logs with the following features:
+Opni AIOps offers log anomaly detection on user's workload logs with the following features:
 
-* self-train models that learn from logs of workloads you selected.
-* Doesn't require high volume of data to get started
-* No AI/ML knowledge needed
+* <i> self-train models that learn from logs of the workloads user selected. </i>
+* <i> Doesn't require high volume of data to get started </i>
+* <i> No AI/ML knowledge needed </i>
 
-Note that it requires an GPU available in your Opni cluster.
+Note that it requires an GPU available in the Opni cluster.
 
-#### Prerequisites
-the Opni cluster needs at least `1 GPU` attached.
+## Prerequisites
+the Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU** attached.
 
-#### Steps to enable
-TODO - add images
-1. enable workload log anomaly detection
-2. select workloads for the AI models to learn from
-3. Give it sometime for the AI model to get ready.
-4. check out Opni's opensearch dashboard for AI insights.
+## Getting Started
+![SetupWorkloads](/img/aiops/setup_workload_loganomaly.png)
+1. Navigate to the Opni Admin dashboard, select the **Workloads** tab
+2. select a cluster
+3. select the workloads you want 
+4. Click **Update Watchlist** to submit the configuration.
 
-#### Update workloads to modeling
-TODO - add images
+Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consume-ai-insights)
 
-#### How to disable this
-Simply click `Disable` to remove everything.
+### Remove workloads
+![RemoveWorkloads](/img/aiops/remove_workload_loganomaly.png)
+To remove the workloads you don't want anymore, simply uncheck the boxes and **Update Watchlist**.
 
 </TabItem>
 </Tabs>
