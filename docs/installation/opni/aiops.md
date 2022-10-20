@@ -16,7 +16,7 @@ Read about each one to learn more and enable in your Opni cluster.
 
 ## Enabling AI Services
 
-Setting up log anomaly detection for Opni can be done during the installation of Opni either through the [Rancher UI](../opni/index.md#rancher) or installing through [Helm](../opni/index.md#helm). The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
+Setting up log anomaly detection for Opni can be done during the [installation of Opni](../opni/index.md) either through the Rancher UI or installing through Helm. The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
 
 ## Rancher UI
 
@@ -32,7 +32,7 @@ ai:
   enabled: true
 ```
 
-Log Anomaly Detection is dependent on [Opni logging](../opni/backends.md#opni-logging) so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
+Log Anomaly Detection is dependent on Opni logging so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
 
 ## Consuming AI Insights from Opni
 
