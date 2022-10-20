@@ -12,7 +12,7 @@ Read about each one to learn more and enable in your Opni cluster.
 <TabItem value="log-anomaly-detection" label="Log Anomaly Detection" default>
 
 ## Prerequisities
-* The Opni cluster must have Opni logging enabled.
+* The cluster must have Opni logging enabled.
 
 ## Enabling AI Services
 
@@ -34,11 +34,11 @@ ai:
 
 Log Anomaly Detection is dependent on [Opni logging](../opni/backends.md#opni-logging) so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
 
+## Consuming AI Insights from Opni
+
 Once Opni logging has been enabled in the central cluster, log anomaly insights can now be obtained by going to Opensearch Dashboards and viewing the Opni plugin.
 
 ![Opensearch Dashboards Opni Plugin](/img/opensearch_opni_plugin.png)
-
-## Consuming AI Insights from Opni
 
 ### Overall Insights
 ![Opensearch Dashboards Overall Breakdown](/img/opensearch_dashboards_overall.png)
