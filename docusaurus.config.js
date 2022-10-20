@@ -76,7 +76,7 @@ const config = {
 
       // Hides the switch in the navbar
       // Useful if you want to support a single color mode
-      disableSwitch: true,
+      disableSwitch: false,
     },
     prism: {
       additionalLanguages: ['rust'],
@@ -97,7 +97,7 @@ const config = {
         {
           type: 'docsVersionDropdown',
           position: 'left',
-          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
+          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
           dropdownActiveClassDisabled: false,
         },
         {
@@ -111,13 +111,18 @@ const config = {
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} SUSE Rancher. All Rights Reserved.`,
     },
+    zoom: {
+      selector: '.markdown :not(em) > img',
+      // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+      background: {
+        light: 'rgba(75, 75, 75, 0.7)',
+        dark: 'rgba(0, 0, 0, 0.7)',
+      }
+    }
   },
   plugins: [
-    [require.resolve('docusaurus-lunr-search'),
-        {
-            indexBaseUrl: true
-        }
-    ]
+    [require.resolve('docusaurus-lunr-search'), { indexBaseUrl: true }],
+    require.resolve("docusaurus-plugin-image-zoom")
   ],
 };
 

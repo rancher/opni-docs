@@ -30,7 +30,7 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
 2. Select "Monitoring" from the left sidebar under "Backends", then click "Enable".
 
-  <div class="image-border">
+  <div className="image-border">
     <img
       src={require('/img/installation/monitoring-not-installed.png').default} 
       alt="Monitoring not installed"
@@ -39,7 +39,7 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
 3. Adjust configuration options as needed:
   
-    <div class="image-border">
+    <div className="image-border">
       <img
         src={require('/img/installation/monitoring-install-options.png').default} 
         alt="Monitoring configuration"
