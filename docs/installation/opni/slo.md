@@ -68,7 +68,8 @@ Navigate to your Opni Admin Dashboard:
 
 ![SLOManagement](/img/sloManagement.png)
 
-___
+---
+
 ![SLOManagement](/img/sloProcess.png)
 
 **1** - Select a name for your new [SLO](#service-level-objective-slo)
@@ -96,7 +97,18 @@ ___
 
 **10** - How closely the SLO should track changes in the [burn rate](#burn-rate-ratio). A lower budgeting interval means deviations in burn rate will be alerted on more frequently.
 
-___
+## Example Usecase
+
+When the Kubernetes apiserver is not available, this can be an indicator of underlying cluster performance issues, for example CPU, memory, FS or disk usage saturation.
+
+The example pictured below details an SLO that measures the HTTP-availability of the Kubernetes api server:
+
+- The filter on response codes of 200/201 from the apiserver indicate GET/LIST/CREATE/DELETE requests are working, while others may indicate that the api server is busy or encountering other issues that may affect your applications
+- The total filter `service = kubernetes`, ensures that we are restricting our observation to the default kubernetes apiserver, and not any apiserver addons or plugins.
+
+![Example SLO](/img/Example_SLO.png)
+
+---
 
 ### Monitor your SLOs
 
@@ -127,7 +139,7 @@ Ability to filter by cluster, service and slo name for viewing metrics on your S
 - Burn rate, error budget
 - Alerts status
 
-___
+---
 
 ## Core Concepts
 
