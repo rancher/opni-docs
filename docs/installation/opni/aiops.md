@@ -102,9 +102,9 @@ To remove the workloads you don't want anymore, simply uncheck the boxes and **U
 </Tabs>
 </TabItem>
 <TabItem value="metric-anomaly-detection" label="Metric Anomaly Detection (coming soon)">
-TODO Yingbei
+
 </TabItem>
 <TabItem value="root-cause-detection" label="Root Cause Detection (coming soon)">
-TODO Yingbei
+
 </TabItem>
 </Tabs>
