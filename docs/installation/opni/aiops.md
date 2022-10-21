@@ -74,7 +74,30 @@ Opni log anomaly detection comes with three specialized pretrained Deep Learning
 
 </TabItem>
 <TabItem value="workload" label="User workloads self-learning (coming soon)">
-TODO Yingbei
+Opni AIOps offers log anomaly detection on user's workload logs with the following features:
+
+* <i> self-train models that learn from logs of the workloads user selected. </i>
+* <i> Doesn't require high volume of data to get started </i>
+* <i> No AI/ML knowledge needed </i>
+
+Note that it requires an GPU available in the Opni cluster.
+
+## Prerequisites
+the Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU** attached.
+
+## Getting Started
+![SetupWorkloads](/img/aiops/setup_workload_loganomaly.png)
+1. Navigate to the Opni Admin dashboard, select the **Workloads** tab
+2. select a cluster
+3. select the workloads you want 
+4. Click **Update Watchlist** to submit the configuration.
+
+Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni)
+
+### Remove workloads
+![RemoveWorkloads](/img/aiops/remove_workload_loganomaly.png)
+To remove the workloads you don't want anymore, simply uncheck the boxes and **Update Watchlist**.
+
 </TabItem>
 </Tabs>
 </TabItem>
