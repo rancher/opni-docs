@@ -355,6 +355,280 @@ When using the CLI to configure the Swift backend (using `--storage.backend=swif
 
 </details>
 
+<br />
+<br />
+
+
+## Access Control
+
+Opni Monitoring uses Role Based Access Control (RBAC) to control which clusters a given user is allowed to see. If you are familiar with RBAC in Kubernetes, it works the same way. 
+
+In Kubernetes, RBAC rules are used to determine which API resources a given User or Service Account is allowed to access. Similarly, in Opni Monitoring, RBAC rules are used to determine which clusters a user has access to. When a user makes an authenticated query, the system will evaluate the current RBAC rules for that user and determine which clusters to consider when running the query.
+
+### Labels
+
+Clusters in Opni Monitoring have an opaque ID and can have a number of key-value labels. Labels are the primary means of identifying clusters for access control purposes. Labels in Opni Monitoring are functionally similar to labels in Kubernetes, and follow these rules:
+- Labels must have unique keys, and there is a one-to-one mapping between keys and values.
+- Labels cannot have empty keys or values
+- Label keys must match the following regular expression:
+
+    ```
+    ^[a-zA-Z0-9][a-zA-Z0-9-_./]{0,63}$
+    ```
+
+- Label values must match the following regular expression:
+
+    ```
+    ^[a-zA-Z0-9][a-zA-Z0-9-_.]{0,63}$
+    ```
+
+### Roles
+
+A role is a named object representing a set of permissions. It contains rules that match clusters by ID or by the cluster's labels. A role can use any/all of the following matchers:
+
+##### 1. Label Matchers
+
+A role can match clusters by specifying an explicit `key=value` label pair that will match a single label with the exact key and value specified. No partial matching or globbing is performed.
+
+##### 2. Label Selector Expressions
+
+A role can also match clusters by using a Kubernetes-style label selector. These selectors are more versatile, and can match labels using a variety of rules, such as:
+- Matching if a given key exists
+- Matching if a given key does not exist
+- Matching if the value for a given key is in a list of allowed values
+- Matching if the value for a given key is not in a list of allowed values
+
+##### 3. Explicit Cluster IDs
+
+Clusters can also be explicitly added to a role by ID. It is not recommended to use explicit cluster IDs as a primary means of access control, but they can be useful in situations where you want to add an exception to an existing role or a temporary override. Label-based selectors are much more flexible, and should be preferred in general.
+
+### Role Bindings
+
+A role binding is a named object that attaches one or more users ("subjects") to a role. When evaluating RBAC rules for a given user, the system will look up all role bindings attached to that user, then use the union of the associated roles to determine which clusters the user is allowed to see.
+
+<br />
+
+## Configuring Roles and Role Bindings
+
+### Using the Opni Dashboard
+
+Roles and Role Bindings can be configured in the **RBAC** section under Monitoring in the left sidebar.
+
+#### Creating Roles
+
+On the Roles page, click the **Create Role** button. Give the role a unique name, then add clusters by ID, or by label selector. Existing clusters will be listed in the dropdown menu when adding clusters by ID to the role.
+  
+<div className="image-border">
+  <img
+    src={require('/img/installation/rbac-new-role-clusters.png').default} 
+    alt="Clusters dropdown"
+  />
+</div>
+
+<br />
+<br />
+
+#### Example Roles
+
+In this example, we will create roles for two different environments, one for "prod" and one for "dev/test", which we will separate our clusters into using labels.
+
+
+1. Creating the "production" role
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-role-production.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+2. Creating the "dev" role
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-role-dev.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+3. Roles list with the new roles
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-roles.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+#### Creating Role Bindings
+
+To create a role binding, navigate to the **Role Bindings** page in the sidebar. 
+
+On the Role Bindings page, Click the **Create Role Binding** button. Give the role binding a unique name, select an existing role to attach to the binding. then add subjects (users) to whom the role will be applied. The value used to identify a user depends on the `identifyingClaim` configured in the Gateway's OAuth settings. For example, if your `identifyingClaim` is `email`, subjects are identified by email address. Check your OAuth provider's documentation to determine which `identifyingClaim` you should use.
+
+#### Example Role Bindings
+
+Following the example above, we will create role bindings for two users, one for each role.
+
+1. Creating a role binding for a "production" user
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-alice.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+2. Creating a role binding for a "dev" user
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-bob.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+3. Role bindings list with the new role bindings
+
+    <div className="image-border">
+    <img
+        src={require('/img/installation/rbac-example-rolebindings.png').default} 
+        alt="Clusters dropdown"
+    />
+    </div>
+
+#### Labeling Clusters for Access Control
+
+To label a cluster, navigate to the **Clusters** page in the sidebar. Right-click on the cluster you want to label, then select **Edit**. Add labels to the cluster, then click **Save**.
+
+<div className="image-border">
+  <img
+    src={require('/img/installation/rbac-example-label.png').default} 
+    alt="Clusters dropdown"
+  />
+</div>
+
+<br />
+<br />
+
+#### Example labels
+
+In this example, we will label our clusters with the environment they are in, "prod", "dev", or "test".
+
+<div className="image-border">
+  <img
+    src={require('/img/installation/rbac-example-labeled-clusters.png').default} 
+    alt="Clusters dropdown"
+  />
+</div>
+
+<br />
+<br />
+
+When a user logs in to Grafana via OAuth, they will only see the clusters they have access to. In this example, Alice will only see the "prod" clusters (4, 5, 6, 7, 8), and Bob will only see the "dev" (1, 2, 3) and "test" (9, 10) clusters.
+
+:::tip Access Matrix
+
+The `opni access-matrix` CLI command will print the access matrix of all users and clusters.
+
+
+```
+$ opni access-matrix
+
+               TENANT ID               alice@example.com  bob@example.com
+ 0194fdc2-fa2f-4cc0-81d3-ff12045b73c8          ❌                ✅
+ 32f3a8ae-b79e-4856-b659-c18f0dcecc77          ❌                ✅
+ 6e4ff95f-f662-45ee-a82a-bdf44a2d0b75          ❌                ✅
+ 8bcb9ef2-d4a6-4314-b68d-6d299761ea9e          ✅                ❌
+ a178892e-e285-4ce1-9114-55780875d64e          ✅                ❌
+ c75e7a81-bfde-475f-a7cf-e242cf3cc354          ✅                ❌
+ e2d3d0d0-de6b-48f9-b44c-e85ff044c6b1          ✅                ❌
+ f3ede2d6-becc-4ea3-ae5e-88526a9f4a57          ✅                ❌
+ f83b8e88-3bbf-457a-ab99-c5b252c7429c          ❌                ✅
+ fb180daf-48a7-4ee0-b10d-394651850fd4          ❌                ✅
+```
+:::
+
+<br />
+
+### Using the CLI
+
+Roles and Role Bindings can be managed using the CLI.
+
+Usage of the `opni roles` command:
+
+```
+$ opni roles --help
+Manage roles
+
+Aliases:
+roles, role
+
+Available Commands:
+  create        Create a role
+  delete        Delete roles
+  list          List roles
+  show          Show detailed information about a role
+```
+
+Usage of the `opni rolebindings` command:
+
+```
+$ opni rolebindings --help
+Manage role bindings
+
+Aliases:
+rolebindings, rb, rolebinding
+
+Available Commands:
+  create        Create a role binding
+  delete        Delete a role binding
+  list          List role bindings
+  show          Show detailed information about a role binding
+```
+
+#### Example Usage
+
+Listing roles and role bindings from the above example:
+
+```
+$ opni roles list
+ ID          SELECTOR                  CLUSTER IDS
+ dev         environment ∈ {dev,test}  (none)
+ production  environment ∈ {prod}      (none)
+
+$ opni rolebindings list
+ ID     ROLE ID     SUBJECTS
+ alice  production  alice@example.com
+ bob    dev         bob@example.com
+```
+
+Deleting and Creating a role:
+
+```
+$ opni roles delete production
+production
+
+$ opni roles list
+ ID   SELECTOR                  CLUSTER IDS
+ dev  environment ∈ {dev,test}  (none)
+
+$ opni roles create production --match-labels 'environment=prod'
+ ID          SELECTOR              CLUSTER IDS
+ production  environment ∈ {prod}  (none)
+
+$ opni roles list
+ ID          SELECTOR                  CLUSTER IDS
+ dev         environment ∈ {dev,test}  (none)
+ production  environment ∈ {prod}      (none)
+```
+
+:::note
+
+The CLI does not yet support creating roles with label expression matching, only simple label matching.
+
+:::
+
 </TabItem>
 <TabItem value="opni-logging" label="Opni Logging">
 To enable the Opni Logging backend, select "Logging" under "Backends" in the left hand navigation menu of the Opni Admin UI, and hit the Enable button.  You will be presented with a number of details to fill out.
