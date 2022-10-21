@@ -357,12 +357,12 @@ When using the CLI to configure the Swift backend (using `--storage.backend=swif
 
 </TabItem>
 <TabItem value="opni-logging" label="Opni Logging">
-To enable the Opni Logging backend, select `Logging` under `Backends` in the left hand navigation menu of the Opni Admin UI, and hit the Enable button.  You will be presented with a number of details to fill out.
+To enable the Opni Logging backend, select "Logging" under "Backends" in the left hand navigation menu of the Opni Admin UI, and hit the Enable button.  You will be presented with a number of details to fill out.
 <br/>
 <br/>
 
 #### External URL
-This is the URL that the Opensearch API will be exposed on.  You will need to manually expose this URL using either an Ingress or Load Balancer service.
+This is the URL that the Opensearch API will be exposed on, e.g https://opensearch.example.com.  You will need to manually expose this URL using either an Ingress or Load Balancer service.
 
 #### Data Retention
 This is how long logs will be retained for.  The default is 7 days (7d).  This can be extended if required, for example 6 months (6m) or 1 year (1y).
