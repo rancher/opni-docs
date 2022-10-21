@@ -92,7 +92,7 @@ the Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU**
 3. select the workloads you want 
 4. Click **Update Watchlist** to submit the configuration.
 
-Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consume-ai-insights)
+Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni)
 
 ### Remove workloads
 ![RemoveWorkloads](/img/aiops/remove_workload_loganomaly.png)
