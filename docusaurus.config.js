@@ -3,6 +3,8 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const math = require('remark-math');
+const katex = require('rehype-katex');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -16,7 +18,15 @@ const config = {
   organizationName: 'rancher',
   projectName: 'opni-docs',
 
-
+  stylesheets: [
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.13.24/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-odtC+0UGzzFL/6PNoE8rX/SPcQDXBJ+uRepguP4QkPCm2LBxH3FA3y+fKSiJ+AmM',
+      crossorigin: 'anonymous',
+    },
+  ],
 
   presets: [
     [
@@ -30,9 +40,11 @@ const config = {
           lastVersion: 'current',
           versions: {
             current: {
-              label: 'v0.5',
+              label: 'v0.6',
             }
-          }
+          },
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         blog: false,
         theme: {
@@ -76,7 +88,7 @@ const config = {
 
       // Hides the switch in the navbar
       // Useful if you want to support a single color mode
-      disableSwitch: true,
+      disableSwitch: false,
     },
     prism: {
       additionalLanguages: ['rust'],
@@ -95,10 +107,10 @@ const config = {
           className: 'navbar__github',
         },
         {
-          type: 'docsVersionDropdown',
+          type: 'docsVersion',
           position: 'left',
-          dropdownItemsAfter: [{to: '/versions', label: 'All versions'}],
-          dropdownActiveClassDisabled: false,
+//          dropdownItemsAfter: [{ to: '/versions', label: 'All versions' }],
+          dropdownActiveClassDisabled: true,
         },
         {
           type: 'search',
@@ -111,13 +123,18 @@ const config = {
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} SUSE Rancher. All Rights Reserved.`,
     },
+    zoom: {
+      selector: '.markdown :not(em) > img',
+      // options you can specify via https://github.com/francoischalifour/medium-zoom#usage
+      background: {
+        light: 'rgba(75, 75, 75, 0.7)',
+        dark: 'rgba(0, 0, 0, 0.7)',
+      }
+    }
   },
   plugins: [
-    [require.resolve('docusaurus-lunr-search'),
-        {
-            indexBaseUrl: true
-        }
-    ]
+    [require.resolve('docusaurus-lunr-search'), { indexBaseUrl: true }],
+    require.resolve("docusaurus-plugin-image-zoom")
   ],
 };
 
