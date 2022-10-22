@@ -30,7 +30,7 @@ At the moment you can create the following:
 </TabItem>
 <TabItem value="agents" label="Observability Agents">
 
-An observability agent is software that collects observability data (logs, metrics, traces, events) from its host and sends it to an observability backend.
+An observability agent is software that collects observability data (logs, metrics, traces, and events) from its host and sends it to an observability backend.
 Installation of Opni agent in Kubernetes clusters allows you to collect logs, Kubernetes events, OpenTelemetry traces and Prometheus metrics with the click of a button. 
 
 </TabItem>
