@@ -6,7 +6,7 @@ slug: /
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Opni is open source software that combines everything an organization needs for multi-cluster, multi-tenant observability. Built on Kubernetes, Opni makes it easy for operators to create and manage backends, agents, and data associated with logging, monitoring, and tracing. Opni comes with AIOps built in so that users can immediately identify anomalous activity in their data.
+Opni is open source software that combines everything an organization needs for multi-cluster and multi-tenant observability. Built on Kubernetes, Opni makes it easy for operators to create and manage backends, agents, and data associated with logging, monitoring, and tracing. Opni comes with AIOps built in so that users can immediately identify anomalous activity in their data.
 
 ![Opni Architecture](/img/high_level_arch.png)
 
