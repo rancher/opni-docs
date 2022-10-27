@@ -61,6 +61,11 @@ const sidebars = {
               type: 'doc',
               id: 'installation/opni_agent/capabilities',
               label: 'Enable Capabilities'
+            },
+            {
+              type: 'doc',
+              id: 'installation/opni_agent/enable_tracing',
+              label: 'Manually Ship Tracing to Opni(Beta)'
             }
           ]
         },
