@@ -7,7 +7,7 @@ slug: /installation/opni/slo
 
 The term [SLO](#service-level-objective-slo), or Service Level Objective, is derived from the need in production applications for SLAs, or Service Level Agreements.
 
-SLAs specify a target for application performance, reliability or health, and SLOs are the tool used to **observe**
+SLAs specify a target for application performance, reliability or health, and SLOs are the tool used to **observe** and **measure**
 said application's performance, reliability or health.
 
 SLOs can be broken down into two components :
@@ -29,20 +29,24 @@ to their applications.
 For example, should an operator want to observe the reliability of an application's <b>http requests</b>,
 an operator may choose to classify the events as :
 
-![Events Example](/img/events_example.png)
+<p align="center">
+<img src="/img/events_example.png"/>
+</p>
 
-Note that:
+:::note
 
-- leaving the total of events empty includes all events observed
-- all good events are automatically included in the list of total events
-- if total events is not-empty, codes that are neither classified as total or good will be ignored from the calculation
+- Leaving the total of events empty includes all events observed
+- All good events are automatically included in the list of total events
+- If total events is not-empty, codes that are neither classified as total or good will be ignored from the calculation
+
+:::
 
 <hr/>
 
 Opni SLOs create several metrics to help understand the observed performance, reliability and health
 of your [SLO](#service-level-objective-slo) :
 
-- [Error Budget](#error-budget) : metric representing the remaining number of bad events until the SLO's target is breached
+- [Error Budget](#error-budget) : Metric representing the remaining number of bad events until the SLO's target is breached
 - [Burn Rate](#burn-rate-ratio) : The current rate at which bad events are occuring
 - [Expected Budget Consumption](#expected-budget-consumption) : Metric that predicts the budget consumption over the SLO's period based on a variety of factors
 
@@ -52,12 +56,15 @@ of your [SLO](#service-level-objective-slo) :
 TODO: actual "tutorial"
 --->
 
-### Prerequisites
+:::info
 
 Opni's SLO functionality requires :
 
 - The [Opni Monitoring Backend](#TODO-LINK)
 - One or more agents with the [metrics capability](#TODO-LINK) enabled
+
+:::
+
 <!---
 TODO: - the [Opni Alerting Backend] to forward the alerts produced by SLOs
 --->
@@ -72,49 +79,78 @@ Navigate to your Opni Admin Dashboard:
 
 ![SLOManagement](/img/sloProcess.png)
 
-**1** - Select a name for your new [SLO](#service-level-objective-slo)
+1. Select a name for your new [SLO](#service-level-objective-slo)
 
-**2** - Select the cluster you wish to observe
+2. Select the cluster you wish to observe
 
-**3** - Select a service discovered by the metrics backend
+3. Select a service discovered by the metrics backend
 
-**4** - Select a metric exposed by the your system that you want to monitor with an SLO
+4. Select a metric exposed by the your system that you want to monitor with an SLO
 
-**5** - The Metric filter allows you to tell Opni what the good events are for your SLO
+5. The Metric filter allows you to tell Opni what the good events are for your SLO
 
-- **Warning** : you must select at least one filter for your positive count, otherwise your [SLI](#service-level-indicator-sli) will be trivial (same events compared to same events)
+:::caution
 
-**6** - Select a metric that represents the total count of event in your system to monitor
+You must select at least one filter for your positive count, otherwise your [SLI](#service-level-indicator-sli) will be trivial (same events compared to same events)
 
-- **Warning** : the total count metric should always match your good count metric, unless you are confident in what you are doing (the [SLI](#service-level-indicator-sli) is no longer guaranteed to be within 0 - 1 as requried)
-- Selecting a different total metric should be done when analyzing quantiles, for example `metric_name_bucket_total / metric_name_count_total`
+:::
 
-**7** - Define any filter on the total events, if any. The default is to consider all events as part of the total events.
+6. Select a metric that represents the total count of events in your system to monitor
 
-**8** - The target for the [SLO](#service-level-objective-slo) to achive over the period.
+:::caution
 
-**9** - The period upon which the target should apply
+The total count metric should always match your good count metric, unless you are confident in what you are doing (the [SLI](#service-level-indicator-sli) is no longer guaranteed to be within 0 - 1, depending on the total metric you choose)
 
-**10** - How closely the SLO should track changes in the [burn rate](#burn-rate-ratio). A lower budgeting interval means deviations in burn rate will be alerted on more frequently.
+:::
 
-## Example Usecase
+:::note
+
+Selecting a different total metric should be done when analyzing quantiles, for example `metric_name_bucket_total / metric_name_count_total`
+
+:::
+
+7. Define any filter on the total events, if any. The default is to consider all events as part of the total events.
+
+8. The target for the [SLO](#service-level-objective-slo) to achive over the period.
+
+9. The period upon which the target should apply
+
+10. How closely the SLO should track changes in the [burn rate](#burn-rate-ratio). A lower budgeting interval means deviations in burn rate will be alerted on more frequently.
+
+### Example Usecase
 
 When the Kubernetes apiserver is not available, this can be an indicator of underlying cluster performance issues, for example CPU, memory, FS or disk usage saturation.
 
 The example pictured below details an SLO that measures the HTTP-availability of the Kubernetes api server:
 
-- The filter on response codes of 200/201 from the apiserver indicate GET/LIST/CREATE/DELETE requests are working, while others may indicate that the api server is busy or encountering other issues that may affect your applications
+:::info
+
+- The filter on response codes of 200/201 from the apiserver indicates GET/LIST/CREATE/DELETE requests are working, while others may indicate that the api server is busy or encountering other issues that may affect your cluster
 - The total filter `service = kubernetes`, ensures that we are restricting our observation to the default kubernetes apiserver, and not any apiserver addons or plugins.
+
+:::
 
 ![Example SLO](/img/Example_SLO.png)
 
 ---
 
-### Monitor your SLOs
+## Monitor your SLOs
 
-<b> Opni alerting provides some comprehensive dashboards to monitor the status of your SLOs via opni grafana. </b>
+The admin dashboard lets you track SLO status at a glance when viewing SLOs.
+The SLO Status badge displays one of the following states:
 
-#### Multi-Tenancy
+- `Creating` : You have just submitted your SLO for creation, this will take ~1-2mins to clear while aggregating data
+- `NoData` : Not enough data (usually no data) on the current metric to make any insights.
+- `OK` : Your SLO has data and is on target
+- `Warning` : Your [burn rate](#burn-rate-ratio) is elevated, therefore you should take a look at the comprehensive dashboards
+- `Breaching` : You have exceeded your target for this SLO's period
+- `Error` : Non-recoverable internal server error. Restart the metrics backend or delete this SLO.
+
+<hr/>
+
+<b> Opni alerting provides some comprehensive dashboards to monitor the status of your SLOs via </b> [opni grafana](#TODO-link)
+
+### Multi-Tenancy
 
 Opni Alerting SLOs support multi-tenancy via opni-monitoring grafana access control, see [here](https://rancher.github.io/opni-monitoring/guides/access_control/).
 
@@ -123,7 +159,7 @@ Operators with specific role permissions will only have access to the SLOs on th
 After setting up your access control, you can head to your opni cluster's grafana deployment and open the `Slo - Overview` & `Slo - Detailed` for
 thorough dashboard breakdowns on your SLO's performance.
 
-#### Multi-Cluster overview
+### Multi-Cluster overview
 
 The SLO Overview lets you quickly inspect the SLOs performance.
 
@@ -131,7 +167,7 @@ The SLO Overview lets you quickly inspect the SLOs performance.
 - View overall burn rate timeline and budget remaining
 - View overall expected budget consumption
 
-#### In depth overview
+### In depth overview
 
 Ability to filter by cluster, service and slo name for viewing metrics on your SLOs
 
