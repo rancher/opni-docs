@@ -60,8 +60,8 @@ TODO: actual "tutorial"
 
 Opni's SLO functionality requires :
 
-- The [Opni Monitoring Backend](#TODO-LINK)
-- One or more agents with the [metrics capability](#TODO-LINK) enabled
+- The [Opni Monitoring Backend](/installation/opni/backends)
+- One or more agents with the [metrics capability](/installation/opni_agent/capabilities) enabled
 
 :::
 
@@ -148,7 +148,7 @@ The SLO Status badge displays one of the following states:
 
 <hr/>
 
-<b> Opni alerting provides some comprehensive dashboards to monitor the status of your SLOs via </b> [opni grafana](#TODO-link)
+**Opni alerting provides some comprehensive dashboards to monitor the status of your SLOs via [opni grafana](./installation/opni/backends#grafana)**
 
 ### Multi-Tenancy
 
