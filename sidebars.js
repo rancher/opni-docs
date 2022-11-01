@@ -65,7 +65,7 @@ const sidebars = {
             {
               type: 'doc',
               id: 'installation/opni_agent/enable_tracing',
-              label: 'Manually Ship Tracing to Opni(Beta)'
+              label: 'Enable the Tracing Capability manually'
             }
           ]
         },
