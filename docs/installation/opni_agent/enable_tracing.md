@@ -6,19 +6,14 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-Opni agent doesn't support the tracing capability yet. This guild will walk you through an example of using Opentelemetry Collector to ship trace data to Opni.
+Opni agent installs a data shipper when the ***logging capability*** is enabled in a connected cluster. 
+You must export traces from OpenTelemetry collector to Opni agent's data shipper port `21890`.
 
 ## Prerequisites
-* The [Logging Backend](/docs/installation/opni/backends.md) is enabled in your Opni cluster.
-* Instrument your applications in the downstream cluster.
-* Cert-manager is installed in the downstream cluster.
+In the cluster you'd like to get traces from
+* [Logging Capability](/docs/installation//opni_agent/capabilities.md) is enabled
+* Applications have been [instrumented with OpenTelemetry](https://opentelemetry.io/docs/concepts/instrumenting/)
 
-    Install cert-manager using kubectl apply with static manifests:
-    ```bash
-    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
-    ```
-
-* the [Logging Capability](/docs/installation//opni_agent/capabilities.md) is enabled in the downstream cluster.
 
 ## Getting Started
 ### Install opentelemetry-collector
