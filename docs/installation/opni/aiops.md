@@ -11,8 +11,9 @@ Read about each one to learn more and enable in your Opni cluster.
 <Tabs>
 <TabItem value="log-anomaly-detection" label="Log Anomaly Detection" default>
 
-## Prerequisities
-* The cluster must have Opni logging enabled.
+## Prerequisite
+
+The cluster must have Opni logging enabled.
 
 ## Enabling AI Services
 

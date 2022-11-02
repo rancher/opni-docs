@@ -176,4 +176,17 @@ To install the Logs capability into a cluster once the logging backend is instal
 The Opni agent will detect the type of cluster it is installed into and create an appropriate fluentbit and fluentd configuration to collect the logs.  It will also start collecting Kubernetes events from inside the cluster.  These will all be sent to the Opni Shipper deployment which is configured to authenticate to Opensearch in the central cluster and ship logs to the endpoint.
 
 </TabItem>
+<TabItem value="traces" label="Traces capability">
+
+#### Prerequisites
+In the cluster you'd like to get traces from
+* [Logs Capability](/installation//opni_agent/capabilities.md) is enabled
+* Applications have been [instrumented with OpenTelemetry](https://opentelemetry.io/docs/concepts/instrumenting/)
+
+#### Config OpenTelemetry Collector
+Opni agent installs a data shipper when the ***logs capability*** is enabled in a connected cluster. 
+You must export traces from OpenTelemetry collector to Opni agent's data shipper at port `21890`. This [guild](/docs/guides/install-otel-collector/index.md) shows an example of how to do so.
+
+
+</TabItem>
 </Tabs>

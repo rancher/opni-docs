@@ -62,11 +62,6 @@ const sidebars = {
               id: 'installation/opni_agent/capabilities',
               label: 'Enable Capabilities'
             },
-            {
-              type: 'doc',
-              id: 'installation/opni_agent/enable_tracing',
-              label: 'Enable the Tracing Capability manually'
-            }
           ]
         },
         {
@@ -74,21 +69,32 @@ const sidebars = {
           id: 'installation/uninstall',
           label: 'Uninstall Opni'
         },
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Advanced Guides',
+      items: [
         {
           type: 'category',
           label: 'Quickstart with Rancher Desktop',
           link: {
             type: 'doc',
-            id: 'installation/rancher-desktop/index'
+            id: 'guides/rancher-desktop/index'
           },
           items: [
             {
-              
+
             }
           ]
-        }
+        },
+        {
+          type: 'doc',
+          id: 'guides/install-otel-collector/index',
+          label: 'Install Opentelemetry Collector'
+        },
       ]
-    },
+    }
   ]
 };
 

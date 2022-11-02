@@ -1,29 +1,19 @@
 ---
-title: Enable Traces Manually in downstream clusters
-slug: /installation/opni_agent/enable_tracing
+title: Install and Config OpenTelemetry-Collector
+slug: /guilds/install-otel-collector/index
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-Opni agent installs a data shipper when the ***logging capability*** is enabled in a connected cluster. 
-You must export traces from OpenTelemetry collector to Opni agent's data shipper port `21890`.
-
-## Prerequisites
-In the cluster you'd like to get traces from
-* [Logging Capability](/docs/installation//opni_agent/capabilities.md) is enabled
-* Applications have been [instrumented with OpenTelemetry](https://opentelemetry.io/docs/concepts/instrumenting/)
-
-
-## Getting Started
-### Install opentelemetry-collector
+### Install using Helm
 
 Add the helm repo of open-telemetry
 ```bash
 helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm-charts
 ```
 
-Install opentelemetry-collector with custom chart value file, here is a sample yaml `ot-collector-helm-values.yaml`:
+opentelemetry-collector should be installed with custom chart value file, so that it exports traces to Opni agent's data shipper port `21890`. Here is a sample yaml `ot-collector-helm-values.yaml`:
 <details>
   <summary>
     A sample custom chart value yaml
@@ -118,13 +108,12 @@ config:
 
 mode: deployment
 ```
+Replace `<Data-Prepper-Endpoint>` with the endpoint of `opni-shipper` service with port `21890`.
+![GetOpniShipper](/img/get_opni_shipper.png)
 
 </details>
 
-Replace `<Data-Prepper-Endpoint>` with the endpoint of `opni-shipper` service.
-![GetOpniShipper](/img/get_opni_shipper.png)
-
-Run the command to install the opentelemetry-collector, it should be installed to the *same namespace with your workload apps*, and release name must be *opentelemetry-collector*:
+Run the command to install opentelemetry-collector, it should be installed to the *same namespace with your workload apps*, and release name must be *opentelemetry-collector*:
 ```bash
 helm install opentelemetry-collector open-telemetry/opentelemetry-collector --values ot-collector-helm-values.yaml
 ```
@@ -134,7 +123,7 @@ Check the logs of the pod `opentelemetry-collector`, if you see logs like
 ![ValidateTraceEnable](/img/validate_trace_enable.png)
 you are good to go.
 
-## Trace Analytic Dashboard
+### Trace Analytic Dashboard
 
 Head to the Opensearch Dashboards. Head to the Trace Analytics view from Home -> OpenSearch Plugins -> Trace Analytics. You should see traces populate there
 ![TraceAnalyticPage](/img/trace_analytic_page.png)
