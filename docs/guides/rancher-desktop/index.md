@@ -1,6 +1,6 @@
 # Quick Start using Rancher Desktop
 
-This guide walks you through installation of *Opni* on [Rancher Desktop](https://rancherdesktop.io), an open-sourced desktop application for MacOS, Linux and Windows. In 10 mins, you will have *Opni* deployed on a *local k3s cluster*.
+This guide walks you through installation of *Opni* on [Rancher Desktop](https://rancherdesktop.io), an open-sourced desktop application for Linux, MacOS and Windows. In 10 mins, you will have *Opni* deployed on a *local k3s cluster*.
 
 ## Prerequisites
 * Rancher Desktop is installed and configured on your machine.
