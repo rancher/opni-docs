@@ -69,21 +69,27 @@ const sidebars = {
           id: 'installation/uninstall',
           label: 'Uninstall Opni'
         },
+      ]
+    },
+    {
+      type: 'category',
+      label: 'Advanced Guides',
+      items: [
         {
           type: 'category',
           label: 'Quickstart with Rancher Desktop',
           link: {
             type: 'doc',
-            id: 'installation/rancher-desktop/index'
+            id: 'guides/rancher-desktop/index'
           },
           items: [
             {
-              
+
             }
           ]
         }
       ]
-    },
+    }
   ]
 };
 
