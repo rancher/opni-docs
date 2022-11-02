@@ -135,9 +135,9 @@ Run the following command to validate Opni has been installed in namespace `Opni
 
 
 ## Next Steps
-* [Enable Backends](/docs/installation/opni/backends.md)
-* [Enable AIOps](/docs/installation/opni/aiops.md)
-* [Enable SLOs](/docs/installation/opni/slo.md)
+* [Enable Backends](/installation/opni/backends)
+* [Enable AIOps](/installation/opni/aiops)
+* [Enable SLOs](/installation/opni/slo)
 
 
 

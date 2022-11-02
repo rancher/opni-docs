@@ -185,7 +185,7 @@ In the cluster you'd like to get traces from
 
 #### Config OpenTelemetry Collector
 Opni agent installs a data shipper when the ***logs capability*** is enabled in a connected cluster. 
-You must export traces from OpenTelemetry collector to Opni agent's data shipper at port `21890`. This [guild](/docs/guides/install-otel-collector/index.md) shows an example of how to do so.
+You must export traces from OpenTelemetry collector to Opni agent's data shipper at port `21890`. [This guild](/guilds/install-otel-collector/index) shows an example of how to do so.
 
 
 </TabItem>
