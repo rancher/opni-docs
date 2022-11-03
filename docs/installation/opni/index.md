@@ -209,7 +209,7 @@ This demo auth mechanism allows Opni to be its own OpenID Provider. When signing
 
 ## Upgrading
 
-1. Upgrade the helm chart:
+1. Upgrade the Helm chart:
 
   ```bash
   helm repo update

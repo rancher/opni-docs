@@ -84,7 +84,7 @@ Follow these steps to install an agent into a new cluster using the Opni dashboa
 
   :::tip
 
-  If you don't have Prometheus Operator installed the cluster you want to add, check the "Install Prometheus Operator" box. If you already have Prometheus Operator installed, it must be a relatively recent version.
+  If you don't have Prometheus Operator installed the cluster you want to add, check the "Install Prometheus Operator" box. If you already have Prometheus Operator installed, it must be version `v0.53.0` or newer.
 
   :::
 

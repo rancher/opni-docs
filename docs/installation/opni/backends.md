@@ -25,6 +25,7 @@ Follow these steps to enable Monitoring from the Opni dashboard:
   ```bash
   kubectl -n opni port-forward svc/opni-admin-dashboard web:web
   ```
+  
   Then navigate to [http://localhost:12080](http://localhost:12080).
 
 
