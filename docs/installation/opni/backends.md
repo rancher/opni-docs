@@ -108,6 +108,10 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
     :::
 
+  Once Grafana is enabled, access it in the browser to view the Opni dashboards. Several pre-configured dashboards are available.
+
+  ![Grafana](/img/installation/grafana-default-dashboard.png)
+
 ## Using the CLI
 
   Opening a shell into the Opni Gateway pod will give you access to an auto-configured CLI environment.
