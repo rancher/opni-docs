@@ -18,13 +18,13 @@ Read about each one to learn more and enable in your Opni cluster.
 
 Setting up log anomaly detection for Opni can be done during the [installation of Opni](../opni/index.md) either through the Rancher UI or installing through Helm. The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
 
-## Rancher UI
+### Enable through Rancher UI
 
  After the gateway has been setup, go to the AI Services tab and check the box to enable AI services. Once that has been done, then click the Install button.
 
 ![Enable AI Services](/img/enable_ai_services.png)
 
-## Helm Installation
+### Enable through Helm
 
 For installing Opni using Helm, go to the [values.yaml file](https://github.com/rancher/opni/blob/main/packages/opni/opni/charts/values.yaml) and for the ai enabled spec, set that to True.
 ```
