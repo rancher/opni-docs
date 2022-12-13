@@ -14,7 +14,7 @@ Before uninstalling all capabilities should be removed from all clusters.  This 
 
 In the Rancher UI make sure the namespace the App is installed into is selected in the top dropdown box.  Then navigate to Apps -> Installed Apps and select the installs you want to remove.  Press the Delete button to remove the apps.
 
-If you have been using persistent storage in your cluster you should PersistentVolumeClaims in the cluster as these may not be automatically cleaned up.
+If you have been using persistent storage in your cluster you should check PersistentVolumeClaims in the cluster as these may not be automatically cleaned up.
 
 </TabItem>
 <TabItem value="helm" label="Uninstall using Helm">
@@ -29,7 +29,7 @@ This will uninstall all Opni components from the main cluster.
 
 :::tip
 
-This will not delete any persistent data stored by Cortex (e.g. in S3), or uninstall the Opni agents from downstream clusters.
+This will not delete any persistent data stored by Cortex (e.g., in S3), or uninstall the Opni agents from downstream clusters.
 
 :::
 
@@ -44,7 +44,7 @@ helm -n opni-agent uninstall opni-agent-crd # optional, delete crds
 
 :::tip
 
-Persistent volumes created by Opni workloads may still remain after uninstalling the Opni helm charts.
+Persistent volumes created by Opni workloads may still remain after uninstalling the Opni Helm charts.
 
 :::
 
@@ -70,7 +70,9 @@ To delete all resources provisioned by Pulumi, run `pulumi destroy`. This is an 
 ```bash
 pulumi destroy
 ```
+
 or by using the fully-qualified stack name:
+
 ```bash
 pulumi destroy -s org-name/project-name/stack-name
 ```

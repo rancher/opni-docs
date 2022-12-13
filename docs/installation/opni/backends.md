@@ -2,12 +2,19 @@
 title: Opni Backends
 slug: /installation/opni/backends
 ---
+
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An observability backend is where observability data is sent and for storage and querying.  Backends are configured in the Opni Management UI.
+An observability backend is where observability data is sent and for storage and querying. Backends are configured in the Opni Management UI.
 You can currently create the following backends:
- 
+
+:::note
+
+For the best user experience consider using Google-Chrome.
+
+:::
+
 <Tabs>
 <TabItem value="opni-monitoring" label="Opni Monitoring" default>
 
@@ -20,13 +27,13 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
 1. Navigate to the Opni dashboard
 
-  To access the dashboard, you can port-forward:
+To access the dashboard, you can port-forward:
 
-  ```bash
-  kubectl -n opni port-forward svc/opni-admin-dashboard web:web
-  ```
-  Then navigate to [http://localhost:12080](http://localhost:12080).
+```bash
+kubectl -n opni port-forward svc/opni-admin-dashboard web:web
+```
 
+Then navigate to [http://localhost:12080](http://localhost:12080).
 
 2. Select "Monitoring" from the left sidebar under "Backends", then click "Enable".
 
@@ -38,26 +45,26 @@ Follow these steps to enable Monitoring from the Opni dashboard:
   </div>
 
 3. Adjust configuration options as needed:
-  
-    <div className="image-border">
-      <img
-        src={require('/img/installation/monitoring-install-options.png').default} 
-        alt="Monitoring configuration"
-      />
-    </div>
- 
+
+<div className="image-border">
+  <img
+    src={require('/img/installation/monitoring-install-options.png').default} 
+    alt="Monitoring configuration"
+  />
+</div>
+
   <br />
   <br />
 
-  ### Mode
+### Mode
 
     - **Standalone**: All components of cortex will be deployed in a single pod. This is suitable for small setups.
 
     - **Highly Available**: Cortex components will be deployed in separate pods and replicated for high availability. This setup can provide better performance and reliability, but requires more resources.
 
-  ### Storage Type
+### Storage Type
 
-    - **S3**: Cortex will store time series data in an S3 bucket. This is the recommended default option. 
+    - **S3**: Cortex will store time series data in an S3 bucket. This is the recommended default option.
 
     - **Filesystem**: Cortex will store time series data on the local filesystem using a persistent volume. This option is suitable for testing and demo setups.
 
@@ -67,17 +74,17 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
     :::
 
-  ### Data Retention Period
+### Data Retention Period
 
-  Controls the global retention period for time series data. 
-  
-  :::note
+Controls the global retention period for time series data.
 
-  Cortex stores historical data in blocks, where each block contains 2 hours worth of data. Blocks are scanned periodically, and any blocks which contain metrics older than the retention period will be deleted.
+:::note
 
-  :::
+Cortex stores historical data in blocks, where each block contains 2 hours worth of data. Blocks are scanned periodically, and any blocks which contain metrics older than the retention period will be deleted.
 
-  ### S3 Options
+:::
+
+### S3 Options
 
     When S3 storage is selected, the following options are available (required fields will be marked with a <span style={{ color: '#f00' }}>*</span> in the Opni UI):
 
@@ -95,38 +102,42 @@ Follow these steps to enable Monitoring from the Opni dashboard:
 
     - **Connection**: Various connection options can be specified. The default options are sufficient for most use cases.
 
-  ### Grafana
+### Grafana
 
-  Grafana can be enabled by clicking "Enable" under the Grafana section. The following configuration options are available:
+Grafana can be enabled by clicking "Enable" under the Grafana section. The following configuration options are available:
 
     - **Hostname**: The hostname at which Grafana will be accessed in the browser.
-  
+
     :::info
 
     To access grafana from a browser, you will need to create a Kubernetes Ingress for the grafana service. This hostname must match the hostname configured in the ingress.
 
     :::
 
+Once Grafana is enabled, access it in the browser to view the Opni dashboards. Several pre-configured dashboards are available.
+
+![Grafana](/img/installation/grafana-default-dashboard.png)
+
 ## Using the CLI
 
-  Opening a shell into the Opni Gateway pod will give you access to an auto-configured CLI environment.
+Opening a shell into the Opni Gateway pod will give you access to an auto-configured CLI environment.
 
-  ```bash
-  kubectl -n opni exec -it deploy/opni-gateway -- sh
-  ```
+```bash
+kubectl -n opni exec -it deploy/opni-gateway -- sh
+```
 
-  The `opni metrics ops` subcommand can be used to configure the Monitoring backend.
+The `opni metrics ops` subcommand can be used to configure the Monitoring backend.
 
-  ```bash
-  $ opni metrics ops --help
-    Cortex cluster setup and config operations
+```bash
+$ opni metrics ops --help
+  Cortex cluster setup and config operations
 
-    Available Commands:
-      configure           Install or configure a Cortex cluster
-      get-configuration   Get the current Cortex cluster configuration
-      status              Cortex cluster status
-      uninstall           Uninstall a Cortex cluster
-  ```
+  Available Commands:
+    configure           Install or configure a Cortex cluster
+    get-configuration   Get the current Cortex cluster configuration
+    status              Cortex cluster status
+    uninstall           Uninstall a Cortex cluster
+```
 
   <details>
     <summary>Usage of the <code>configure</code> subcommand</summary>
@@ -332,6 +343,7 @@ Usage:
   opni metrics ops configure [flags] [options]
 
 ```
+
   </details>
 
 :::tip
@@ -340,12 +352,10 @@ The `configure` and `uninstall` subcommands can be given the `--follow` option t
 
 :::
 
-
 <details>
 <summary>Experimental Features</summary>
 
 Using the CLI, you can configure storage backends for Azure, GCS, and Swift, in addition to the ones available in the UI. These backends are not tested as thoroughly as the S3 backend, and may or may not work correctly.
-
 
 :::tip Openstack Environment Variables
 
@@ -358,29 +368,29 @@ When using the CLI to configure the Swift backend (using `--storage.backend=swif
 <br />
 <br />
 
-
 ## Access Control
 
-Opni Monitoring uses Role Based Access Control (RBAC) to control which clusters a given user is allowed to see. If you are familiar with RBAC in Kubernetes, it works the same way. 
+Opni Monitoring uses Role Based Access Control (RBAC) to control which clusters a given user is allowed to see. If you are familiar with RBAC in Kubernetes, it works the same way.
 
 In Kubernetes, RBAC rules are used to determine which API resources a given User or Service Account is allowed to access. Similarly, in Opni Monitoring, RBAC rules are used to determine which clusters a user has access to. When a user makes an authenticated query, the system will evaluate the current RBAC rules for that user and determine which clusters to consider when running the query.
 
 ### Labels
 
 Clusters in Opni Monitoring have an opaque ID and can have a number of key-value labels. Labels are the primary means of identifying clusters for access control purposes. Labels in Opni Monitoring are functionally similar to labels in Kubernetes, and follow these rules:
+
 - Labels must have unique keys, and there is a one-to-one mapping between keys and values.
 - Labels cannot have empty keys or values
 - Label keys must match the following regular expression:
 
-    ```
-    ^[a-zA-Z0-9][a-zA-Z0-9-_./]{0,63}$
-    ```
+  ```
+  ^[a-zA-Z0-9][a-zA-Z0-9-_./]{0,63}$
+  ```
 
 - Label values must match the following regular expression:
 
-    ```
-    ^[a-zA-Z0-9][a-zA-Z0-9-_.]{0,63}$
-    ```
+  ```
+  ^[a-zA-Z0-9][a-zA-Z0-9-_.]{0,63}$
+  ```
 
 ### Roles
 
@@ -393,6 +403,7 @@ A role can match clusters by specifying an explicit `key=value` label pair that 
 ##### 2. Label Selector Expressions
 
 A role can also match clusters by using a Kubernetes-style label selector. These selectors are more versatile, and can match labels using a variety of rules, such as:
+
 - Matching if a given key exists
 - Matching if a given key does not exist
 - Matching if the value for a given key is in a list of allowed values
@@ -417,7 +428,7 @@ Roles and Role Bindings can be configured in the **RBAC** section under Monitori
 #### Creating Roles
 
 On the Roles page, click the **Create Role** button. Give the role a unique name, then add clusters by ID, or by label selector. Existing clusters will be listed in the dropdown menu when adding clusters by ID to the role.
-  
+
 <div className="image-border">
   <img
     src={require('/img/installation/rbac-new-role-clusters.png').default} 
@@ -432,37 +443,36 @@ On the Roles page, click the **Create Role** button. Give the role a unique name
 
 In this example, we will create roles for two different environments, one for "prod" and one for "dev/test", which we will separate our clusters into using labels.
 
-
 1. Creating the "production" role
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-role-production.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-role-production.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 2. Creating the "dev" role
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-role-dev.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-role-dev.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 3. Roles list with the new roles
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-roles.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-roles.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 #### Creating Role Bindings
 
-To create a role binding, navigate to the **Role Bindings** page in the sidebar. 
+To create a role binding, navigate to the **Role Bindings** page in the sidebar.
 
 On the Role Bindings page, Click the **Create Role Binding** button. Give the role binding a unique name, select an existing role to attach to the binding. then add subjects (users) to whom the role will be applied. The value used to identify a user depends on the `identifyingClaim` configured in the Gateway's OAuth settings. For example, if your `identifyingClaim` is `email`, subjects are identified by email address. Check your OAuth provider's documentation to determine which `identifyingClaim` you should use.
 
@@ -472,30 +482,30 @@ Following the example above, we will create role bindings for two users, one for
 
 1. Creating a role binding for a "production" user
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-alice.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-alice.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 2. Creating a role binding for a "dev" user
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-bob.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-bob.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 3. Role bindings list with the new role bindings
 
-    <div className="image-border">
-    <img
-        src={require('/img/installation/rbac-example-rolebindings.png').default} 
-        alt="Clusters dropdown"
-    />
-    </div>
+<div className="image-border">
+<img
+    src={require('/img/installation/rbac-example-rolebindings.png').default} 
+    alt="Clusters dropdown"
+/>
+</div>
 
 #### Labeling Clusters for Access Control
 
@@ -531,7 +541,6 @@ When a user logs in to Grafana via OAuth, they will only see the clusters they h
 
 The `opni access-matrix` CLI command will print the access matrix of all users and clusters.
 
-
 ```
 $ opni access-matrix
 
@@ -547,6 +556,7 @@ $ opni access-matrix
  f83b8e88-3bbf-457a-ab99-c5b252c7429c          ❌                ✅
  fb180daf-48a7-4ee0-b10d-394651850fd4          ❌                ✅
 ```
+
 :::
 
 <br />
@@ -636,25 +646,92 @@ To enable the Opni Logging backend, select "Logging" under "Backends" in the lef
 <br/>
 
 #### External URL
-This is the URL that the Opensearch API will be exposed on, e.g https://opensearch.example.com.  You will need to manually expose this URL using either an Ingress or Load Balancer service.
+
+This is the URL that the Opensearch API will be exposed on, e.g https://opensearch.example.com. You will need to manually expose this URL using either an Ingress or Load Balancer service.
+
+:::note
+
+In some cases it might be simpler to access the Opensarch dashboard with a port-forward
+
+```
+kubectl -n opni port-forward svc/opni-opensearch-svc-dashboards 5601:5601
+```
+
+:::
 
 #### Data Retention
-This is how long logs will be retained for.  The default is 7 days (7d).  This can be extended if required, for example 6 months (6m) or 1 year (1y).
+
+This is how long logs will be retained for. The default is 7 days (7d). This can be extended if required, for example 6 months (6m) or 1 year (1y).
 
 #### Node Pool configuration
+
 ![Opni Node Pool settings](/img/loggingnodepool.png)
 This is where the Opensearch node pools are configured. All three roles (controlplane, data, ingest) are required in the cluster but can be spread across multiple node pools.
 
 The roles are as follows:
- * **Controlplane** - manages leader elections for the cluster
- * **Data** - stores the cluster data and runs indexing and search operations
- * **Ingest** - runs ingest pipelines; Opni uses ingest pipelines to set up the data for AI operations.
 
-For large clusters it is recommended to separate the roles.  In particular the controlplane nodes should be separated to avoid resource contention affecting the leader elections.  There should always be an odd number of controlplane nodes.
+- **Controlplane** - manages leader elections for the cluster
+- **Data** - stores the cluster data and runs indexing and search operations
+- **Ingest** - runs ingest pipelines; Opni uses ingest pipelines to set up the data for AI operations.
+
+For large clusters it is recommended to separate the roles. In particular the controlplane nodes should be separated to avoid resource contention affecting the leader elections. There should always be an odd number of controlplane nodes.
+
+In most cases, you will want to deploy at least 3 `Controlpane` to ensure there will be at least one master for the Opensearch cluster.
 
 #### Dashboards configuration.
-Click enable to install Opensearch Dashboards.  This provides a UI for Opensearch and Opni AIOps.<br/>
+
+Click enable to install Opensearch Dashboards. This provides a UI for Opensearch and Opni AIOps.<br/>
 ![Opni Node Pool settings](/img/loggingdashboards.png)
+
+#### Accessing Opensearch Dashboards
+Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards.  The user name is `opni`.  The password can be obtained from the `opni-user-password` secret in the namespace Opni is installed in:
+ ```
+kubectl get secret -n opni opni-user-password -o jsonpath='{ .data.password }' | base64 -d
+ ```
+
+It is recommended that you change the password on this user.
+
+
+</TabItem>
+<TabItem value="opni-alerting" label="Opni Alerting" default>
+
+The Alerting backend is composed of an [AlertManager](https://prometheus.io/docs/alerting/latest/alertmanager/) statefulset, fully managed by Opni.
+You can enable and configure Monitoring from the Opni dashboard, or from the CLI.
+
+### Using the Opni Dashboard
+
+Follow these steps to enable Monitoring from the Opni dashboard:
+
+1. Navigate to the Opni dashboard
+
+To access the dashboard, you can port-forward:
+
+```bash
+kubectl -n opni port-forward svc/opni-admin-dashboard web:web
+```
+
+Then navigate to [http://localhost:12080](http://localhost:12080).
+
+2. Select "Alerting" from the left sidebar then click enable to install
+
+  <div className="image-border">
+    <img
+      src={require('/img/installation/alerting-not-installed.png').default} 
+      alt="Alerting not installed"
+    />
+  </div>
+
+3. Choose between deploying the opni-cluster as standalone or HA:
+
+<div className="image-border">
+  <img
+    src={require('/img/installation/alerting-options.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+
+  <br />
+  <br />
 
 </TabItem>
 </Tabs>
