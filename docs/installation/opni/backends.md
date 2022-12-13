@@ -662,7 +662,10 @@ Click enable to install Opensearch Dashboards.  This provides a UI for Opensearc
 ![Opni Node Pool settings](/img/loggingdashboards.png)
 
 #### Logging in to Opensearch
-Once the backend has been installed Opni will create an admin user to log in to Opensearch and Dashboards.  The user name is opni.  The password can be obtained from the opni-user-password secret in the namespace Opni is installed into.
+Once the backend has been installed Opni will create an admin user to log in to Opensearch and Dashboards.  The user name is opni.  The password can be obtained from the opni-user-password secret in the namespace Opni is installed into:
+ ```bash
+ kubectl get secret -n <namespace> opni-user-password --template={{.data.password}} | base64 -d
+ ```
 
 It is recommended that you change the password on this user.
 
