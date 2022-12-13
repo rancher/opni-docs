@@ -61,7 +61,7 @@ const sidebars = {
               type: 'doc',
               id: 'installation/opni_agent/capabilities',
               label: 'Enable Capabilities'
-            }
+            },
           ]
         },
         {
@@ -89,6 +89,10 @@ const sidebars = {
           ]
         },
         {
+          type: 'doc',
+          id: 'guides/install-otel-collector/index',
+          label: 'Install Opentelemetry Collector'
+        },
           type: 'category',
           label: 'Alerting User Guide',
           link: {
