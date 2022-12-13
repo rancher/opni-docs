@@ -7,7 +7,13 @@ import TabItem from '@theme/TabItem';
 
 An observability backend is where observability data is sent and for storage and querying.  Backends are configured in the Opni Management UI.
 You can currently create the following backends:
- 
+
+:::note
+
+For the best user experience consider using Google-Chrome.
+
+:::
+
 <Tabs>
 <TabItem value="opni-monitoring" label="Opni Monitoring" default>
 
@@ -643,6 +649,16 @@ To enable the Opni Logging backend, select "Logging" under "Backends" in the lef
 #### External URL
 This is the URL that the Opensearch API will be exposed on, e.g https://opensearch.example.com.  You will need to manually expose this URL using either an Ingress or Load Balancer service.
 
+:::note
+
+In some cases it might be simpler to access the Opensarch dashboard with a port-forward
+
+```
+kubectl -n opni port-forward svc/opni-opensearch-svc-dashboards 5601:5601
+```
+
+:::
+
 #### Data Retention
 This is how long logs will be retained for.  The default is 7 days (7d).  This can be extended if required, for example 6 months (6m) or 1 year (1y).
 
@@ -657,17 +673,20 @@ The roles are as follows:
 
 For large clusters it is recommended to separate the roles.  In particular the controlplane nodes should be separated to avoid resource contention affecting the leader elections.  There should always be an odd number of controlplane nodes.
 
+In most cases, you will want to deploy at least 3 `Controlpane` to ensure there will be at least one master for the Opensearch cluster.
+
 #### Dashboards configuration.
 Click enable to install Opensearch Dashboards.  This provides a UI for Opensearch and Opni AIOps.<br/>
 ![Opni Node Pool settings](/img/loggingdashboards.png)
 
-#### Logging in to Opensearch
-Once the backend has been installed Opni will create an admin user to log in to Opensearch and Dashboards.  The user name is opni.  The password can be obtained from the opni-user-password secret in the namespace Opni is installed into:
- ```bash
- kubectl get secret -n <namespace> opni-user-password --template={{.data.password}} | base64 -d
+#### Accessing Opensearch Dashboards
+Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards.  The user name is `opni`.  The password can be obtained from the `opni-user-password` secret in the namespace Opni is installed in:
+ ```
+kubectl get secret -n opni opni-user-password -o jsonpath='{ .data.password }' | base64 -d
  ```
 
 It is recommended that you change the password on this user.
+
 
 </TabItem>
 </Tabs>
