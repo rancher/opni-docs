@@ -24,12 +24,11 @@ Allocate enough resource to the local k3s cluster. Opni requires 8 CPUs and 8GB 
 
 Here is an example of using Helm to install Opni. For more details please refer to [here](https://opni.io/installation/opni#prerequisites)
 
-**1. install cert-manager**
-    <summary>Install using kubectl apply with static manifests</summary>
+**1. Install cert-manager**
 
-    ```bash
-    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
-    ```
+```bash
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
+```
 
 **2. config chart value. Select `noauth` as auth provider and input your `hostname` and `grafana.hostname`.**
 
