@@ -6,7 +6,7 @@ slug: /installation/opni/backends
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-An observability backend is where observability data is sent and for storage and querying. Backends are configured in the Opni Management UI.
+An observability backend is where observability data is sent for storage and querying. Backends are configured in the Opni Management UI.
 You can currently create the following backends:
 
 :::note
@@ -25,7 +25,7 @@ You can enable and configure Monitoring from the Opni dashboard, or from the CLI
 
 Follow these steps to enable Monitoring from the Opni dashboard:
 
-1. Navigate to the Opni dashboard
+1. Navigate to the Opni dashboard.
 
 To access the dashboard, you can port-forward:
 
@@ -34,6 +34,7 @@ kubectl -n opni port-forward svc/opni-admin-dashboard web:web
 ```
 
 Then navigate to [http://localhost:12080](http://localhost:12080).
+
 
 2. Select "Monitoring" from the left sidebar under "Backends", then click "Enable".
 
@@ -58,7 +59,7 @@ Then navigate to [http://localhost:12080](http://localhost:12080).
 
 ### Mode
 
-    - **Standalone**: All components of cortex will be deployed in a single pod. This is suitable for small setups.
+    - **Standalone**: All components of Cortex will be deployed in a single pod. This is suitable for small setups.
 
     - **Highly Available**: Cortex components will be deployed in separate pods and replicated for high availability. This setup can provide better performance and reliability, but requires more resources.
 
@@ -110,7 +111,7 @@ Grafana can be enabled by clicking "Enable" under the Grafana section. The follo
 
     :::info
 
-    To access grafana from a browser, you will need to create a Kubernetes Ingress for the grafana service. This hostname must match the hostname configured in the ingress.
+    To access Grafana from a browser, you will need to create a Kubernetes Ingress for the Grafana service. This hostname must match the hostname configured in the ingress.
 
     :::
 
@@ -666,6 +667,7 @@ This is how long logs will be retained for. The default is 7 days (7d). This can
 #### Node Pool configuration
 
 ![Opni Node Pool settings](/img/loggingnodepool.png)
+
 This is where the Opensearch node pools are configured. All three roles (controlplane, data, ingest) are required in the cluster but can be spread across multiple node pools.
 
 The roles are as follows:
@@ -680,7 +682,8 @@ In most cases, you will want to deploy at least 3 `Controlpane` to ensure there 
 
 #### Dashboards configuration.
 
-Click enable to install Opensearch Dashboards. This provides a UI for Opensearch and Opni AIOps.<br/>
+Click enable to install Opensearch Dashboards. This provides a UI for Opensearch and Opni AIOps.
+
 ![Opni Node Pool settings](/img/loggingdashboards.png)
 
 #### Accessing Opensearch Dashboards

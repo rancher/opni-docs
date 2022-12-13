@@ -39,7 +39,7 @@ Installation of Opni agent in Kubernetes clusters allows you to collect logs, Ku
 AIOps is the application of AI and machine learning to IT and observability data.
 Opni AIOps includes the following:
 * **Log anomaly detection**
-  * Packaged with pretrained models for Kubernetes control plane, Rancher, Longhorn (does not require GPU to run)
+  * Packaged with pretrained models for the [Kubernetes control plane](https://kubernetes.io/docs/concepts/overview/components/), [Rancher](https://www.rancher.com/why-rancher), and [Longhorn](https://longhorn.io/)
   * Ability to learn and self train models based on your workload logs if a GPU is available on the cluster (coming soon)
 * **Root cause detection** (coming soon)
 * **Metric anomaly detection** (coming soon)

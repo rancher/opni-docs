@@ -8,6 +8,7 @@ import TabItem from '@theme/TabItem';
 There are a few different ways to install Opni. We recommend installation through the Rancher UI.
 
 Installation of Opni will give you the following:
+
 * **Opni Gateway** - the component that agents will communicate with to establish a connection between upstream opni and downstream opni agents
 *  **Opni Admin UI** - the dashboard that is used to create and manage backends, SLOs and downstream Opni agents
 
@@ -15,7 +16,7 @@ Installation of Opni will give you the following:
 
 - cert-manager
 
-    Install cert-manager using one of the following methods, or check out the official documentation [here](https://cert-manager.io/docs/installation/)
+    Install cert-manager using one of the following methods, or check out the official documentation [here](https://cert-manager.io/docs/installation/).
 
     <details>
     <summary>Install using kubectl apply with static manifests</summary>
@@ -50,29 +51,33 @@ Installation of Opni will give you the following:
 
 <Tabs>
 <TabItem value="rancher" label="Installation using Rancher UI" default>
-Opni provides GitHub charts repository that can be used with the Rancher UI.
-To add the charts, navigate to Apps -> Repositories in the Rancher UI.  Name the repository and select the 'Git repository containing Helm chart or cluster template definitions' option.
+
+Opni provides GitHub charts repository that can be used with the Rancher UI. To add the charts, navigate to **Apps -> Repositories** in the Rancher UI.  Name the repository and select the 'Git repository containing Helm chart or cluster template definitions' option.
 
 Enter the following git url:
+
 ```
 https://github.com/rancher/opni.git
 ```
 
 And the following branch:
+
 ```
 charts-repo
 ```
 
-Once the repo has updated you should be able to find Opni in the list of charts.  
+Once the repo has updated you should be able to find Opni in the list of charts.
+
 ![Opni Charts](/img/opnicharts.png)
 
-To install Opni follow the prompts in the UI.  The most important setting is the Gateway Hostname.  This is the hostname that agents will use to connect to the Opni Gateway.  By default this is created as a Load Balancer service, but you may also place an ingress in front of it if your cluster does not support Load Balancer services.
+To install Opni, follow the prompts in the UI.  The most important setting is the Gateway Hostname.  This is the hostname that agents will use to connect to the Opni Gateway.  By default this is created as a Load Balancer service, but you may also place an ingress in front of it if your cluster does not support Load Balancer services.
 ![Opni Gateway settings](/img/opnigateway.png)
 
 Under the Auth Settings tab you may select the default noauth provider, or otherwise select openid and provide details for an external auth provider.
+
 ![Opni Gateway settings](/img/opniauth.png)
 
-Once satisfied with the options, click ***Install***
+Once satisfied with the options, click **Install**.
 
 </TabItem>
 <TabItem value="helm" label="Installation using Helm">
@@ -170,8 +175,8 @@ Take the following steps to set up Opni with your OpenID Provider.
 Every provider is different, so you should consult your provider's documentation for more information.
 
 1. Create a new client ID and secret to use for Opni. These are set in the `gateway.auth.openid` section of the `values.yaml` file above.
-2. Add an allowed callback URL for `https://<your grafana url>/login/generic_oauth`
-3. Add an allowed logout URL for `https://<your grafana url>`
+2. Add an allowed callback URL for `https://<your grafana url>/login/generic_oauth`.
+3. Add an allowed logout URL for `https://<your grafana url>`.
 
 </details>
 
@@ -196,11 +201,13 @@ This demo auth mechanism allows Opni to be its own OpenID Provider. When signing
   ```bash
   helm repo update
   ```
+
 2. Install the CRDs chart:
 
   ```bash
   helm -n opni install --create-namespace opni-crd opni/opni-crd
   ```
+  
 3. Install the Opni chart:
 
   ```bash

@@ -6,7 +6,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
 
-By default, agents do not have any capabilities enabled. From the Opni dashboard or CLI, you can enable or disable capabilities per-agent.
+By default, agents do not have any capabilities enabled. From the Opni dashboard or CLI, you can enable or disable capabilities per agent.
 
 The following capabilities can be enabled in downstream agents:
 <Tabs>
@@ -35,7 +35,7 @@ If the backend is not installed, you will see the following tooltip when hoverin
 
 To enable the metrics capability for an agent using the Opni dashboard, follow these steps:
 
-1. Navigate to the Opni dashboard
+1. Navigate to the Opni dashboard.
 
   To access the dashboard, you can port-forward:
 
@@ -165,11 +165,11 @@ $ opni capabilities status metrics 4003b8a2-333e-4f3a-889b-7993700b9d25<br />
 </TabItem>
 <TabItem value="logs" label="Logs capability">
 
-Pre-requisites:
+Prerequisites:
  * Opni logging backend is enabled in upstream Opni<br/>
  <br/>
 
-To install the Logs capability into a cluster once the logging backend is installed, select the Logging button in the clusters screen
+To install the Logs capability into a cluster once the logging backend is installed, select the **Logging** button in the clusters screen
 
 ![Add cluster](/img/clusters.png)
 

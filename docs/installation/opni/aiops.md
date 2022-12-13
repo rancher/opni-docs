@@ -17,23 +17,24 @@ The cluster must have Opni logging enabled.
 
 ## Enabling AI Services
 
-Setting up log anomaly detection for Opni can be done during the [installation of Opni](../opni/index.md) either through the Rancher UI or installing through Helm. The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
+Setting up log anomaly detection for Opni can be done during the [installation of Opni](../opni/index.md), either through the Rancher UI or installing through Helm. The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
 
 ### Enable with Rancher UI
 
- After the gateway has been setup, go to the AI Services tab and check the box to enable AI services. Once that has been done, then click the Install button.
+ After the gateway has been set up, go to the AI Services tab and check the box to enable AI services. Once that has been done, then click the Install button.
 
 ![Enable AI Services](/img/enable_ai_services.png)
 
 ### Enable with Helm
 
-For installing Opni using Helm, go to the [values.yaml file](https://github.com/rancher/opni/blob/main/packages/opni/opni/charts/values.yaml) and for the ai enabled spec, set that to True.
-```
+For installing Opni using Helm, go to the [values.yaml file](https://github.com/rancher/opni/blob/main/packages/opni/opni/charts/values.yaml) and for the `ai.enabled` spec, set that to `True`.
+
+```yaml
 ai:
   enabled: true
 ```
 
-Log Anomaly Detection is dependent on Opni logging so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
+Log anomaly detection is dependent on Opni logging so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
 
 ## Consuming AI Insights from Opni
 
@@ -43,18 +44,21 @@ Once Opni logging has been enabled in the central cluster, log anomaly insights 
 
 ### Overall Insights
 ![Opensearch Dashboards Overall Breakdown](/img/opensearch_dashboards_overall.png)
+
 The Opni UI within Opensearch breaks down the status of all clusters into an **easy-to-consume** manner. 
-From the top two panels, the left chart show the overall number of normal and anomalous logs in the system and the right chart shows the breakdown of anomalous log messages from Kubernetes control plane components.
+From the top two panels, the left chart shows the overall number of normal and anomalous logs in the system and the right chart shows the breakdown of anomalous log messages from Kubernetes control plane components.
 
 ### Kubernetes Control Plane and Etcd Log Insights
 
 ![Opensearch Dashboards Control Plane Component](/img/opni_controlplane_breakdown.png)
-For control plane logs, the Opni UI allows the user to **zone in on specific Kubernetes components** and upon clicking on the number of anomalous or normal log messages, the user will be redirected to the actual log messages that were **inferred on by the pre-trained Deep Learning model for control plane logs**.
+
+For control plane logs, the Opni UI allows the user to **zone in on specific Kubernetes components** and upon clicking on the number of anomalous or normal log messages, the user will be redirected to the actual log messages that were **inferred on by the pretrained Deep Learning model for control plane logs**.
 
 ### Rancher Log Insights
 
 ![Opensearch Dashboards Rancher Logs](/img/opni_rancher_breakdown.png)
-Similar to the control plane logs, Rancher logs are also displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained Deep Learning model for Rancher logs**.
+
+Similar to the control plane logs, Rancher logs are also displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained deep learning model for Rancher logs**.
 
 **For more information on the pretrained models leveraged by Opni, click on the tab below.**
 
@@ -74,29 +78,33 @@ Opni log anomaly detection comes with three specialized pretrained Deep Learning
     * Compatible with any distribution of Kubernetes that is running any distribution of [Longhorn](https://longhorn.io).
 
 </TabItem>
-<TabItem value="workload" label="User workloads self-learning (coming soon)">
+<TabItem value="workload" label="User workloads self-learning">
 Opni AIOps offers log anomaly detection on user's workload logs with the following features:
 
-* <i> self-train models that learn from logs of the workloads user selected. </i>
-* <i> Doesn't require high volume of data to get started </i>
-* <i> No AI/ML knowledge needed </i>
+* self-train models that learn from logs of the workloads user have selected
+* Doesn't require high volume of data to get started
+* No AI/ML knowledge needed
 
 Note that it requires an GPU available in the Opni cluster.
 
 ## Prerequisites
-the Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU** attached.
+
+The Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU** attached.
 
 ## Getting Started
 ![SetupWorkloads](/img/aiops/setup_workload_loganomaly.png)
-1. Navigate to the Opni Admin dashboard, select the **Workloads** tab
-2. select a cluster
-3. select the workloads you want 
-4. Click **Update Watchlist** to submit the configuration.
 
-Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni)
+1. Navigate to the Opni Admin dashboard and select the **Workloads** tab
+2. Select a cluster
+3. Select the workloads you want
+4. Click **Update Watchlist** to submit the configuration
+
+Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni).
 
 ### Remove workloads
+
 ![RemoveWorkloads](/img/aiops/remove_workload_loganomaly.png)
+
 To remove the workloads you don't want anymore, simply uncheck the boxes and **Update Watchlist**.
 
 </TabItem>
