@@ -1,9 +1,9 @@
 # Quick Start using Rancher Desktop
 
-This guide walks you through the installation of Opni on [Rancher Desktop](https://rancherdesktop.io).
+This guide walks you through installation of *Opni* on [Rancher Desktop](https://rancherdesktop.io), an open-sourced desktop application for Linux, MacOS and Windows. In 10 mins, you will have *Opni* deployed on a *local k3s cluster*.
 
 ## Prerequisites
-* Rancher Desktop is installed and configured on your machine
+* Rancher Desktop is installed and configured on your machine.
 
 ### Install Rancher Desktop on your computer
 Follow the official [documentation](https://docs.rancherdesktop.io/getting-started/installation) to install Rancher Desktop. Once installed, it creates a *local k3s cluster* on your machine and installs the command line tools you need to deploy apps to it (kubectl/nerdctl/helm).
@@ -29,6 +29,7 @@ Here is an example of using Helm to install Opni. For more details please refer 
 ```bash
 kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.10.0/cert-manager.yaml
 ```
+
 
 **2. config chart value. Select `noauth` as auth provider and input your `hostname` and `grafana.hostname`.**
 
@@ -134,9 +135,9 @@ Run the following command to validate Opni has been installed in namespace `Opni
 
 
 ## Next Steps
-* [Enable Backends](https://opni.io/installation/opni/backends)
-* [Enable AIOps](https://opni.io/installation/opni/aiops)
-* [Enable SLOs](https://opni.io/installation/opni/slo)
+* [Enable Backends](/installation/opni/backends)
+* [Enable AIOps](/installation/opni/aiops)
+* [Enable SLOs](/installation/opni/slo)
 
 
 
