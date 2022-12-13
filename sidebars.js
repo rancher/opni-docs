@@ -87,6 +87,19 @@ const sidebars = {
 
             }
           ]
+        },
+        {
+          type: 'category',
+          label: 'Alerting User Guide',
+          link: {
+            type: 'doc',
+            id: 'guides/alerting/index'
+          },
+          items: [
+            {
+              
+            }
+          ]
         }
       ]
     }
