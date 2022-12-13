@@ -93,6 +93,7 @@ const sidebars = {
           id: 'guides/install-otel-collector/index',
           label: 'Install Opentelemetry Collector'
         },
+        {
           type: 'category',
           label: 'Alerting User Guide',
           link: {
