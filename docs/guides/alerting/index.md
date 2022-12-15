@@ -98,6 +98,22 @@ To validate your inputs, hit the 'Test Endpoint' button to make sure opni alerti
 
 When you are done, hit the 'Save' button.
 
+### PagerDuty
+
+Using PagerDuty requires a PagerDuty integration key.
+
+:::note
+See the official PagerDuty docs on [integration with AlertManager](https://www.pagerduty.com/docs/guides/prometheus-integration-guide/) for generating
+integration keys
+:::
+
+<div className="image-border">
+  <img
+    src={require('/img/pager-duty.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+
 ## Alarms
 
 Alarms are used to evaluate whether or not some external condition should dispatch a notification to the configured endpoints
@@ -113,6 +129,51 @@ Alarms will fire without attached endpoints, but if you do not attach any endpoi
 - Firing : The alarm has met its condition, expect to eventually receive a notification, depending on your settings
 - Silenced : The alarm is firing but has been silence by the User.
 - Invalidated : The alarm can no longer evaluate to Ok or Firing, usually due to uninstalling external requirements.
+
+### Overview
+
+Overview tab will display a timeline of when alarms have fired.
+
+<div className="image-border">
+  <img
+    src={require('/img/timeline.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+
+### Editing / Deleting Alarms
+
+In order to edit or delete alarms right click the condition you want to edit or delete :
+
+<div className="image-border">
+  <img
+    src={require('/img/edit.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+
+### Cloning
+
+:::caution attention
+Cloning alarms with specific external requirements to other cluster(s) may result in invalidated state alerts if those requirements are not met by the target cluster(s)
+:::
+
+As above, you can right click the alarm you want to clone, which will open a menu to select which
+clusters you want to clone to.
+
+<div className="image-border">
+  <img
+    src={require('/img/clone-menu.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+
+You are allowed to clone to the same cluster, as well as clone any number of times to any cluster.
+
+## Alarm Types
 
 ### Agent Disconnect
 
@@ -141,23 +202,171 @@ A matching agent disconnect condition is created with a 10 minute timeout.
 <br/>
 
 :::note
-You are free to edit or delete this condition as you see fit.
+You are free to edit or delete this default condition as you see fit.
 :::
 
 <hr/>
 
-### Editing / Deleting Alarms
-
-In order to edit or delete alarms right click the condition you want to edit or delete :
+#### Options
 
 <div className="image-border">
   <img
-    src={require('/img/edit.png').default} 
+    src={require('/img/agent-disconnect-options.png').default} 
     alt="Alerting configuration"
   />
 </div>
+<br/>
+<br/>
 
-### Attaching an Endpoint to an Alarm
+
+- Cluster : agent this alarm applies to
+- Timeout : how long this agent has been disconnect before firing an alarm
+
+#### Recommended Options
+
+- Timeout : 10 or more minutes
+
+### Downstream Capability
+
+Alerts when an agent capability, e.g. Logging or Metrics, is in some unhealthy state for a certain amount of time.
+
+By default when an agent is bootstrapped, a matching downstream capability alarm is created that will alert if _any_ unhealthy state is sustained over a period of 10 minutes.
+
+<div className="image-border">
+  <img
+    src={require('/img/downstream-capability-alarm.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+
+:::note
+You are free to edit or delete this default condition as you see fit.
+:::
+
+#### Options
+
+<div className="image-border">
+  <img
+    src={require('/img/downstream-capability-alarm-options.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+
+- Cluster : cluster this applies to
+- Duration : period after which we decide to fire an alaram
+- One ore more capability states to track :
+  - `Failure` : An agent capability is experiencing errors
+  - `Pending` : A setup step or sync operation is hanging
+
+#### Recommended Options
+
+- Duration : 10 or more minutes
+
+### Monitoring Backend
+
+:::caution attention
+Requires the monitoring backend to be installed
+:::
+
+Alerts when the specified monitoring backend components are in an unhealthy state over
+some period of time
+
+#### Options
+
+<div className="image-border">
+  <img
+    src={require('/img/monitoring-backend-alarm-options.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+
+- Duration : period after which we should fire an alarm if the specified backend components
+  are unhealthy, recommended to be 10 minutes or more
+- Backend components :
+  - `store-gateway` : responsible for persistent & remote storage, critical component.
+  - `distributor` : responsible for distributing remote writes to the ingester
+  - `ingester` : responsible for (persistent) buffering of incoming data
+  - `ruler` : responsible for applying stored prometheus queries and prometheus alerts
+  - `purger` : responsible for deleting cluster data
+  - `compactor` : responsible for buffer compaction before sending to persistent storage
+  - `query-frontend` : "api gateway" for the querier
+  - `querier` : handles prometheus queries from the user
+
+#### Recommended options
+
+- Duration : 10 minutes or more, but no more than 90 mins
+- Backend Components :
+  1. track `store-gateway`, `distributor`, `ingester` & `compactor` as a high severity alarm
+  2. track all components as a lesser severity alarm
+
+### Prometheus Query
+
+Alerts when the given prometheus query evaluates to <b> True </b>
+
+:::caution attention
+Requires the monitoring backend to be installed & one or more downstream agents
+to have the metrics capability.
+:::
+
+#### Options
+
+<div className="image-border">
+  <img
+    src={require('/img/prometheus-query-options.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+
+:::note
+The above query should always evaluate to true, and subsequently evaluate to firing.
+It can be used to sanity check your downstream agents with metrics installed.
+:::
+
+- Cluster : any cluster with an agent with metrics capabilities
+- Duration : period after which we should fire an alert
+- Query : any valid prometheus query
+
+### Kube State
+
+:::caution attention
+Requires the monitoring backend to be installed and have one or more agents that have both
+metrics capabilities and kube-state-metrics enabled.
+:::
+
+Alerts when the desired kubernetes object on the cluster is in the state specified by the user for a certain amount of time.
+
+#### Options
+
+<div className="image-border">
+  <img
+    src={require('/img/kube-state-options.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+:::note
+The above configuration will alert if the opni gateway is in fact running for more than 5 minutes.
+
+It can be used to sanity check that your kube-state-metrics are working as intended.
+:::
+
+## General Alarm Options
+
+### Attaching endpoint(s) to an Alarm
 
 Right click edit your condition, and navigate to the message options tab in the edit UI & click 'Add Endpoint'
 
@@ -197,6 +406,8 @@ You must specify Message options for the contents & dispatching configuration to
     alt="Alerting configuration"
   />
 </div>
+<br/>
+<br/>
 
 Based on the implementation details above, once we hit 'Save' and our downstream agent has disconnected for > 10mins, you will receive an alert:
 
@@ -207,13 +418,53 @@ Based on the implementation details above, once we hit 'Save' and our downstream
   />
 </div>
 
-## Overview
+### Silencing an Alarm
 
-Overview tab will display a timeline of when alarms have fired.
+If operators with to silence a firing alarm, which will cause the alarm to no longer send any notifications to endpoints, then consider :
 
 <div className="image-border">
   <img
-    src={require('/img/timeline.png').default} 
+    src={require('/img/example-firing.png').default} 
     alt="Alerting configuration"
   />
 </div>
+<br/>
+<br/>
+
+They can do so by right clicking edit and navigating to the silence tab:
+
+<div className="image-border">
+  <img
+    src={require('/img/example-firing.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+Once the alarm is silenced, operators can always un-silence it by clicking the resume now.
+
+<div className="image-border">
+  <img
+    src={require('/img/resume-silence.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+Tada! the alarm is silenced.
+
+<div className="image-border">
+  <img
+    src={require('/img/silenced-alarm.png').default} 
+    alt="Alerting configuration"
+  />
+</div>
+<br/>
+<br/>
+
+:::note
+You can silence alarms that are not in the firing state, and they will prevent any notifications from
+being sent to endpoints if that alarm does enter the firing state
+:::
