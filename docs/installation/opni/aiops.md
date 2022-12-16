@@ -37,7 +37,7 @@ The Opni cluster must have **Opni logging** enabled.
     * Compatible with any distribution of Kubernetes that is running any distribution of [Longhorn](https://longhorn.io).
 
 </TabItem>
-<TabItem value="workload" label="User workloads self-learning">
+<TabItem value="workload" label="User Workloads Self-Learning">
 Opni AIOps offers log anomaly detection on user's workload logs with the following features:
 
 * self-train models that learn from logs of the workloads user have selected
