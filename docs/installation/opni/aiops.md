@@ -5,67 +5,26 @@ slug: /installation/opni/aiops
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Opni AIOps is composed of a few different solutions.
-Read about each one to learn more and enable in your Opni cluster.
 
 <Tabs>
 <TabItem value="log-anomaly-detection" label="Log Anomaly Detection" default>
 
-## Prerequisite
+## Overview
+Opni log anomaly detection comes with two features. 
 
-The cluster must have Opni logging enabled.
+The first feature involves the usage of three pre-trained Deep Learning models for logs from **Kubernetes control plane and etcd**, **Rancher** and **Longhorn** respectively. 
 
-## Enabling AI Services
+The second feature involves the user specifying workloads of interest and then Opni will train a  Deep Learning model and monitor the selected workloads.
 
-Setting up log anomaly detection for Opni can be done during the [installation of Opni](../opni/index.md), either through the Rancher UI or installing through Helm. The Pulumi installation does not currently support the enabling of log anomaly detection but that will be introduced sometime down the road.
-
-### Enable with Rancher UI
-
- After the gateway has been set up, go to the AI Services tab and check the box to enable AI services. Once that has been done, then click the Install button.
-
-![Enable AI Services](/img/enable_ai_services.png)
-
-### Enable with Helm
-
-For installing Opni using Helm, go to the [values.yaml file](https://github.com/rancher/opni/blob/main/packages/opni/opni/charts/values.yaml) and for the `ai.enabled` spec, set that to `True`.
-
-```yaml
-ai:
-  enabled: true
-```
-
-Log anomaly detection is dependent on Opni logging so even when you enable AI services on Opni, it will only be instantiated once Opni logging has been enabled on the cluster. 
-
-## Consuming AI Insights from Opni
-
-Once Opni logging has been enabled in the central cluster, log anomaly insights can now be obtained by going to Opensearch Dashboards and viewing the Opni plugin.
-
-![Opensearch Dashboards Opni Plugin](/img/opensearch_opni_plugin.png)
-
-### Overall Insights
-![Opensearch Dashboards Overall Breakdown](/img/opensearch_dashboards_overall.png)
-
-The Opni UI within Opensearch breaks down the status of all clusters into an **easy-to-consume** manner. 
-From the top two panels, the left chart shows the overall number of normal and anomalous logs in the system and the right chart shows the breakdown of anomalous log messages from Kubernetes control plane components.
-
-### Kubernetes Control Plane and Etcd Log Insights
-
-![Opensearch Dashboards Control Plane Component](/img/opni_controlplane_breakdown.png)
-
-For control plane logs, the Opni UI allows the user to **zone in on specific Kubernetes components** and upon clicking on the number of anomalous or normal log messages, the user will be redirected to the actual log messages that were **inferred on by the pretrained Deep Learning model for control plane logs**.
-
-### Rancher Log Insights
-
-![Opensearch Dashboards Rancher Logs](/img/opni_rancher_breakdown.png)
-
-Similar to the control plane logs, Rancher logs are also displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained deep learning model for Rancher logs**.
-
-**For more information on the pretrained models leveraged by Opni, click on the tab below.**
-
+**To learn more about these two features, click on the tabs below.**
 <Tabs>
 <TabItem value="pre-trained" label="Pretrained Models">
 
 Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.** Use these models to **accelerate mean time to resolution**.
+
+## Prerequisites
+
+The Opni cluster must have **Opni logging** enabled.
 
 * **Kubernetes control plane and etcd logs**
     * Compatible with control plane and etcd logs from RKE1, RKE2 and K3s distributions.
@@ -89,31 +48,74 @@ Note that it requires an GPU available in the Opni cluster.
 
 ## Prerequisites
 
-The Opni cluster must have **Opni Logging enabled** and needs at least **1 GPU** attached.
+The Opni cluster must have **Opni Logging enabled as well as enabling AIOps and the GPU services** and needs at least **1 NVIDIA GPU** attached.
 
 ## Getting Started
-![SetupWorkloads](/img/aiops/setup_workload_loganomaly.png)
+![SetupWorkloads](/img/aiops/initial_workload_configuration.png)
 
-1. Navigate to the Opni Admin dashboard and select the **Workloads** tab
+1. Within the Opni Admin Dashboard, once AIOps has been enabled, go to the Workload Insights Tab.
 2. Select a cluster
 3. Select the workloads you want
 4. Click **Update Watchlist** to submit the configuration
 
-Give it some time for the AI models to get ready. You can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni).
+The UI will give a status of the progress of the model. 
+![Model Training Status](/img/aiops/opni_train_workload_model.png)
+
+Once the model is ready, you can then navigate to Opni's Opensearch dashboard and [consume AI Insights](#consuming-ai-insights-from-opni).
 
 ### Remove workloads
 
-![RemoveWorkloads](/img/aiops/remove_workload_loganomaly.png)
+![RemoveWorkloads](/img/aiops/remove_workload_insights.png)
 
 To remove the workloads you don't want anymore, simply uncheck the boxes and **Update Watchlist**.
 
-</TabItem>
-</Tabs>
-</TabItem>
-<TabItem value="metric-anomaly-detection" label="Metric Anomaly Detection (coming soon)">
+### Reset workloads
+
+To reset your watchlist, simply hit the button **Clear Watchlist**.
 
 </TabItem>
-<TabItem value="root-cause-detection" label="Root Cause Detection (coming soon)">
+</Tabs>
+
+## Enabling AI Services
+
+Setting up log anomaly detection for Opni can be done through the Opni admin dashboard. Go to the AIOps section and then check the pretrained models that the user would like to receive insights from. If a GPU is enabled on this cluster and the user would like to receive insights on selected workloads, check the **Enable GPU services** button.
+
+![Enable AIOps](/img/aiops/admin_dashboard_enable_ai.png)
+
+## Consuming AI Insights from Opni
+
+Once Opni logging has been enabled in the central cluster, log anomaly insights can now be obtained by going to Opensearch Dashboards and viewing the Opni plugin.
+
+![Opensearch Dashboards Opni Plugin](/img/aiops/opensearch_opni_plugin.png)
+
+### Overall Insights
+![Opensearch Dashboards Overall Breakdown](/img/aiops/opensearch_dashboards_overall.png)
+
+The Opni UI within Opensearch breaks down the status of all clusters into an **easy-to-consume** manner. 
+From the top two panels, the left chart shows the overall number of normal and anomalous logs in the system and the right chart shows the breakdown of anomalous log messages from Kubernetes control plane components.
+
+### Workload Log Insights
+![Opensearch Dashboards Workload Component](/img/aiops/workload_insights_panel.png)
+
+For workload logs, the Opni UI will display the breakdown of normal and anomalous log messages at a pod level among the selected deployments.
+
+### Kubernetes Control Plane and Etcd Log Insights
+
+![Opensearch Dashboards Control Plane Component](/img/aiops/opni_controlplane_breakdown.png)
+
+For control plane logs, the Opni UI allows the user to **zone in on specific Kubernetes components** and upon clicking on the number of anomalous or normal log messages, the user will be redirected to the actual log messages that were **inferred on by the pretrained Deep Learning model for control plane logs**.
+
+### Rancher Log Insights
+
+![Opensearch Dashboards Rancher Logs](/img/aiops/rancher_log_insights.png)
+
+Similar to the control plane logs, Rancher logs are also displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained deep learning model for Rancher logs**.
+
+### Longhorn Log Insights
+![Opensearch Dashboards Longhorn Logs](/img/aiops/longhorn_opni_log_anomaly.png)
+Longhorn logs are displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained deep learning model for Longhorn logs**
+
+
 
 </TabItem>
 </Tabs>
