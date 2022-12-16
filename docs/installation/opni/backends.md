@@ -35,7 +35,6 @@ kubectl -n opni port-forward svc/opni-admin-dashboard web:web
 
 Then navigate to [http://localhost:12080](http://localhost:12080).
 
-
 2. Select "Monitoring" from the left sidebar under "Backends", then click "Enable".
 
   <div className="image-border">
@@ -687,13 +686,14 @@ Click enable to install Opensearch Dashboards. This provides a UI for Opensearch
 ![Opni Node Pool settings](/img/loggingdashboards.png)
 
 #### Accessing Opensearch Dashboards
-Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards.  The user name is `opni`.  The password can be obtained from the `opni-user-password` secret in the namespace Opni is installed in:
- ```
+
+Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards. The user name is `opni`. The password can be obtained from the `opni-user-password` secret in the namespace Opni is installed in:
+
+```
 kubectl get secret -n opni opni-user-password -o jsonpath='{ .data.password }' | base64 -d
- ```
+```
 
 It is recommended that you change the password on this user.
-
 
 </TabItem>
 <TabItem value="opni-alerting" label="Opni Alerting" default>
@@ -723,6 +723,10 @@ Then navigate to [http://localhost:12080](http://localhost:12080).
       alt="Alerting not installed"
     />
   </div>
+
+:::caution known-issue
+Alerting backend can sometimes erroneously show a "no changes to apply" error when installing, however this does not impact functionality
+:::
 
 3. Choose between deploying the opni-cluster as standalone or HA:
 
