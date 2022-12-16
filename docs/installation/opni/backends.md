@@ -687,10 +687,18 @@ Click enable to install Opensearch Dashboards. This provides a UI for Opensearch
 
 #### Accessing Opensearch Dashboards
 
-Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards. The user name is `opni`. The password can be obtained from the `opni-user-password` secret in the namespace Opni is installed in:
+Once the Opensearch cluster is reported as ready, you can access the dashboards. Opni will create an admin user that must be used to log in to the dashboards. The username and password admin credentials can be obtained from the `opni-admin-password` secret.
+
+##### Username
 
 ```
-kubectl get secret -n opni opni-user-password -o jsonpath='{ .data.password }' | base64 -d
+kubectl get secret -n opni opni-admin-password -o jsonpath='{.data.username}' | base64 -d
+```
+
+##### Password
+
+```
+kubectl get secret -n opni opni-admin-password -o jsonpath='{.data.password}' | base64 -d
 ```
 
 It is recommended that you change the password on this user.
