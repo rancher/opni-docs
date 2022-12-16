@@ -47,8 +47,9 @@ Opni AIOps offers log anomaly detection on user's workload logs with the followi
 Note that it requires an GPU available in the Opni cluster.
 
 ## Prerequisites
-
-The Opni cluster must have **Opni Logging enabled as well as enabling AIOps and the GPU services** and needs at least **1 NVIDIA GPU** attached.
+* Opni logging enabled
+* Enabling AIOps and the GPU Services
+* At least 1 NVIDIA GPU attached
 
 ## Getting Started
 ![SetupWorkloads](/img/aiops/initial_workload_configuration.png)
