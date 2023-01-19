@@ -5,6 +5,10 @@ slug: /installation/opni_agent
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::caution
+When upgrading agents from v0.7.x to v0.8.1 the existing keyrings will be deleted.  To resolve this issue you will need to uninstall the existing capabilities without deleting the data, then delete and readd the agent.  You can then enable the capability again and the data collection will continue.
+:::
+
 There are two ways to install Opni agent. We recommend installation through the Rancher UI.
 
 <Tabs>
