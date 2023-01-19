@@ -5,20 +5,28 @@ slug: /installation/opni/aiops
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+:::note
 
+Logging backend must be enabled before enabling AIOps
+
+:::
+
+Opni AIOps currently features ***log anomaly detection*** - it provides log insights by distinguishing normal and anomalous logs. Log anomaly detection comes in two flavors:
+
+1. Pre-trained models
+    * Models trained by SUSE Rancher that specialize on K8s control plane, Rancher, and Longhorn logs
+    * Do not require a GPU
+
+2. Auto generated models for user selected workloads
+    * User selects 1 or more workload deployments important to them
+    * Opni will self train a model and provide insights for logs belonging to user selected workloads
+    * NVIDIA GPU is required to run
+
+
+Learn more about the two flavors below.
+***
 <Tabs>
-<TabItem value="log-anomaly-detection" label="Log Anomaly Detection" default>
-
-## Overview
-Opni log anomaly detection comes with two features. 
-
-The first feature involves the usage of three pre-trained Deep Learning models for logs from **Kubernetes control plane and etcd**, **Rancher** and **Longhorn** respectively. 
-
-The second feature involves the user specifying workloads of interest and then Opni will train a  Deep Learning model and monitor the selected workloads.
-
-**To learn more about these two features, click on the tabs below.**
-<Tabs>
-<TabItem value="pre-trained" label="Pretrained Models">
+<TabItem value="pre-trained" label="Pretrained models">
 
 Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.** Use these models to **accelerate mean time to resolution**.
 
@@ -37,7 +45,7 @@ The Opni cluster must have **Opni logging** enabled.
     * Compatible with any distribution of Kubernetes that is running any distribution of [Longhorn](https://longhorn.io).
 
 </TabItem>
-<TabItem value="workload" label="User Workloads Self-Learning">
+<TabItem value="workload" label="Auto generated models for user selected workloads">
 Opni AIOps offers log anomaly detection on user's workload logs with the following features:
 
 * self-train models that learn from logs of the workloads user have selected
@@ -116,7 +124,3 @@ Similar to the control plane logs, Rancher logs are also displayed in an easy-to
 ![Opensearch Dashboards Longhorn Logs](/img/aiops/longhorn_opni_log_anomaly.png)
 Longhorn logs are displayed in an easy-to-consume manner where the user can be redirected to the Dashboards page to view the actual log messages that were **inferred by the pretrained deep learning model for Longhorn logs**
 
-
-
-</TabItem>
-</Tabs>
