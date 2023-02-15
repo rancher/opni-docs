@@ -95,14 +95,31 @@ const sidebars = {
         },
         {
           type: 'category',
-          label: 'Alerting User Guide',
+          label: 'Opni Alerting',
           link: {
             type: 'doc',
             id: 'guides/alerting/index'
           },
           items: [
             {
-              
+              type: 'doc',
+              id: 'installation/opni/alerting',
+              label: 'Install Alerting'
+            },
+            {
+              type: 'doc',
+              id: 'guides/alerting/endpoints',
+              label: 'Configuring endpoints'
+            },
+            {
+              type: 'doc',
+              id: 'guides/alerting/alarms',
+              label: 'Configuring alarms'
+            },
+            {
+              type: 'doc',
+              id: 'installation/opni/slo',
+              label: 'SLOs'
             }
           ]
         }
