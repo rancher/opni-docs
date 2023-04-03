@@ -16,8 +16,14 @@ The first feature involves the usage of three pre-trained Deep Learning models f
 
 The second feature involves the user specifying workloads of interest and then Opni will train a  Deep Learning model and monitor the selected workloads.
 
-**To learn more about these two features, click on the tabs below.**
+## Enabling AI Services
+
+Setting up log anomaly detection for Opni can be done through the Opni admin dashboard. Go to the AIOps section and then check the pretrained models that the user would like to receive insights from. If a GPU is enabled on this cluster and the user would like to receive insights on selected workloads, check the **Enable GPU services** button.
+
+![Enable AIOps](/img/aiops/admin_dashboard_enable_ai.png)
+
 <Tabs>
+<details>
 <TabItem value="pre-trained" label="Pretrained Models">
 
 Opni log anomaly detection comes with three specialized pretrained Deep Learning models which are maintained by SUSE Rancher. These models have been optimized to **not require a GPU** for usage, provide **state-of-the-art accuracy** and each one has a **size just under 80 MB.** Use these models to **accelerate mean time to resolution**.
@@ -76,12 +82,6 @@ To reset your watchlist, simply hit the button **Clear Watchlist**.
 
 </TabItem>
 </Tabs>
-
-## Enabling AI Services
-
-Setting up log anomaly detection for Opni can be done through the Opni admin dashboard. Go to the AIOps section and then check the pretrained models that the user would like to receive insights from. If a GPU is enabled on this cluster and the user would like to receive insights on selected workloads, check the **Enable GPU services** button.
-
-![Enable AIOps](/img/aiops/admin_dashboard_enable_ai.png)
 
 ## Consuming AI Insights from Opni
 
