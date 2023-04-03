@@ -94,6 +94,11 @@ const sidebars = {
           label: 'Install Opentelemetry Collector'
         },
         {
+          type: 'doc',
+          id: 'guides/prometheus-import/index',
+          label: "Rancher Monitoring Data Import",
+        },
+        {
           type: 'category',
           label: 'Alerting User Guide',
           link: {
