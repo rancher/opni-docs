@@ -113,6 +113,51 @@ const config = {
           dropdownActiveClassDisabled: true,
         },
         {
+          type: 'dropdown',
+          label: 'More from SUSE',
+          position: 'right',
+          items: [
+            {
+              href: 'https://www.rancher.com',
+              label: 'Rancher',
+              className: 'navbar__icon navbar__rancher',
+            },
+            {
+              type: 'html',
+              value: '<hr style="margin: 0.3rem 0;">',
+            },
+            {
+              href: 'https://epinio.io/',
+              label: 'Epinio',
+              className: 'navbar__icon navbar__epinio',
+            },
+            {
+              href: 'https://fleet.rancher.io/',
+              label: 'Fleet',
+              className: 'navbar__icon navbar__fleet',
+            },
+            {
+              href: 'https://harvesterhci.io',
+              label: 'Harvester',
+              className: 'navbar__icon navbar__harvester',
+            },
+            {
+              href: 'https://rancherdesktop.io',
+              label: 'Rancher Desktop',
+              className: 'navbar__icon navbar__rd',
+            },
+            {
+              type: 'html',
+              value: '<hr style="margin: 0.3rem 0;">',
+            },
+            {
+              href: 'https://opensource.suse.com',
+              label: 'More Projects...',
+              className: 'navbar__icon navbar__suse',
+            },
+          ]
+        },
+        {
           type: 'search',
           position: 'right',
         },
